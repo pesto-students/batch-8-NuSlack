@@ -10,4 +10,12 @@
 - Please follow a common git commit style guide. Somewhat similar to [this guide](https://udacity.github.io/git-styleguide/)
 
 - All PRs should be [Rebase And Merged](https://help.github.com/en/articles/about-pull-request-merges#rebase-and-merge-your-pull-request-commits)
-  
+
+### Team Details
+#### Team Name : NuSlack 
+#### Team Members
+* Jaspreet Singh - [jaspreet57](https://github.com/jaspreet57)
+* Abhinav Sharma - [abhi18av](https://github.com/abhi18av)
+* Saurabh Shetty - [rollaball](https://github.com/rollaball)
+* Prateek Madaan - [prateekinstillion](https://github.com/prateekinstillion)
+* Abdul Khuddus - [khuddus](https://github.com/khuddus)
