@@ -1,4 +1,4 @@
-version: 1
+version: 2
 jobs:
   build:
     docker:
@@ -8,15 +8,15 @@ jobs:
       - MONGO_URL:mongodb://127.0.0.1:27017
     steps:
       - checkout
-#      - run:
-#          name: Setup
-#          command: |
-#            yarn install
+      - run:
+          name: Setup
+          command: |
+            yarn && yarn setup
       - run:
           name: Client Testing
           command: |
-            yarn && yarn test:client
-#      - run:
-#          name: Server Testing
-#          command: |
-#            yarn test:server
+            yarn test:client
+      - run:
+          name: Server Testing
+          command: |
+            yarn test:server
