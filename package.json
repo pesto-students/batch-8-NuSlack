@@ -11,12 +11,14 @@
     "run:client": "cd client && yarn start",
     "test:server": "cd server && yarn && yarn test",
     "test:client": "cd client && yarn && yarn test",
+    "test": "yarn test:server && yarn test:client",
     "build:server": "cd server && yarn build",
     "build:client": "cd client && yarn build",
     "start": "concurrently \"yarn run:server\" \"yarn run:client\"",
     "setup": "concurrently \"cd server && yarn\" \"cd client && yarn\""
   },
   "devDependencies": {
+    "babel-eslint": "10.0.1",
     "concurrently": "^4.1.1"
   }
 }
