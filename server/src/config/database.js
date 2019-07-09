@@ -1,11 +1,2 @@
-const {
-    DATABASE_URL
-} = process.env;
-
-const database = {
-    url: DATABASE_URL,
-}
-
-Object.freeze(database);
-
-export default database;
+import mongoose from 'mongoose';
+mongoose.connect(process.env.MONGODB, { useNewUrlParser: true });
