@@ -1,9 +1,23 @@
-import { Router } from 'express';
-import { getUser } from '../controllers/users';
-import { isAuthenticated } from '../middlewares/authentication';
+import express from 'express';
 
-const api = Router();
+import {
+  getUsers,
+  getUser,
+  saveUser,
+  updateUser,
+  deleteUser,
+} from '../controllers/users';
 
-api.get('/', isAuthenticated, getUser);
+const router = express.Router();
 
-export default api;
+router.get('/', getUsers);
+
+router.get('/:id', getUser);
+
+router.post('/', saveUser);
+
+router.patch('/:id', updateUser);
+
+router.delete('/:id', deleteUser);
+
+export default router;

@@ -1,22 +1,14 @@
-/**
- * Module dependencies.
- */
-import debug from 'debug';
 import 'dotenv/config';
 import { server } from './setup';
 /**
  * setup db
  */
+
 import './config/database';
 /**
  * setup socket
  */
 import './socket/index';
-
-/**
- * setup debugLog
- */
-debug('http');
 
 /**
  * Get port from environment and store in Express.
