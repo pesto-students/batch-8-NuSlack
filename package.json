@@ -15,10 +15,32 @@
     "build:server": "cd server && yarn build",
     "build:client": "cd client && yarn build",
     "start": "concurrently \"yarn run:server\" \"yarn run:client\"",
-    "setup": "concurrently \"cd server && yarn\" \"cd client && yarn\""
+    "setup": "concurrently \"cd server && yarn\" \"cd client && yarn\"",
+    "check:eslint-prettier-conflicts": "eslint --print-config .eslintrc | eslint-config-prettier-check"
+  },
+  "lint-staged": {
+    "*.{js,jsx,md,html}": [
+      "eslint"
+    ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
     "babel-eslint": "10.0.1",
-    "concurrently": "^4.1.1"
+    "concurrently": "^4.1.1",
+    "eslint": "5.16.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.1.0",
+    "prettier": "^1.18.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
