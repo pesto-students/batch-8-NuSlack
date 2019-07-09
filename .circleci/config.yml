@@ -9,10 +9,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Code Linting
+          name: Setup
           command: |
-            yarn && yarn lint
+            yarn install
       - run:
-          name: Client and Server Testing
+          name: Client Testing
           command: |
-            yarn test
+            yarn test:client
+      - run:
+          name: Server Testing
+          command: |
+            yarn test:server
