@@ -1,22 +1,22 @@
-version: 2
+version: 1
 jobs:
   build:
     docker:
-      - image: circleci/node:8.11.1
+      - image: circleci/node:lts
       - image: circleci/mongo:4.0.1
     environment:
       - MONGO_URL:mongodb://127.0.0.1:27017
     steps:
       - checkout
-      - run:
-          name: Setup
-          command: |
-            yarn install
+#      - run:
+#          name: Setup
+#          command: |
+#            yarn install
       - run:
           name: Client Testing
           command: |
-            yarn test:client
-      - run:
-          name: Server Testing
-          command: |
-            yarn test:server
+            yarn && yarn test:client
+#      - run:
+#          name: Server Testing
+#          command: |
+#            yarn test:server
