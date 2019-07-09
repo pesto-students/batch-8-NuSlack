@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node src",
     "build": "rimraf dist && babel src -s -D -d dist",
     "start": "cross-env NODE_ENV=production node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --runInBand"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -24,7 +24,12 @@
     "@babel/node": "^7.5.0",
     "@babel/preset-env": "^7.5.2",
     "cross-env": "^5.2.0",
+    "jest": "^24.8.0",
     "nodemon": "^1.19.1",
     "rimraf": "^2.6.3"
+  },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "node"
   }
 }
