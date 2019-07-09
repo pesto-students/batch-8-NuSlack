@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
+import { channelsTableName } from './tableNames';
 
-const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
+const { Schema } = mongoose;
+const { ObjectId } = Schema;
 
 const ChannelSchema = new Schema({
   admins: [String],
@@ -9,9 +10,9 @@ const ChannelSchema = new Schema({
   isPrivate: Boolean,
   team: [ObjectId],
   users: [String],
-  autoJoin: Boolean
+  autoJoin: Boolean,
 });
 
-const ChannelModel = mongoose.model('ChannelSchema', ChannelSchema);
+const ChannelModel = mongoose.model(channelsTableName, ChannelSchema);
 
 export default ChannelModel;

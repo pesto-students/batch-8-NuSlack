@@ -1,3 +1,3 @@
 import mongoose from 'mongoose';
 
-mongoose.connect(process.env.MONGODB, { useNewUrlParser: true });
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });

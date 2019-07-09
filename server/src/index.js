@@ -1,15 +1,17 @@
 /**
  * Module dependencies.
  */
-import http from 'http';
 import debug from 'debug';
 import 'dotenv/config';
-import app from './app';
-
+import { server } from './setup';
 /**
  * setup db
  */
 import './config/database';
+/**
+ * setup socket
+ */
+import './socket/index';
 
 /**
  * setup debugLog
@@ -32,12 +34,6 @@ const normalizePort = (val) => {
 };
 
 const port = normalizePort(process.env.PORT || '8080');
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-const server = http.createServer(app);
 
 /**
  * Event listener for HTTP server "error" event.
