@@ -8,15 +8,16 @@ jobs:
       - MONGO_URL:mongodb://127.0.0.1:27017
     steps:
       - checkout
-      - run:
-          name: Setup
-          command: |
-            yarn && yarn setup
+# 
+#      - run:
+#          name: Setup
+#          command: |
+#            yarn && yarn setup
       - run:
           name: Client Testing
           command: |
-            yarn test:client
+            yarn && yarn test:client
       - run:
           name: Server Testing
           command: |
-            yarn test:server
+            yarn && yarn test:server
