@@ -10,7 +10,10 @@ import 'dotenv/config';
  * setup debugLog
  */
 const debugLog = debug('http');
-
+/**
+ * setup db 
+*/
+import "./config/database"
 /**
  * Get port from environment and store in Express.
  */
