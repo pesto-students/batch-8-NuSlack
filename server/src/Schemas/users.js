@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
+import { usersTableName } from './tableNames';
 
-const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
+const { Schema } = mongoose;
+const { ObjectId } = Schema;
 
 const TeamSpecificData = new Schema({
   dateJoined: Date,
   role: String,
-  teamId: ObjectId
+  teamId: ObjectId,
 });
 
 const UserSchema = new Schema({
@@ -17,9 +18,9 @@ const UserSchema = new Schema({
   email: String,
   teamsIds: [ObjectId],
   channelIds: [ObjectId],
-  teamSpecificData: [TeamSpecificData]
+  teamSpecificData: [TeamSpecificData],
 });
 
-const UserModel = mongoose.model('UserSchema', UserSchema);
+const UserModel = mongoose.model(usersTableName, UserSchema);
 
 export default UserModel;
