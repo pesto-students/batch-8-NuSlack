@@ -8,16 +8,21 @@ jobs:
       - MONGO_URL:mongodb://127.0.0.1:27017
     steps:
       - checkout
-# 
-#      - run:
-#          name: Setup
-#          command: |
-#            yarn && yarn setup
-      - run:
-          name: Client Testing
-          command: |
-            yarn && yarn test:client
       - run:
           name: Server Testing
           command: |
             yarn && yarn test:server
+      - run: bash .circleci/setup-heroku.sh
+      - add_ssh_keys:
+          fingerprints:
+            - $HEROKU_SSH_FINGERPRINT
+      - deploy:
+          name: Deploy backend to Heroku 
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            git subtree push --prefix server git@heroku.com:$HEROKU_APP_NAME.git master
+            fi
+      - run:
+          name: Client Testing
+          command: |
+            yarn && yarn test:client
