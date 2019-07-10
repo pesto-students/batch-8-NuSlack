@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatInputBox /> should match the snapshot 1`] = `
+<styled.div>
+  <Input
+    disabled={false}
+    placeholder="Say it"
+    prefix={
+      <Icon
+        style={
+          Object {
+            "color": "rgba(0,0,0,.25)",
+          }
+        }
+        type="user"
+      />
+    }
+    size="large"
+    suffix={
+      <React.Fragment>
+        <index>
+          <Icon
+            type="smile"
+          />
+        </index>
+         
+        <index>
+          <Icon
+            type="paper-clip"
+          />
+        </index>
+      </React.Fragment>
+    }
+    type="text"
+  />
+</styled.div>
+`;

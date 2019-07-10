@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MainHeader /> should match the snapshot 1`] = `
+<Styled(Adapter)
+  className="home-header"
+>
+  <Row
+    gutter={0}
+  >
+    <Col
+      span={12}
+    >
+      <Row
+        align="middle"
+        gutter={0}
+        justify="start"
+        style={
+          Object {
+            "height": "100px",
+          }
+        }
+        type="flex"
+      >
+        <Avatar
+          icon="user"
+          shape="square"
+          size={90}
+        />
+        <styled.div>
+          <h1
+            className="user-name"
+          >
+            JohnDoe
+          </h1>
+          <styled.div>
+            <Icon
+              theme="twoTone"
+              twoToneColor="#52c41a"
+              type="check-circle"
+            />
+             
+            Online
+          </styled.div>
+        </styled.div>
+      </Row>
+    </Col>
+    <Col
+      span={12}
+    >
+      <Row
+        align="middle"
+        gutter={0}
+        justify="end"
+        style={
+          Object {
+            "height": "100px",
+          }
+        }
+        type="flex"
+      >
+        <Col
+          span={32}
+        >
+          <index>
+            <Icon
+              type="bell"
+            />
+          </index>
+           
+          <index>
+            <Icon
+              type="menu"
+            />
+          </index>
+        </Col>
+      </Row>
+    </Col>
+  </Row>
+</Styled(Adapter)>
+`;
