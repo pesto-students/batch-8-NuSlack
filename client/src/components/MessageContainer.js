@@ -29,64 +29,32 @@ export default class MessageContainer extends Component {
   };
 
   componentDidMount() {
-    const data = JSON.parse(JSON.stringify(fakeJSON));
-    Object.keys(data.channels).forEach(channel => {
-      if (channel === this.props.activeChannel) {
-        Object.keys(data.messages).forEach(message => {
-          if (message.channelId === this.props.activeChannel) {
-            this.setState({ messages: [...this.state.messages, message] });
-          }
-        });
-      }
+    const dataObject = JSON.parse(JSON.stringify(fakeJSON));
+    const { channels, messages } = dataObject;
+    const channelMessages = this.state.messages.slice();
+    Object.keys(channels).forEach(channelKey => {
+      Object.keys(messages).forEach(messageKey => {
+        if (messages[messageKey].channelId === channelKey) {
+          channelMessages.push(messages[messageKey]);
+        }
+      });
+    });
+    this.setState({
+      messages: [...this.state.messages, ...channelMessages]
     });
   }
-
   render() {
-    const { activeChannel } = this.props;
     console.log(this.state.messages);
     return (
       <Container>
         <ul>
-          <li>
-            <TeamMember>Team Member 1</TeamMember>
-            <TimestampSpan>Timestamp</TimestampSpan>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error
-              distinctio inventore libero, quae, adipisci corrupti minima
-              maiores aperiam necessitatibus ipsa dolores quam ut tempore ipsum!
-              Mollitia ex possimus harum corporis!
-            </p>
-          </li>
-          <li>
-            <TeamMember>Team Member 2</TeamMember>
-            <TimestampSpan>Timestamp</TimestampSpan>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error
-              distinctio inventore libero, quae, adipisci corrupti minima
-              maiores aperiam necessitatibus ipsa dolores quam ut tempore ipsum!
-              Mollitia ex possimus harum corporis!
-            </p>
-          </li>
-          <li>
-            <TeamMember>Team Member 3</TeamMember>
-            <TimestampSpan>Timestamp</TimestampSpan>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error
-              distinctio inventore libero, quae, adipisci corrupti minima
-              maiores aperiam necessitatibus ipsa dolores quam ut tempore ipsum!
-              Mollitia ex possimus harum corporis!
-            </p>
-          </li>
-          <li>
-            <TeamMember>Team Member 7</TeamMember>
-            <TimestampSpan>Timestamp</TimestampSpan>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error
-              distinctio inventore libero, quae, adipisci corrupti minima
-              maiores aperiam necessitatibus ipsa dolores quam ut tempore ipsum!
-              Mollitia ex possimus harum corporis!
-            </p>
-          </li>
+          {this.state.messages.map(messageObject => (
+            <li>
+              <TeamMember>{messageObject.sender}</TeamMember>
+              <TimestampSpan>{messageObject.timestamp}</TimestampSpan>
+              <p>{messageObject.message}</p>
+            </li>
+          ))}
         </ul>
       </Container>
     );

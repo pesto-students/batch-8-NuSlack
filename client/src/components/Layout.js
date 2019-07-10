@@ -26,18 +26,18 @@ export default class Layout extends Component {
   loadUserChannels = () => {
     const { activeUser } = this.state;
     const data = JSON.parse(JSON.stringify(fakeJSON));
+    const userChannels = [];
     Object.keys(data.users).forEach(userId => {
       if (data.users[userId].userName === activeUser) {
-        this.setState({
-          userChannels: [
-            ...this.state.userChannels,
-            ...data.users[userId].channels
-          ]
-        });
+        userChannels.push(...data.users[userId].channels);
       }
+    });
+    this.setState({
+      userChannels: [...this.state.userChannels, ...userChannels]
     });
   };
   loadChannel = channel => {
+    console.log("load channel called");
     this.setState({ activeChannel: channel });
   };
   render() {
