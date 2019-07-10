@@ -26,3 +26,9 @@ jobs:
           name: Client Testing
           command: |
             yarn && yarn test:client
+      - deploy:
+          name: Deploy frontend to Netlify
+          command: |
+            yarn build:client && npx netlify deploy --dir=client/build --prod
+
+
