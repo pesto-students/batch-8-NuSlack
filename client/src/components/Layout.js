@@ -19,21 +19,13 @@ export default class Layout extends Component {
   };
   componentDidMount() {
     const { username } = this.props.match.params;
-    this.setState(
-      {
-        activeUser: username
-      },
-      () => {
-        this.loadUserChannels();
-      }
-    );
+    this.setState({ activeUser: username }, () => {
+      this.loadUserChannels();
+    });
   }
   loadUserChannels = () => {
     const { activeUser } = this.state;
-    if (!activeUser) {
-      return;
-    }
-    const data = JSON.parse(fakeJSON);
+    const data = JSON.parse(JSON.stringify(fakeJSON));
     Object.keys(data.users).forEach(userId => {
       if (data.users[userId].userName === activeUser) {
         this.setState({

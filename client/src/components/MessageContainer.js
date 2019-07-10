@@ -14,6 +14,7 @@ const Container = styled.div`
     margin-top: 0.25rem;
   }
 `;
+
 const TimestampSpan = styled.span`
   color: darkgrey;
 `;
@@ -28,7 +29,7 @@ export default class MessageContainer extends Component {
   };
 
   componentDidMount() {
-    const data = JSON.parse(fakeJSON);
+    const data = JSON.parse(JSON.stringify(fakeJSON));
     Object.keys(data.channels).forEach(channel => {
       if (channel === this.props.activeChannel) {
         Object.keys(data.messages).forEach(message => {

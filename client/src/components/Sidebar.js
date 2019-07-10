@@ -35,13 +35,12 @@ export const Status = styled.span`
   display: inline-block;
 `;
 class Sidebar extends Component {
+  componentDidMount() {
+    this.props.loadUserChannels();
+  }
   render() {
-    const {
-      activeUser,
-      loadChannel,
-      userChannels,
-      loadUserChannels
-    } = this.props;
+    const { activeUser, loadChannel, userChannels } = this.props;
+
     return (
       <Container>
         <SidebarHeader>
@@ -59,7 +58,6 @@ class Sidebar extends Component {
             activeUser={activeUser}
             loadChannel={loadChannel}
             userChannels={userChannels}
-            loadUserChannels={loadUserChannels}
           />
           <Messages />
         </Fragment>
