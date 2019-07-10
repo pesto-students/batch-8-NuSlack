@@ -30,11 +30,12 @@ const Title = styled.div`
 
 export default class ContentHeader extends Component {
   render() {
+    const { activeChannel } = this.props;
     return (
       <Container>
         <Title>
           <div>
-            <h3>Channel Two: Currently Active Channel</h3>
+            <h3>{activeChannel && activeChannel.channelName}</h3>
           </div>
         </Title>
         <div>

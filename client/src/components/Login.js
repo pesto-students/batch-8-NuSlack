@@ -28,7 +28,8 @@ export default class Login extends Component {
       });
       return;
     }
-    this.props.history.push("/chat");
+    this.props.history.push(`/chat/${username}`);
+
     this.setState({
       username: ""
     });

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import fakeJSON from "../dummy.json";
 
 const Container = styled.div`
   margin-top: 90px;
@@ -22,7 +23,26 @@ const TeamMember = styled.span`
   font-size: 1.2rem;
 `;
 export default class MessageContainer extends Component {
+  state = {
+    messages: []
+  };
+
+  componentDidMount() {
+    const data = JSON.parse(fakeJSON);
+    Object.keys(data.channels).forEach(channel => {
+      if (channel === this.props.activeChannel) {
+        Object.keys(data.messages).forEach(message => {
+          if (message.channelId === this.props.activeChannel) {
+            this.setState({ messages: [...this.state.messages, message] });
+          }
+        });
+      }
+    });
+  }
+
   render() {
+    const { activeChannel } = this.props;
+    console.log(this.state.messages);
     return (
       <Container>
         <ul>

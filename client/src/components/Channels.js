@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ChannelTiles = styled.div`
   margin: 2rem 0 1rem;
@@ -27,22 +28,8 @@ const Button = styled.div`
 `;
 
 export default class Channels extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      channels: [
-        "Channel 1",
-        "Channel 2",
-        "Channel 3",
-        "Channel 4",
-        "Channel 5"
-      ]
-    };
-  }
-
   render() {
-    const { channels } = this.state;
+    const { loadChannel, userChannels } = this.props;
     return (
       <Fragment>
         <ChannelTiles>
@@ -50,9 +37,10 @@ export default class Channels extends Component {
           <i className="fas fa-plus" />
         </ChannelTiles>
         <ul>
-          {channels.map(channel => (
-            <li>#{channel}</li>
-          ))}
+          {userChannels &&
+            userChannels.map(channel => (
+              <li onClick={() => loadChannel(channel)}>#{channel}</li>
+            ))}
         </ul>
         <Button className="btn">
           <i className="fas fa-plus" /> Add Channel

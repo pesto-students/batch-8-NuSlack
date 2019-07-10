@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Component } from "react";
 import styled from "styled-components";
 import Channels from "./Channels";
 import Messages from "./Messages";
@@ -34,25 +34,38 @@ export const Status = styled.span`
   margin-right: 0.5rem;
   display: inline-block;
 `;
-function Sidebar() {
-  return (
-    <Container>
-      <SidebarHeader>
-        <MainHeading>Lorem Ipsum</MainHeading>
-        <div>
-          <i className="far fa-bell" />
-        </div>
-        <MemberNameContainer>
-          <Status />
-          Member 1
-        </MemberNameContainer>
-      </SidebarHeader>
-      <Fragment>
-        <Channels />
-        <Messages />
-      </Fragment>
-    </Container>
-  );
+class Sidebar extends Component {
+  render() {
+    const {
+      activeUser,
+      loadChannel,
+      userChannels,
+      loadUserChannels
+    } = this.props;
+    return (
+      <Container>
+        <SidebarHeader>
+          <MainHeading>Lorem Ipsum</MainHeading>
+          <div>
+            <i className="far fa-bell" />
+          </div>
+          <MemberNameContainer>
+            <Status />
+            {activeUser}
+          </MemberNameContainer>
+        </SidebarHeader>
+        <Fragment>
+          <Channels
+            activeUser={activeUser}
+            loadChannel={loadChannel}
+            userChannels={userChannels}
+            loadUserChannels={loadUserChannels}
+          />
+          <Messages />
+        </Fragment>
+      </Container>
+    );
+  }
 }
 
 export default Sidebar;

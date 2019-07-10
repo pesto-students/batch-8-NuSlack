@@ -1,0 +1,41 @@
+{
+  "messages": {
+    "message1": {
+      "message": "This is the first message",
+      "read": true,
+      "timestamp": 1562623633,
+      "sender": "user1",
+      "channelId": "channel1",
+      "teamId": "team1"
+    },
+    "message2": {
+      "message": "This is the second message",
+      "read": true,
+      "timestamp": 1562623633,
+      "sender": "user2",
+      "channelId": "channel1",
+      "teamId": "team1"
+    }
+  },
+  "users": {
+    "user1": {
+      "lastActive": 1562780327581,
+      "online": false,
+      "userName": "Prateek",
+      "tagLine": "Lorem Ipsum",
+      "email": "lorem@ipsum.com",
+      "teams": ["team1", "team2"],
+      "channels": ["channel1", "channel2"]
+    }
+  },
+  "channels": {
+    "channel1": {
+      "admins": ["Prateek", "Saurabh"],
+      "channelId": "channel1",
+      "isPrivate": true,
+      "team": "team1",
+      "users": ["user1", "user2"],
+      "autoJoin": false
+    }
+  }
+}

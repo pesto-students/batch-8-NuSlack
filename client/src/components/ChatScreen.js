@@ -3,7 +3,6 @@ import styled from "styled-components";
 import ContentHeader from "./ContentHeader";
 import MessageContainer from "./MessageContainer";
 import MessageInput from "./MessageInput";
-
 const Container = styled.div`
   padding: 1rem;
   color: black;
@@ -14,11 +13,21 @@ const Container = styled.div`
 `;
 
 export default class ChatScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages: []
+    };
+  }
+
   render() {
     return (
       <Container>
-        <ContentHeader />
-        <MessageContainer />
+        <ContentHeader activeChannel={this.props.activeChannel} />
+        <MessageContainer
+          activeChannel={this.props.activeChannel}
+          activeUser={this.props.activeUser}
+        />
         <MessageInput />
       </Container>
     );

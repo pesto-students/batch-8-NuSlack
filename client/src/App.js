@@ -9,7 +9,7 @@ export default class App extends Component {
       <Router>
         <div className="App">
           <Switch>
-            <Route path="/chat" exact component={Layout} />
+            <Route path="/chat/:username" exact component={Layout} />
             <Route path="/login" exact component={Login} />
           </Switch>
         </div>
