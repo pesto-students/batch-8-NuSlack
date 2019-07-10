@@ -50,3 +50,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# Ignore the package-lock.json to avoid clash with yarn.lock
+package-lock.json
