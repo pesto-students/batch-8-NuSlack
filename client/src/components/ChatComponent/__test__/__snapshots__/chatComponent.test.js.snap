@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatComponent /> should match the snapshot 1`] = `
+<Fragment>
+  <Styled(Adapter)
+    className="channel-detail"
+  >
+    Channel Detail
+  </Styled(Adapter)>
+  <Adapter
+    style={
+      Object {
+        "background": "#fff",
+        "margin": 0,
+        "minHeight": 280,
+        "padding": 24,
+      }
+    }
+  >
+    <styled.div>
+      <styled.div>
+        <div>
+          <List
+            bordered={false}
+            dataSource={
+              Array [
+                Object {
+                  "avatar": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+                  "content": "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+                  "href": "#",
+                  "title": "username 0",
+                },
+                Object {
+                  "avatar": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+                  "content": "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+                  "href": "#",
+                  "title": "username 1",
+                },
+                Object {
+                  "avatar": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+                  "content": "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
+                  "href": "#",
+                  "title": "username 2",
+                },
+              ]
+            }
+            itemLayout="vertical"
+            loading={false}
+            pagination={false}
+            renderItem={[Function]}
+            size="large"
+            split={true}
+          />
+        </div>
+      </styled.div>
+      <ChatInputBox />
+    </styled.div>
+  </Adapter>
+</Fragment>
+`;
