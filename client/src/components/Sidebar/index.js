@@ -8,14 +8,8 @@ const Sidebar = () => {
   const [userChannels, setUserChannels] = useState([]);
   const [groupChannels, setGroupChannels] = useState([]);
   useEffect(() => {
-    setGroupChannels([
-      { name: 'channel1', id: '123123' },
-      { name: 'channel2', id: '123122' },
-    ]);
-    setUserChannels([
-      { name: 'Person1', id: '1223' },
-      { name: 'Person2', id: '1122' },
-    ]);
+    setGroupChannels([{ name: 'channel1', id: '123123' }, { name: 'channel2', id: '123122' }]);
+    setUserChannels([{ name: 'Person1', id: '1223' }, { name: 'Person2', id: '1122' }]);
   }, []);
   return (
     <Sider
@@ -36,12 +30,12 @@ const Sidebar = () => {
       >
         <SubMenu
           key="sub1"
-          title={
+          title={(
             <span>
               <Icon type="laptop" />
               Channels
             </span>
-          }
+)}
         >
           {groupChannels.map(channel => (
             <Menu.Item key={channel.id}>{channel.name}</Menu.Item>
@@ -49,12 +43,12 @@ const Sidebar = () => {
         </SubMenu>
         <SubMenu
           key="sub2"
-          title={
+          title={(
             <span>
               <Icon type="user" />
               People
             </span>
-          }
+)}
         >
           {userChannels.map(channel => (
             <Menu.Item key={channel.id}>{channel.name}</Menu.Item>
