@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Icon, Avatar, Input, Skeleton, List } from 'antd';
-import ChatInputBox from '../ChatInputBox';
+import {
+  Layout, Icon, Avatar, Skeleton, List,
+} from 'antd';
 import styled from 'styled-components';
+import ChatInputBox from '../ChatInputBox';
 
 const { Header } = Layout;
 
@@ -43,7 +45,7 @@ const GreenHeader = styled(Header)`
   color: white;
 `;
 const ChatComponent = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
 
   return (
     <>

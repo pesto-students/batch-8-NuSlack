@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Icon, Row, Col, Avatar, Layout } from 'antd';
+import {
+  Icon, Row, Col, Avatar, Layout,
+} from 'antd';
 import styled from 'styled-components';
 import CircleButton from '../CircleButton';
 
@@ -29,33 +31,18 @@ const MainHeader = () => {
     <HomeHeader className="home-header">
       <Row>
         <Col span={12}>
-          <Row
-            type="flex"
-            align="middle"
-            justify="start"
-            style={{ height: '100px' }}
-          >
+          <Row type="flex" align="middle" justify="start" style={{ height: '100px' }}>
             <Avatar shape="square" size={90} icon="user" />
             <LoggedInUser>
               <h1 className="user-name">{username}</h1>
               <UserStatus>
-                <Icon
-                  type="check-circle"
-                  theme="twoTone"
-                  twoToneColor="#52c41a"
-                />{' '}
-                Online
+                <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Online
               </UserStatus>
             </LoggedInUser>
           </Row>
         </Col>
         <Col span={12}>
-          <Row
-            type="flex"
-            align="middle"
-            justify="end"
-            style={{ height: '100px' }}
-          >
+          <Row type="flex" align="middle" justify="end" style={{ height: '100px' }}>
             <Col span={32}>
               <CircleButton>
                 <Icon type="bell" />

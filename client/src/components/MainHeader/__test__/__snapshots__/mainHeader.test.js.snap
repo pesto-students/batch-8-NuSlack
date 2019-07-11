@@ -38,8 +38,7 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
               twoToneColor="#52c41a"
               type="check-circle"
             />
-             
-            Online
+             Online
           </styled.div>
         </styled.div>
       </Row>
