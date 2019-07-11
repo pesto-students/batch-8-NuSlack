@@ -5,12 +5,13 @@ const { Schema } = mongoose;
 const { ObjectId } = Schema;
 
 const ChannelSchema = new Schema({
-  admins: [String],
-  channelId: ObjectId,
+  name: String,
+  oneToOne: Boolean,
   isPrivate: Boolean,
-  team: [ObjectId],
-  users: [String],
   autoJoin: Boolean,
+  admins: [String],
+  teamId: ObjectId,
+  users: [String],
 });
 
 const ChannelModel = mongoose.model(channelsTableName, ChannelSchema);
