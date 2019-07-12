@@ -6,8 +6,9 @@ const setChannelsHandler = dispatch => (channels) => {
 };
 
 const setUserHandler = dispatch => (user) => {
+  localStorage.setItem('userDetails', JSON.stringify(user));
   dispatch({
-    type: 'SET_CHANNELS',
+    type: 'SET_USER',
     payload: { user },
   });
 };

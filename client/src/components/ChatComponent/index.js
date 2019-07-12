@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Layout, Icon, Avatar, Skeleton, List } from 'antd';
 import styled from 'styled-components';
 import ChatInputBox from '../ChatInputBox';
 import ProfileModal from '../ProfileModal';
+import { withRouter } from 'react-router-dom';
 
 const { Header } = Layout;
 
@@ -36,10 +37,9 @@ for (let i = 0; i < 3; i += 1) {
     href: '#',
     title: `username ${i}`,
     avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    tagLine:
-      'We supply a series of design principles.',
+    tagLine: 'Some tagline YOLOYOLOYOLO',
     content: 'message',
-    likes:123
+    likes: 123,
   });
 }
 const defaultUser = {
@@ -47,16 +47,15 @@ const defaultUser = {
   href: '',
   title: '',
   avatar: '',
-  tagLine:
-    '',
+  tagLine: '',
   content: '',
-}
+};
 const GreenHeader = styled(Header)`
   background-color: green;
   color: white;
 `;
 
-const ChatComponent = () => {
+const ChatComponent = (props) => {
   const [loading] = useState(false);
   const [modalIsVisible, setModal] = useState(false);
   const [activeModalProfile, setActiveModalProfile] = useState(defaultUser);
@@ -65,7 +64,7 @@ const ChatComponent = () => {
     setActiveModalProfile(user);
     setModal(!modalIsVisible);
   };
-
+  useEffect(() => {console.log(props)}, [])
   return (
     <>
       <GreenHeader className="channel-detail">Channel Detail</GreenHeader>
@@ -89,7 +88,10 @@ const ChatComponent = () => {
                     key={item.title}
                     actions={
                       !loading && [
-                        <IconText type="like-o" text={item.likes?item.likes:0} />,
+                        <IconText
+                          type="like-o"
+                          text={item.likes ? item.likes : 0}
+                        />,
                       ]
                     }
                   >
@@ -109,10 +111,14 @@ const ChatComponent = () => {
           </ChatHistory>
           <ChatInputBox />
         </ChatBox>
-        <ProfileModal toggleModal={toggleModal} visible={modalIsVisible} userData={activeModalProfile}  />
+        <ProfileModal
+          toggleModal={toggleModal}
+          visible={modalIsVisible}
+          userData={activeModalProfile}
+        />
       </Content>
     </>
   );
 };
 
-export default ChatComponent;
+export default withRouter(ChatComponent);

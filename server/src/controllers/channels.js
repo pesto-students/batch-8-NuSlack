@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import Channels from '../models/channels';
-
+import Users from '../models/users';
 const getChannels = async (req, res) => {
   const channels = await Channels.find({ ...req.query });
   return res.send(channels);
@@ -18,8 +18,20 @@ const getChannel = async (req, res) => {
 };
 
 const saveChannel = async (req, res) => {
-  const channel = new Channels(req.body);
+  const { body } = req;
+  if(!body.users) {
+    body.users = [];
+  }
+  if (body.autoJoin === true) {
+    const users = await Users.find();
+    const userIds = users.map(user => user._id);
+    body.users = [...body.users, ...userIds];
+  }
+  console.log(body);
+  const channel = new Channels(body);
+
   const savedChannel = await channel.save();
+
   return res.send(savedChannel);
 };
 
