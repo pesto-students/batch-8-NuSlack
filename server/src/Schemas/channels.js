@@ -6,9 +6,9 @@ const { ObjectId } = Schema;
 
 const ChannelSchema = new Schema({
   name: String,
-  oneToOne: Boolean,
-  isPrivate: Boolean,
-  autoJoin: Boolean,
+  isGroup: { type: Boolean, default: false },
+  isPrivate: { type: Boolean, default: false },
+  autoJoin: { type: Boolean, default: false },
   admins: [String],
   teamId: ObjectId,
   users: [String],

@@ -4,7 +4,7 @@ import Channels from '../Schemas/channels';
 
 const getChannels = async (req, res) => {
   const channels = await Channels.find({ ...req.query });
-  res.send(channels);
+  return res.send(channels);
 };
 
 const getChannel = async (req, res) => {
@@ -20,7 +20,7 @@ const getChannel = async (req, res) => {
 const saveChannel = async (req, res) => {
   const channel = new Channels(req.body);
   const savedChannel = await channel.save();
-  res.send(savedChannel);
+  return res.send(savedChannel);
 };
 
 const updateChannel = async (req, res) => {
@@ -37,7 +37,40 @@ const updateChannel = async (req, res) => {
 
 const deleteChannel = async (req, res) => {
   const channel = await Channels.findOneAndDelete({ _id: req.params.id });
-  res.send(channel);
+  if (!channel) {
+    return res.status(404).send('channel not found');
+  }
+  return res.send(channel);
 };
 
-export { getChannels, getChannel, saveChannel, updateChannel, deleteChannel };
+const addUserToChannel = async (req, res) => {
+  const channel = await Channels.findOneAndUpdate(
+    { _id: req.params.channelId },
+    { $push: { users: req.params.username } },
+  );
+  if (!channel) {
+    res.status(404).send('channel not found');
+  }
+  return res.send(channel);
+};
+
+const removeUserFromChannel = async (req, res) => {
+  const channel = await Channels.findOneAndUpdate(
+    { _id: req.params.channelId },
+    { $pull: { users: req.params.username } },
+  );
+  if (!channel) {
+    res.status(404).send('channel not found');
+  }
+  return res.send(channel);
+};
+
+export {
+  getChannels,
+  getChannel,
+  saveChannel,
+  updateChannel,
+  deleteChannel,
+  addUserToChannel,
+  removeUserFromChannel,
+};

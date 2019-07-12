@@ -2,7 +2,7 @@ import Users from '../Schemas/users';
 
 const getUsers = async (req, res) => {
   const users = await Users.find({ ...req.query });
-  res.send(users);
+  return res.send(users);
 };
 
 const getUser = async (req, res) => {
@@ -16,7 +16,7 @@ const getUser = async (req, res) => {
 const saveUser = async (req, res) => {
   const user = new Users(req.body);
   const savedUser = await user.save();
-  res.send(savedUser);
+  return res.send(savedUser);
 };
 
 const updateUser = async (req, res) => {
@@ -33,7 +33,7 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   const user = await Users.findOneAndDelete({ username: req.params.username });
-  res.send(user);
+  return res.send(user);
 };
 const addUserToChannels = async (req, res) => {
   const user = await Users.findOne({ username: req.params.username });

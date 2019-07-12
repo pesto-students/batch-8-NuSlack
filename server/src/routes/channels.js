@@ -6,6 +6,8 @@ import {
   saveChannel,
   updateChannel,
   deleteChannel,
+  addUserToChannel,
+  removeUserFromChannel,
 } from '../controllers/channels';
 
 const router = express.Router();
@@ -19,5 +21,9 @@ router.post('/', saveChannel);
 router.patch('/:id', updateChannel);
 
 router.delete('/:id', deleteChannel);
+
+router.post('/:id/add-user/:username', addUserToChannel);
+
+router.post('/:id/remove-user/:username', removeUserFromChannel);
 
 export default router;
