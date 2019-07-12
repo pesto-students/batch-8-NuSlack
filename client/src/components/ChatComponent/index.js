@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Icon, Avatar, Skeleton, List } from 'antd';
+import {
+  Layout, Icon, Avatar, Skeleton, List,
+} from 'antd';
 import styled from 'styled-components';
 import ChatInputBox from '../ChatInputBox';
 import ProfileModal from '../ProfileModal';
@@ -37,7 +39,7 @@ for (let i = 0; i < 3; i += 1) {
     href: '#',
     title: `username ${i}`,
     avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    tagLine: 'Some tagline YOLOYOLOYOLO',
+    tagLine: 'We supply a series of design principles.',
     content: 'message',
     likes: 123,
   });
@@ -59,7 +61,7 @@ const ChatComponent = (props) => {
   const [loading] = useState(false);
   const [modalIsVisible, setModal] = useState(false);
   const [activeModalProfile, setActiveModalProfile] = useState(defaultUser);
-  const toggleModal = user => {
+  const toggleModal = (user) => {
     console.log('toggling modal', !modalIsVisible);
     setActiveModalProfile(user);
     setModal(!modalIsVisible);
@@ -87,12 +89,7 @@ const ChatComponent = (props) => {
                   <List.Item
                     key={item.title}
                     actions={
-                      !loading && [
-                        <IconText
-                          type="like-o"
-                          text={item.likes ? item.likes : 0}
-                        />,
-                      ]
+                      !loading && [<IconText type="like-o" text={item.likes ? item.likes : 0} />]
                     }
                   >
                     <Skeleton loading={loading} active avatar>

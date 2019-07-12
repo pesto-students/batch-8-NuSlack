@@ -8,8 +8,12 @@ const reducer = (state, action) => {
       return {
         user: { ...action.payload.user },
       };
+    case 'SET_CONNECTED':
+      return {
+        isConnected: true,
+      };
     default:
-      throw new Error('No action defined');
+      throw new Error('Action type not defined');
   }
 };
 
