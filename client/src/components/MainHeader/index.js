@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Icon, Row, Col, Avatar, Layout,
 } from 'antd';
 import styled from 'styled-components';
 import CircleButton from '../CircleButton';
+import { useHomeContext } from '../../context/HomeContext';
 
 const { Header } = Layout;
 
@@ -26,7 +27,8 @@ const HomeHeader = styled(Header)`
   background: #607d8b;
 `;
 const MainHeader = () => {
-  const [username] = useState('JohnDoe');
+  const { user } = useHomeContext();
+
   return (
     <HomeHeader className="home-header">
       <Row>
@@ -34,7 +36,7 @@ const MainHeader = () => {
           <Row type="flex" align="middle" justify="start" style={{ height: '100px' }}>
             <Avatar shape="square" size={90} icon="user" />
             <LoggedInUser>
-              <h1 className="user-name">{username}</h1>
+              <h1 className="user-name">{user.username}</h1>
               <UserStatus>
                 <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Online
               </UserStatus>

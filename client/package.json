@@ -6,6 +6,7 @@
     "add": "^2.0.6",
     "antd": "^3.20.1",
     "babel-plugin-import": "^1.12.0",
+    "constate": "^1.2.0",
     "customize-cra": "^0.2.14",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
