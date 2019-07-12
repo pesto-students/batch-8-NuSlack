@@ -13,4 +13,10 @@ const setUserHandler = dispatch => (user) => {
   });
 };
 
-export { setChannelsHandler, setUserHandler };
+const setConnectedHandler = dispatch => () => {
+  dispatch({
+    type: 'SET_CONNECTED',
+  });
+};
+
+export { setChannelsHandler, setUserHandler, setConnectedHandler };

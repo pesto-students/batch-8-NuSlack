@@ -2,8 +2,14 @@ const user = localStorage.getItem('userDetails');
 
 const initialState = {
   user: user ? JSON.parse(user) : {},
-  channels: [],
-  allUsers: [],
+  isConnecting: true,
+  isConnected: false,
+  channelIds: [],
+  channelsMap: {},
+  allUserIds: [],
+  allUsersMap: {},
+  activeChannel: null,
+  activeUser: null,
   error: null,
 };
 
