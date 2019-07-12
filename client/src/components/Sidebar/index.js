@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import axios from 'axios';
 import { useHomeContext } from '../../context/HomeContext';
-
+import AddChannelModal from '../AddChannelModal'
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 
 const Sidebar = () => {
   const [userChannels, setUserChannels] = useState([]);
   const [groupChannels, setGroupChannels] = useState([]);
+  const [channelModalIsVisible, setChannelModalIsVisible] = useState(false);
+
   const { user } = useHomeContext();
   useEffect(() => {
     setGroupChannels([
@@ -26,8 +28,8 @@ const Sidebar = () => {
         },
       })
       .then(res => {
-        const {data: channels} =  res ;
-        console.log(channels)
+        const { data: channels } = res;
+        console.log(channels);
         const userChannels = channels.filter(
           channel => channel.isGroup === false,
         );
@@ -37,7 +39,11 @@ const Sidebar = () => {
         setGroupChannels(groupChannels);
         setUserChannels(userChannels);
       });
-  }, []);
+  }, [user]);
+  const toggleModal = () => {
+    console.log('asas')
+    setChannelModalIsVisible(!channelModalIsVisible)
+  }
   return (
     <Sider
       width={300}
@@ -60,7 +66,7 @@ const Sidebar = () => {
           title={
             <span>
               <Icon type="laptop" />
-              Channels
+              Channels <Icon type="plus" onClick={toggleModal}/>
             </span>
           }
         >
@@ -82,6 +88,7 @@ const Sidebar = () => {
           ))}
         </SubMenu>
       </Menu>
+      <AddChannelModal visible={channelModalIsVisible} toggleModal={toggleModal}/>
     </Sider>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Input, Button } from 'antd';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { useHomeContext } from '../../context/HomeContext';
 const LoginContainer = styled.div`

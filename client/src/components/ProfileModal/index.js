@@ -12,7 +12,7 @@ const StyledModal = styled(Modal)`
     display: flex;
     flex-direction: row;
   }
-  div{
+  div {
     margin-left: 1em;
   }
 `;
