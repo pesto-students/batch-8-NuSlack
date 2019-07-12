@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Layout, Icon, Avatar, Skeleton, List,
@@ -66,7 +66,6 @@ const ChatComponent = (props) => {
     setActiveModalProfile(user);
     setModal(!modalIsVisible);
   };
-  useEffect(() => {console.log(props)}, [])
   return (
     <>
       <GreenHeader className="channel-detail">Channel Detail</GreenHeader>
