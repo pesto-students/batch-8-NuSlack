@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Layout, Icon, Avatar, Skeleton, List,
-} from 'antd';
+import { Layout, Icon, Avatar, Skeleton, List } from 'antd';
 import styled from 'styled-components';
 import ChatInputBox from '../ChatInputBox';
+import ProfileModal from '../ProfileModal';
 
 const { Header } = Layout;
 
@@ -33,19 +32,39 @@ IconText.propTypes = {
 const listData = [];
 for (let i = 0; i < 3; i += 1) {
   listData.push({
+    _id: '123',
     href: '#',
     title: `username ${i}`,
     avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+    tagLine:
+      'We supply a series of design principles.',
+    content: 'message',
+    likes:123
   });
+}
+const defaultUser = {
+  _id: '',
+  href: '',
+  title: '',
+  avatar: '',
+  tagLine:
+    '',
+  content: '',
 }
 const GreenHeader = styled(Header)`
   background-color: green;
   color: white;
 `;
+
 const ChatComponent = () => {
   const [loading] = useState(false);
+  const [modalIsVisible, setModal] = useState(false);
+  const [activeModalProfile, setActiveModalProfile] = useState(defaultUser);
+  const toggleModal = user => {
+    console.log('toggling modal', !modalIsVisible);
+    setActiveModalProfile(user);
+    setModal(!modalIsVisible);
+  };
 
   return (
     <>
@@ -70,9 +89,7 @@ const ChatComponent = () => {
                     key={item.title}
                     actions={
                       !loading && [
-                        <IconText type="star-o" text="156" />,
-                        <IconText type="like-o" text="156" />,
-                        <IconText type="message" text="2" />,
+                        <IconText type="like-o" text={item.likes?item.likes:0} />,
                       ]
                     }
                   >
@@ -80,6 +97,8 @@ const ChatComponent = () => {
                       <List.Item.Meta
                         avatar={<Avatar src={item.avatar} />}
                         title={<a href={item.href}>{item.title}</a>}
+                        onClick={() => toggleModal(item)}
+                        style={{ cursor: 'pointer' }}
                       />
                       {item.content}
                     </Skeleton>
@@ -90,6 +109,7 @@ const ChatComponent = () => {
           </ChatHistory>
           <ChatInputBox />
         </ChatBox>
+        <ProfileModal toggleModal={toggleModal} visible={modalIsVisible} userData={activeModalProfile}  />
       </Content>
     </>
   );
