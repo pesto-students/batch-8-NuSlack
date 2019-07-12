@@ -1,3 +1,5 @@
+import getInitialState from './state';
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'SET_CHANNELS':
@@ -11,6 +13,11 @@ const reducer = (state, action) => {
     case 'SET_CONNECTED':
       return {
         isConnected: true,
+      };
+    case 'LOGOUT_USER':
+      const initialState = getInitialState();
+      return {
+        ...initialState,
       };
     default:
       throw new Error('Action type not defined');
