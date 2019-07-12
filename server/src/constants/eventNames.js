@@ -1,11 +1,13 @@
-const newMessageEvent = 'newMessage';
+const messageEvent = 'message';
 const connectedUserAckEvent = 'connectedUserAck';
 const connectedUserEvent = 'userConnected';
 const fetchOldChannelMessagesEvent = 'fetchOldChannelMessages';
+const userOnlineEvent = 'userOnline';
 
 export {
-  newMessageEvent,
+  messageEvent,
   connectedUserAckEvent,
   connectedUserEvent,
   fetchOldChannelMessagesEvent,
+  userOnlineEvent,
 };

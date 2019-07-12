@@ -8,6 +8,7 @@ const MessageSchema = new Schema({
   read: Boolean,
   timestamp: Date,
   sender: { type: ObjectId, ref: tableNames.users },
+  receiver: { type: ObjectId, ref: tableNames.users },
   channelId: { type: ObjectId, ref: tableNames.channels },
   teamId: ObjectId,
 });

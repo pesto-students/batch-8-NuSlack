@@ -2,9 +2,10 @@ import ioClient from 'socket.io-client';
 import mockingoose from 'mockingoose';
 import { io, server } from '../setup';
 import '../socket/index';
-import { newMessageEvent, connectedUserAckEvent, connectedUserEvent } from '../socket/eventNames';
-import user from '../Schemas/users';
-import channel from '../Schemas/channels';
+import { messageEvent, connectedUserAckEvent, connectedUserEvent } from '../constants/eventNames';
+import user from '../models/users';
+import channel from '../models/channels';
+import message from '../models/messages';
 
 jest.mock('../setup');
 
@@ -78,8 +79,8 @@ describe('Socket.io connection', () => {
   describe('client', () => {
     test('should receive echo message', (done) => {
       ioServer.emit('echo', 'Hello World');
-      socket.once('echo', (message) => {
-        expect(message).toBe('Hello World');
+      socket.once('echo', (echoMessage) => {
+        expect(echoMessage).toBe('Hello World');
         done();
       });
     });
@@ -91,12 +92,19 @@ describe('Socket.io connection', () => {
         email: 'name@email.com',
       };
 
+      const channels = [
+        {
+          id: 'channel-one',
+        },
+      ];
+
       mockingoose(user).toReturn(doc, 'findOne');
+      mockingoose(channel).toReturn(channels, 'find');
 
       socket.emit(connectedUserEvent, { userName: 'saurabh' });
       socket.on(connectedUserAckEvent, (data) => {
         expect(typeof data).toBe('object');
-        expect(typeof data.socketId).toBe('string');
+        expect(typeof data.channels).toBe('object');
         done();
       });
     });
@@ -107,25 +115,33 @@ describe('Socket.io connection', () => {
         username: 'saurabh',
       };
 
-      const channelDoc = {
-        _id: '5d23ecfcb69ce662ece0b90a',
-        users: ['saurabh'],
+      const channels = [
+        {
+          id: 'channel-one',
+        },
+      ];
+
+      const messageDoc = {
+        channelId: '5d23ecfcb69ce662ece0b90a',
+        message: 'hello',
+        sender: {
+          _id: '507f191e810c19729de860ea',
+          username: 'saurabh',
+        },
       };
 
       mockingoose(user).toReturn(userDoc, 'findOne');
-      mockingoose(channel).toReturn(channelDoc, 'findOne');
+      mockingoose(channel).toReturn(channels, 'find');
+      mockingoose(message).toReturn(messageDoc, 'save');
+      mockingoose(message).toReturn(messageDoc);
 
       socket.emit(connectedUserEvent, { userName: 'saurabh' });
-      socket.emit(newMessageEvent, {
-        channelId: '5d23ecfcb69ce662ece0b90a',
-        message: 'hello',
-        username: 'saurabh',
-      });
-      socket.on(newMessageEvent, (data) => {
+      socket.emit(messageEvent, messageDoc);
+      socket.on(messageEvent, (data) => {
         expect(typeof data).toBe('object');
         expect(data.message).toBe('hello');
-        done();
       });
+      done();
     });
   });
 });
