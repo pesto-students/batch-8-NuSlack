@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import Channels from '../Schemas/channels';
+import Channels from '../models/channels';
 
 const getChannels = async (req, res) => {
   const channels = await Channels.find({ ...req.query });

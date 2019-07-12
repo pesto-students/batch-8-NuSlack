@@ -1,4 +1,4 @@
-import Users from '../Schemas/users';
+import Users from '../models/users';
 
 const getUsers = async (req, res) => {
   const users = await Users.find({ ...req.query });

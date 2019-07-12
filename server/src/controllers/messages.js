@@ -1,4 +1,4 @@
-import Messages from '../Schemas/messages';
+import Messages from '../models/messages';
 
 const getMessages = async (req, res) => {
   const messages = await Messages.find({ ...req.query });
