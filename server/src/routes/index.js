@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import users from './users';
 import channels from './channels';
+import messages from './messages';
 
 const api = Router();
 
@@ -18,5 +19,7 @@ api.get('/_health', (req, res) => {
 api.use('/users', users);
 
 api.use('/channels', channels);
+
+api.use('/messages', messages);
 
 export default api;
