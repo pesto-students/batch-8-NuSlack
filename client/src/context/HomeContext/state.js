@@ -1,7 +1,7 @@
+const user = localStorage.getItem('userDetails');
+
 const initialState = {
-  user: {
-    username: 'jaspreet',
-  },
+  user: user ? JSON.parse(user) : {},
   channels: [],
   allUsers: [],
   error: null,
