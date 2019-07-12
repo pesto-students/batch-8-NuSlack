@@ -3,8 +3,15 @@ import createUseContext from 'constate';
 
 import initSocket from '../../socket';
 import reducer from './reducer';
-import initialState from './state';
-import { setChannelsHandler, setUserHandler, setConnectedHandler } from './hooks';
+import getInitialState from './state';
+import {
+  setChannelsHandler,
+  setUserHandler,
+  setConnectedHandler,
+  logoutAndResetHandler,
+} from './hooks';
+
+const initialState = getInitialState();
 
 const useHome = () => {
   const socketMethods = useRef(null);
@@ -13,6 +20,7 @@ const useHome = () => {
   const setChannels = setChannelsHandler(dispatch);
   const setUser = setUserHandler(dispatch);
   const setConnected = setConnectedHandler(dispatch);
+  const logoutUser = logoutAndResetHandler(dispatch);
 
   const sendMessage = (message) => {
     if (socketMethods) {
@@ -23,7 +31,6 @@ const useHome = () => {
   useEffect(() => {
     if (user && user.username) {
       socketMethods.current = initSocket({ user, setConnected });
-      console.log('current socket ', socketMethods.current);
     }
   }, [user, setUser, setConnected]);
 
@@ -35,6 +42,7 @@ const useHome = () => {
     setUser,
     setConnected,
     sendMessage,
+    logoutUser,
   };
 };
 

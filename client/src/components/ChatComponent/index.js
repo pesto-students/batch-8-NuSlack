@@ -4,9 +4,9 @@ import {
   Layout, Icon, Avatar, Skeleton, List,
 } from 'antd';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import ChatInputBox from '../ChatInputBox';
 import ProfileModal from '../ProfileModal';
-import { withRouter } from 'react-router-dom';
 
 const { Header } = Layout;
 
@@ -57,7 +57,7 @@ const GreenHeader = styled(Header)`
   color: white;
 `;
 
-const ChatComponent = (props) => {
+const ChatComponent = () => {
   const [loading] = useState(false);
   const [modalIsVisible, setModal] = useState(false);
   const [activeModalProfile, setActiveModalProfile] = useState(defaultUser);

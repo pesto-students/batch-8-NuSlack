@@ -19,4 +19,13 @@ const setConnectedHandler = dispatch => () => {
   });
 };
 
-export { setChannelsHandler, setUserHandler, setConnectedHandler };
+const logoutAndResetHandler = dispatch => () => {
+  localStorage.removeItem('userDetails');
+  dispatch({
+    type: 'LOGOUT_USER',
+  });
+};
+
+export {
+  setChannelsHandler, setUserHandler, setConnectedHandler, logoutAndResetHandler,
+};

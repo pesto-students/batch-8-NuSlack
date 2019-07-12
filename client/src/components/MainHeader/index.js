@@ -4,6 +4,7 @@ import {
 } from 'antd';
 import styled from 'styled-components';
 import CircleButton from '../CircleButton';
+import SmallButton from '../SmallButton';
 import { useHomeContext } from '../../context/HomeContext';
 
 const { Header } = Layout;
@@ -27,7 +28,7 @@ const HomeHeader = styled(Header)`
   background: #607d8b;
 `;
 const MainHeader = () => {
-  const { user } = useHomeContext();
+  const { user, logoutUser } = useHomeContext();
 
   return (
     <HomeHeader className="home-header">
@@ -53,6 +54,10 @@ const MainHeader = () => {
               <CircleButton>
                 <Icon type="menu" />
               </CircleButton>
+              &nbsp;
+              <SmallButton onClick={logoutUser}>
+                <Icon type="menu" /> Logout
+              </SmallButton>
             </Col>
           </Row>
         </Col>

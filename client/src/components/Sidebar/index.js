@@ -13,37 +13,29 @@ const Sidebar = () => {
 
   const { user } = useHomeContext();
   useEffect(() => {
-    setGroupChannels([
-      { name: 'channel1', id: '123123' },
-      { name: 'channel2', id: '123122' },
-    ]);
-    setUserChannels([
-      { name: 'Person1', id: '1223' },
-      { name: 'Person2', id: '1122' },
-    ]);
-    axios
-      .get('http://localhost:8080/channels', {
-        params: {
-          users: user._id,
-        },
-      })
-      .then(res => {
-        const { data: channels } = res;
-        console.log(channels);
-        const userChannels = channels.filter(
-          channel => channel.isGroup === false,
-        );
-        const groupChannels = channels.filter(
-          channel => channel.isGroup === true,
-        );
-        setGroupChannels(groupChannels);
-        setUserChannels(userChannels);
-      });
+    if (user._id) {
+      axios
+        .get('http://localhost:8080/channels', {
+          params: {
+            users: user._id,
+          },
+        })
+        .then((res) => {
+          const { data: channels } = res;
+          console.log(channels);
+          const receivedUserChannels = channels.filter(channel => channel.isGroup === false);
+          const receivedGroupChannels = channels.filter(channel => channel.isGroup === true);
+          setGroupChannels(receivedGroupChannels);
+          setUserChannels(receivedUserChannels);
+        });
+    }
   }, [user]);
+
   const toggleModal = () => {
     console.log('asas')
     setChannelModalIsVisible(!channelModalIsVisible)
   }
+
   return (
     <Sider
       width={300}
@@ -63,12 +55,12 @@ const Sidebar = () => {
       >
         <SubMenu
           key="sub1"
-          title={
+          title={(
             <span>
               <Icon type="laptop" />
               Channels <Icon type="plus" onClick={toggleModal}/>
             </span>
-          }
+)}
         >
           {groupChannels.map(channel => (
             <Menu.Item key={channel.id}>{channel.name}</Menu.Item>
@@ -76,12 +68,12 @@ const Sidebar = () => {
         </SubMenu>
         <SubMenu
           key="sub2"
-          title={
+          title={(
             <span>
               <Icon type="user" />
               People
             </span>
-          }
+)}
         >
           {userChannels.map(channel => (
             <Menu.Item key={channel.id}>{channel.name}</Menu.Item>
