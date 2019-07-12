@@ -6,7 +6,7 @@ const getUsers = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const user = await Users.findOne({ username: req.params.username });
+  const user = await Users.findOne({ _id: req.params.id });
   if (!user) {
     return res.status(404).send('user not found');
   }
@@ -21,7 +21,7 @@ const saveUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const user = await Users.findOneAndUpdate(
-    { username: req.params.username },
+    { _id: req.params.id },
     { ...req.body },
     { new: true },
   );
@@ -32,7 +32,7 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  const user = await Users.findOneAndDelete({ username: req.params.username });
+  const user = await Users.findOneAndDelete({ _id: req.params.id });
   if (!user) {
     return res.status(404).send('user not found');
   }

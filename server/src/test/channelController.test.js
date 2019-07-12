@@ -24,8 +24,8 @@ describe('Channel APIs', () => {
       isGroup: true,
       isPrivate: true,
       autoJoin: false,
-      admins: ['john'],
-      users: ['john', 'doe'],
+      admins: ['507f191e810c1972ade860ea'],
+      users: ['507f191e810c1972ade860ea', '507f191e813859429de860ea'],
     },
   ];
   const channel = channels[0];

@@ -1,4 +1,4 @@
-const channelsTableName = 'ChannelsSchema';
-const messagesTableName = 'MessagesSchema';
-const usersTableName = 'UsersSchema';
-export { channelsTableName, messagesTableName, usersTableName };
+const channels = 'ChannelsSchema';
+const messages = 'MessagesSchema';
+const users = 'UsersSchema';
+export { channels, messages, users };

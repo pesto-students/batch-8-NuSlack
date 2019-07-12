@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { usersTableName } from './tableNames';
+import * as tableNames from './tableNames';
 
 const { Schema } = mongoose;
 const { ObjectId } = Schema;
@@ -16,11 +16,9 @@ const UserSchema = new Schema({
   username: String,
   tagLine: String,
   email: String,
-  teamsIds: [ObjectId],
-  channelIds: [ObjectId],
   teamSpecificData: [TeamSpecificData],
 });
 
-const UserModel = mongoose.model(usersTableName, UserSchema);
+const UserModel = mongoose.model(tableNames.users, UserSchema);
 
 export default UserModel;

@@ -22,8 +22,8 @@ router.patch('/:id', updateChannel);
 
 router.delete('/:id', deleteChannel);
 
-router.post('/:id/add-user/:username', addUserToChannel);
+router.post('/:channelId/add-user/:userId', addUserToChannel);
 
-router.post('/:id/remove-user/:username', removeUserFromChannel);
+router.post('/:channelId/remove-user/:userId', removeUserFromChannel);
 
 export default router;

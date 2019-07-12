@@ -20,7 +20,6 @@ describe('user APIs', () => {
   const response = mockResponse();
   const users = [
     {
-      teamsIds: ['5d23ec1d8e92da5ca063adaa'],
       _id: '5d23e81d8e92d15ca063adad',
       username: 'john',
       tagLine: 'yo',
