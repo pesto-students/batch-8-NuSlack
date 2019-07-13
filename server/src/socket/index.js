@@ -1,14 +1,16 @@
 import { io } from '../setup';
+
 import {
   messageEvent,
   connectedUserEvent,
-  userDisconnect
+  userDisconnect,
   // fetchOldChannelMessagesEvent,
 } from '../constants/eventNames';
+
 import {
   handleConnectedUser,
   handleMessage,
-  handleDisconnectUser
+  handleDisconnectUser,
 } from './handlers';
 
 const handleConnection = (socket) => {

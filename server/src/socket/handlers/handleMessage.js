@@ -1,11 +1,12 @@
 import mongoose from 'mongoose';
-
 import Messages from '../../models/messages';
 import { messageEvent } from '../../constants/eventNames';
 
 const handleMessage = socket => async ({ channelId, message }) => {
-  console.log('new message here ', channelId, message);
+//  console.log('new message here ', channelId, message);
+
   const senderId = socket.store.user._id;
+
   const messageData = {
     message,
     read: false,
@@ -17,7 +18,7 @@ const handleMessage = socket => async ({ channelId, message }) => {
   const savedMessage = await new Messages(messageData).save();
   await savedMessage.populate('sender').execPopulate();
 
-  console.log('saved message is ', savedMessage);
+//  console.log('saved message is ', savedMessage);
   socket.nsp.to(channelId).emit(messageEvent, savedMessage);
 };
 

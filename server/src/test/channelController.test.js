@@ -6,6 +6,7 @@ import {
   updateChannel,
   deleteChannel,
 } from '../controllers/channels';
+// FIXME
 import ChannelsModel from '../Schemas/channels';
 
 const parse = object => JSON.parse(JSON.stringify(object));
@@ -15,6 +16,7 @@ const mockResponse = () => {
   res.send = result => result;
   return res;
 };
+
 describe('Channel APIs', () => {
   const response = mockResponse();
   const channels = [
@@ -28,7 +30,9 @@ describe('Channel APIs', () => {
       users: ['507f191e810c1972ade860ea', '507f191e813859429de860ea'],
     },
   ];
+
   const channel = channels[0];
+
   describe('GET /', () => {
     test('should return array', async () => {
       const request = {};
@@ -59,6 +63,7 @@ describe('Channel APIs', () => {
       expect(controllerResponse).toBe('channel not found');
     });
   });
+
   describe('POST /', () => {
     test('should save item to db', async () => {
       const request = {
@@ -70,10 +75,12 @@ describe('Channel APIs', () => {
       expect(parsedResponse).toMatchObject(channel);
     });
   });
+
   describe('PATCH /:id', () => {
     const updateWith = {
       isGroup: false,
     };
+
     test('should return updated Object', async () => {
       const request = {
         params: { id: '5d23ecd7e481e162953ea493' },
@@ -88,6 +95,7 @@ describe('Channel APIs', () => {
       const parsedResponse = parse(controllerResponse);
       expect(parsedResponse).toMatchObject(updatedObject);
     });
+
     test('should return with error if object not present', async () => {
       const request = {
         params: { id: '507f191e810c19729de860ea' },
@@ -98,6 +106,7 @@ describe('Channel APIs', () => {
       expect(controllerResponse).toBe('channel not found');
     });
   });
+
   describe('DELETE /:id', () => {
     test('should delete and return the channel', async () => {
       const request = {
