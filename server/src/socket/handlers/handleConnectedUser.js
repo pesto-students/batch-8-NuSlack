@@ -12,7 +12,7 @@ const joinChannels = socket => async (id) => {
 
 const emitOnlineStatus = socket => user => socket.broadcast.emit(userOnlineEvent, user);
 
-const handleConnectedUser = socket => async ({ userName }) => {
+const handleConnectedUser = socket => async ({ username: userName }) => {
   const exception = createException(socket);
   if (!userName || typeof userName !== 'string') {
     return exception('Username is required.');

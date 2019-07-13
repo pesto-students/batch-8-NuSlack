@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Layout, Icon, Avatar, Skeleton, List } from 'antd';
 import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
 import ChatInputBox from '../ChatInputBox';
 import ProfileModal from '../ProfileModal';
 import { useHomeContext } from '../../context/HomeContext';
@@ -71,7 +70,7 @@ const ChatComponent = () => {
     if (activeChannel) {
       fetchMessages(activeChannel);
     }
-  }, [activeChannel]);
+  }, [activeChannel, fetchMessages]);
   return (
     <>
       <GreenHeader className="channel-detail">Channel Detail</GreenHeader>
@@ -128,4 +127,4 @@ const ChatComponent = () => {
   );
 };
 
-export default  ChatComponent;
+export default ChatComponent;

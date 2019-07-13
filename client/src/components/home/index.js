@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import HomeLayout from '../home-layout';
+import { useHomeContext } from '../../context/HomeContext';
 
 function Home() {
   const { user } = useHomeContext();
