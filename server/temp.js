@@ -9,7 +9,7 @@ const client = socket.connect('http://127.0.0.1:8080', {
 });
 
 client.on('connect', () => {
-  client.emit('userConnected', { userName: 'jaspreet' });
+  client.emit('userConnected', { username: 'jaspreet' });
 
   setTimeout(() => {
     client.emit('message', { channelId: '5d27bffae89ee7d994f4ee2e', message: 'hi dude' });

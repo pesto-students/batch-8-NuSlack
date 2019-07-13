@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node src",
+    "dev": "cross-env NODE_ENV=development nodemon --inspect=9229 --exec babel-node src",
     "build": "rimraf dist && babel src -s -D -d dist",
     "start": "node dist/index.js",
     "test": "jest --runInBand"
