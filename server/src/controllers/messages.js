@@ -1,12 +1,15 @@
 import Messages from '../models/messages';
 
 const getMessages = async (req, res) => {
-  const messages = await Messages.find({ ...req.query });
+  const messages = await Messages.find({ ...req.query })
+    .populate('sender')
+    .populate('receiver');
   return res.send(messages);
 };
 
 const saveMessage = async (req, res) => {
-  const message = new Messages(req.body);
+  const body = {...req.body, timestamp: new Date()}
+  const message = new Messages(body);
   const savedMessage = await message.save();
   return res.send(savedMessage);
 };
@@ -30,9 +33,4 @@ const deleteMessage = async (req, res) => {
   }
   return res.send(message);
 };
-export {
-  getMessages,
-  saveMessage,
-  updateMessage,
-  deleteMessage,
-};
+export { getMessages, saveMessage, updateMessage, deleteMessage };
