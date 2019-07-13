@@ -8,14 +8,7 @@ const AddChannelForm = props => {
     props.form.validateFields(async (err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        await axios.post(
-          'http://localhost:8080/channels',
-          {
-            data: {
-              ...values,
-            },
-          },
-        );
+        await axios.post('http://localhost:8080/channels', { ...values });
         props.closeModal();
       }
     });

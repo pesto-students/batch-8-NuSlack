@@ -44,17 +44,69 @@ const reducer = (state, action) => {
         },
       };
     case 'GENERATE_CHANNELS_MAP':
-      const newState = { ...state };
-      newState.channelsMap = action.payload.channels.reduce((acc, channel) => {
-        acc[channel._id] = {
-          ...channel,
-        };
-        return acc;
-      }, {});
-      newState.channelIds = Object.keys(newState.channelsMap);
-      newState.activeChannel=newState.channelIds[0];
+      const newStateWithChannelsData = { ...state };
+      newStateWithChannelsData.channelsMap = action.payload.channels.reduce(
+        (acc, channel) => {
+          acc[channel._id] = {
+            ...channel,
+          };
+          return acc;
+        },
+        {},
+      );
+      newStateWithChannelsData.channelIds = Object.keys(
+        newStateWithChannelsData.channelsMap,
+      );
+      newStateWithChannelsData.activeChannel =
+        newStateWithChannelsData.channelIds[0];
       return {
-        ...newState,
+        ...newStateWithChannelsData,
+      };
+    case 'GENERATE_USERS_MAP':
+      console.log('2');
+      const newStateWithUserData = { ...state };
+      newStateWithUserData.allUsersMap = action.payload.users.reduce(
+        (acc, user) => {
+          acc[user._id] = {
+            ...user,
+          };
+          return acc;
+        },
+        {},
+      );
+      newStateWithUserData.allUserIds = Object.keys(
+        newStateWithUserData.allUsersMap,
+      );
+      console.log(newStateWithUserData);
+      return {
+        ...newStateWithUserData,
+      };
+    case 'SET_FIRST_USER_STATUS':
+      const { allUsersMap } = state;
+      const onlineUserIds = action.payload;
+      onlineUserIds.forEach(onlineUserId => {
+        allUsersMap[onlineUserId].online = true;
+      });
+      return { ...state, allUsersMap };
+    case 'SET_USER_OFFLINE':
+      const userToSetOffline = state.allUsersMap[action.payload];
+      userToSetOffline.online = false;
+      return {
+        ...state,
+        allUsersMap: {
+          ...state.allUsersMap,
+          [action.payload]: userToSetOffline,
+        },
+      };
+    case 'SET_USER_ONLINE':
+      const userToSetOnline = state.allUsersMap[action.payload];
+      userToSetOnline.online = true;
+      return {
+        ...state,
+        allUsersMap: {
+          ...state.allUsersMap,
+          [action.payload]: userToSetOnline,
+        },
       };
     default:
       throw new Error('Action type not defined');
