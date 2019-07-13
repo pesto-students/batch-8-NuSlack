@@ -33,4 +33,10 @@ const deleteMessage = async (req, res) => {
   }
   return res.send(message);
 };
-export { getMessages, saveMessage, updateMessage, deleteMessage };
+
+export {
+  getMessages,
+  saveMessage,
+  updateMessage,
+  deleteMessage,
+};

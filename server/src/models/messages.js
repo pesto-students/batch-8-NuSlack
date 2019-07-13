@@ -3,6 +3,7 @@ import * as tableNames from './tableNames';
 
 const { Schema } = mongoose;
 const { ObjectId } = Schema;
+
 const MessageSchema = new Schema({
   message: String,
   read: Boolean,

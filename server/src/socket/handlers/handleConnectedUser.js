@@ -14,10 +14,13 @@ const emitOnlineStatus = socket => user => socket.nsp.emit(userOnlineEvent, user
 
 const handleConnectedUser = socket => async ({ username: userName }) => {
   const exception = createException(socket);
+
   if (!userName || typeof userName !== 'string') {
     return exception('Username is required.');
   }
+
   const user = await Users.findOne({ username: userName });
+
   if (!user) {
     return exception('User not found.');
   }
@@ -25,13 +28,17 @@ const handleConnectedUser = socket => async ({ username: userName }) => {
   // Right now we are storing user info to store,
   // but later we will let socket authorization to do it.
   Object.assign(socket, { store: { user } });
-  const onlineUsers = Object.keys(socket.nsp.sockets).map(socketId => {
-    if(socket.nsp.sockets[socketId].store){
-      return socket.nsp.sockets[socketId].store.user._doc._id
+
+  const onlineUsers = Object.keys(socket.nsp.sockets).map((socketId) => {
+    if (socket.nsp.sockets[socketId].store) {
+      return socket.nsp.sockets[socketId].store.user._doc._id;
     }
   });
+
   const channels = await joinChannels(socket)(user.id);
+
   emitOnlineStatus(socket)(user);
+
   return socket.emit(connectedUserAckEvent, { channels, onlineUsers });
 };
 

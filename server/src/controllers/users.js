@@ -1,5 +1,6 @@
 import Users from '../models/users';
 import Channels from '../models/channels';
+
 const getUsers = async (req, res) => {
   const users = await Users.find({ ...req.query });
   return res.send(users);
