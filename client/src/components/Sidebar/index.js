@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Icon } from 'antd';
+import styled from  "styled-components"
 import { useHomeContext } from '../../context/HomeContext';
 import AddChannelModal from '../AddChannelModal';
 const { SubMenu } = Menu;
 const { Sider } = Layout;
+const Status = styled.div`
+display: inline-block;
+background-color: ${props => (props.online === true ? 'green' : '#cccccc')}
+border-radius: 50%;
+height: 0.5em;
+width: 0.5em;`;
 
 const Sidebar = () => {
   const [channelModalIsVisible, setChannelModalIsVisible] = useState(false);
@@ -14,18 +21,23 @@ const Sidebar = () => {
     channelIds,
     channelsMap,
     fetchChannels,
+    fetchUsers,
+    allUserIds,
+    allUsersMap,
   } = useHomeContext();
   useEffect(() => {
     if (user._id) {
       fetchChannels(user._id);
+      fetchUsers();
     }
-  }, [user, fetchChannels]);
+  }, [user, fetchChannels, fetchUsers]);
   const toggleModal = () => {
     setChannelModalIsVisible(!channelModalIsVisible);
   };
   const changeActiveChannel = channelId => {
     setActiveChannel(channelId);
   };
+  console.log({ allUserIds, allUsersMap });
   return (
     <Sider
       width={300}
@@ -48,7 +60,9 @@ const Sidebar = () => {
           title={
             <span>
               <Icon type="usergroup-add" />
-              <span>Channels <Icon type="plus" onClick={toggleModal} /></span>
+              <span>
+                Channels <Icon type="plus" onClick={toggleModal} />
+              </span>
             </span>
           }
         >
@@ -70,12 +84,9 @@ const Sidebar = () => {
             </span>
           }
         >
-          {([]).map(channel => (
-            <Menu.Item
-              onClick={e => changeActiveChannel(channel._id)}
-              key={channel._id}
-            >
-              {channel.name}
+          {allUserIds.map(userId => (
+            <Menu.Item onClick={e => changeActiveChannel(userId)} key={userId}>
+              {allUsersMap[userId].username} <Status online={allUsersMap[userId].online}/>
             </Menu.Item>
           ))}
         </SubMenu>

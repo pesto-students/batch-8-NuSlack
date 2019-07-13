@@ -57,6 +57,31 @@ const generateChannelsMapHandler = dispatch => channels => {
     payload: { channels },
   });
 };
+const generateUsersMapHandler = dispatch => users => {
+  dispatch({
+    type: 'GENERATE_USERS_MAP',
+    payload: { users },
+  });
+};
+const setFirstUserStatusHandler = dispatch => onlineUserIds => {
+  dispatch({
+    type: 'SET_FIRST_USER_STATUS',
+    payload: onlineUserIds,
+  });
+};
+
+const setUserOnlineHandler = dispatch => userId => {
+  dispatch({
+    type: 'SET_USER_ONLINE',
+    payload: userId,
+  });
+};
+const setUserOfflineHandler = dispatch => userId => {
+  dispatch({
+    type: 'SET_USER_OFFLINE',
+    payload: userId,
+  });
+};
 
 export {
   setChannelsHandler,
@@ -67,4 +92,8 @@ export {
   setChannelsMapHandler,
   newMessageHandler,
   generateChannelsMapHandler,
+  generateUsersMapHandler,
+  setFirstUserStatusHandler,
+  setUserOfflineHandler,
+  setUserOnlineHandler
 };

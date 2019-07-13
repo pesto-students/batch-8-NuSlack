@@ -10,7 +10,7 @@ const joinChannels = socket => async (id) => {
   return channels;
 };
 
-const emitOnlineStatus = socket => user => socket.broadcast.emit(userOnlineEvent, user);
+const emitOnlineStatus = socket => user => socket.nsp.emit(userOnlineEvent, user);
 
 const handleConnectedUser = socket => async ({ username: userName }) => {
   const exception = createException(socket);
@@ -25,9 +25,14 @@ const handleConnectedUser = socket => async ({ username: userName }) => {
   // Right now we are storing user info to store,
   // but later we will let socket authorization to do it.
   Object.assign(socket, { store: { user } });
+  const onlineUsers = Object.keys(socket.nsp.sockets).map(socketId => {
+    if(socket.nsp.sockets[socketId].store){
+      return socket.nsp.sockets[socketId].store.user._doc._id
+    }
+  });
   const channels = await joinChannels(socket)(user.id);
   emitOnlineStatus(socket)(user);
-  return socket.emit(connectedUserAckEvent, { channels });
+  return socket.emit(connectedUserAckEvent, { channels, onlineUsers });
 };
 
 export default handleConnectedUser;
