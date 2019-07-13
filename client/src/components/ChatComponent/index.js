@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Layout, Icon, Avatar, Skeleton, List,
-} from 'antd';
+import { Layout, Icon, Avatar, Skeleton, List } from 'antd';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import ChatInputBox from '../ChatInputBox';
 import ProfileModal from '../ProfileModal';
+import { useHomeContext } from '../../context/HomeContext';
 
 const { Header } = Layout;
 
@@ -61,11 +60,18 @@ const ChatComponent = () => {
   const [loading] = useState(false);
   const [modalIsVisible, setModal] = useState(false);
   const [activeModalProfile, setActiveModalProfile] = useState(defaultUser);
-  const toggleModal = (user) => {
+
+  const { activeChannel, channelsMap, fetchMessages } = useHomeContext();
+  const toggleModal = user => {
     console.log('toggling modal', !modalIsVisible);
     setActiveModalProfile(user);
     setModal(!modalIsVisible);
   };
+  useEffect(() => {
+    if (activeChannel) {
+      fetchMessages(activeChannel);
+    }
+  }, [activeChannel]);
   return (
     <>
       <GreenHeader className="channel-detail">Channel Detail</GreenHeader>
@@ -83,22 +89,27 @@ const ChatComponent = () => {
               <List
                 itemLayout="vertical"
                 size="large"
-                dataSource={listData}
+                dataSource={channelsMap?channelsMap[activeChannel]?channelsMap[activeChannel].messages: []:[]}
                 renderItem={item => (
                   <List.Item
-                    key={item.title}
+                    key={item.sender.username}
                     actions={
-                      !loading && [<IconText type="like-o" text={item.likes ? item.likes : 0} />]
+                      !loading && [
+                        <IconText
+                          type="like-o"
+                          text={item.likes ? String(item.likes) : "0"}
+                        />,
+                      ]
                     }
                   >
                     <Skeleton loading={loading} active avatar>
                       <List.Item.Meta
-                        avatar={<Avatar src={item.avatar} />}
+                        avatar={<Avatar src={item.sender.avatar} />}
                         title={<a href={item.href}>{item.title}</a>}
                         onClick={() => toggleModal(item)}
                         style={{ cursor: 'pointer' }}
                       />
-                      {item.content}
+                      {item.message}
                     </Skeleton>
                   </List.Item>
                 )}
@@ -117,4 +128,4 @@ const ChatComponent = () => {
   );
 };
 
-export default withRouter(ChatComponent);
+export default  ChatComponent;

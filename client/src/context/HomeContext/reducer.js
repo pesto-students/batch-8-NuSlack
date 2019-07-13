@@ -19,6 +19,19 @@ const reducer = (state, action) => {
       return {
         ...initialState,
       };
+    case 'SET_ACTIVE_CHANNEL':
+      return { ...state, activeChannel: action.payload };
+
+    case 'SET_CHANNELS_MAP':
+      return {
+        ...state,
+        channelsMap: {
+          ...state.channelsMap,
+          [action.payload.channelId]: {
+            messages: action.payload.messages,
+          },
+        },
+      };
     default:
       throw new Error('Action type not defined');
   }
