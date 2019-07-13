@@ -11,6 +11,7 @@ const TeamSpecificData = new Schema({
 });
 
 const UserSchema = new Schema({
+  avatar: {type: String, default: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"},
   online: Boolean,
   lastActive: Date,
   username: String,
