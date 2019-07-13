@@ -26,12 +26,11 @@ const reducer = (state, action) => {
           [action.payload.channelId]: {
             ...state.channelsMap[action.payload.channelId],
             messages: action.payload.messages,
-            unreadMessages: 0
+            unreadMessages: 0,
           },
         },
       };
     case 'ADD_NEW_MESSAGE':
-      console.log('aaa', state.channelsMap[action.payload.channelId])
       return {
         ...state,
         channelsMap: {
@@ -57,6 +56,8 @@ const reducer = (state, action) => {
         (acc, channel) => {
           acc[channel._id] = {
             ...channel,
+            messages: [],
+            unreadMessages: 0
           };
           return acc;
         },
@@ -71,7 +72,6 @@ const reducer = (state, action) => {
         ...newStateWithChannelsData,
       };
     case 'GENERATE_USERS_MAP':
-      console.log('2');
       const newStateWithUserData = { ...state };
       newStateWithUserData.allUsersMap = action.payload.users.reduce(
         (acc, user) => {
