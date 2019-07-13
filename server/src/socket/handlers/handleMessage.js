@@ -15,8 +15,9 @@ const handleMessage = socket => async ({ channelId, message }) => {
   };
 
   const savedMessage = await new Messages(messageData).save();
-  savedMessage.populate('sender');
+  await savedMessage.populate('sender').execPopulate();
 
+  console.log('saved message is ', savedMessage);
   socket.nsp.to(channelId).emit(messageEvent, savedMessage);
 };
 
