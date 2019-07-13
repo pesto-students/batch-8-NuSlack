@@ -4,6 +4,7 @@ import Messages from '../../models/messages';
 import { messageEvent } from '../../constants/eventNames';
 
 const handleMessage = socket => async ({ channelId, message }) => {
+  console.log('new message here ', channelId, message);
   const senderId = socket.store.user._id;
   const messageData = {
     message,
