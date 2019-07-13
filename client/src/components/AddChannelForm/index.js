@@ -2,9 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
-const AddChannelForm = props => {
-  const handleSubmit = e => {
-    e.preventDefault();
+const AddChannelForm = (props) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     props.form.validateFields(async (err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
@@ -49,7 +49,7 @@ const AddChannelForm = props => {
         <Button
           type="primary"
           htmlType="submit"
-          // className="login-form-button"
+        // className="login-form-button"
         >
           Create
         </Button>
