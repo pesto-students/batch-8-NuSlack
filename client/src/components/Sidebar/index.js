@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Icon } from 'antd';
-import styled from  "styled-components"
+import styled from 'styled-components';
 import { useHomeContext } from '../../context/HomeContext';
 import AddChannelModal from '../AddChannelModal';
 const { SubMenu } = Menu;
@@ -10,8 +10,17 @@ display: inline-block;
 background-color: ${props => (props.online === true ? 'green' : '#cccccc')}
 border-radius: 50%;
 height: 0.5em;
-width: 0.5em;`;
+width: 0.5em;
+`;
 
+const UnreadCount = styled.span`
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  background-color: #d8e6df;
+  color: green;
+  padding: 0.2em 0.4em;
+  `;
 const Sidebar = () => {
   const [channelModalIsVisible, setChannelModalIsVisible] = useState(false);
 
@@ -71,7 +80,16 @@ const Sidebar = () => {
               onClick={e => changeActiveChannel(channelId)}
               key={channelId}
             >
-              {channelsMap[channelId].name}
+              {channelsMap[channelId].name}{' '}
+              <span>
+                {!channelsMap[channelId].unreadMessages ? (
+                  <span />
+                ) : (
+                  <UnreadCount>
+                    {channelsMap[channelId].unreadMessages}
+                  </UnreadCount>
+                )}
+              </span>
             </Menu.Item>
           ))}
         </SubMenu>
@@ -86,7 +104,8 @@ const Sidebar = () => {
         >
           {allUserIds.map(userId => (
             <Menu.Item onClick={e => changeActiveChannel(userId)} key={userId}>
-              {allUsersMap[userId].username} <Status online={allUsersMap[userId].online}/>
+              {allUsersMap[userId].username}{' '}
+              <Status online={allUsersMap[userId].online} />
             </Menu.Item>
           ))}
         </SubMenu>
