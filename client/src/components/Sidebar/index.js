@@ -19,15 +19,13 @@ const Sidebar = () => {
     if (user._id) {
       fetchChannels(user._id);
     }
-  }, [user]);
+  }, [user, fetchChannels]);
   const toggleModal = () => {
     setChannelModalIsVisible(!channelModalIsVisible);
   };
   const changeActiveChannel = channelId => {
     setActiveChannel(channelId);
-    console.log(channelId);
   };
-  console.log(channelIds, channelsMap)
   return (
     <Sider
       width={300}
@@ -49,8 +47,8 @@ const Sidebar = () => {
           key="sub1"
           title={
             <span>
-              <Icon type="laptop" />
-              Channels <Icon type="plus" onClick={toggleModal} />
+              <Icon type="usergroup-add" />
+              <span>Channels <Icon type="plus" onClick={toggleModal} /></span>
             </span>
           }
         >
@@ -68,7 +66,7 @@ const Sidebar = () => {
           title={
             <span>
               <Icon type="user" />
-              People
+              <span>People</span>
             </span>
           }
         >
