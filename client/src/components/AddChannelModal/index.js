@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import AddChannelForm from "../AddChannelForm"
-import { Modal, Form, Input, Checkbox, Button } from 'antd';
+import { Modal } from 'antd';
 
 const StyledModal = styled(Modal)`
 
@@ -9,9 +9,6 @@ const StyledModal = styled(Modal)`
 const AddChannelModal = props => {
   const { visible, toggleModal } = props;
 
-  const createChannel = e => {
-    e.preventDefault();
-  };
   return (
     <StyledModal
       visible={visible}
