@@ -20,13 +20,14 @@ const UnreadCount = styled.span`
   background-color: #d8e6df;
   color: green;
   padding: 0.2em 0.4em;
-  `;
+`;
 const Sidebar = () => {
   const [channelModalIsVisible, setChannelModalIsVisible] = useState(false);
 
   const {
     user,
     setActiveChannel,
+    // FIXME
     channelIds,
     channelsMap,
     fetchChannels,
@@ -34,19 +35,22 @@ const Sidebar = () => {
     allUserIds,
     allUsersMap,
   } = useHomeContext();
+
   useEffect(() => {
     if (user._id) {
       fetchChannels(user._id);
       fetchUsers();
     }
   }, [user, fetchChannels, fetchUsers]);
+
   const toggleModal = () => {
     setChannelModalIsVisible(!channelModalIsVisible);
   };
+
   const changeActiveChannel = (channelId) => {
     setActiveChannel(channelId);
   };
-//  console.log({ allUserIds, allUsersMap });
+  //  console.log({ allUserIds, allUsersMap });
   return (
     <Sider
       width={300}

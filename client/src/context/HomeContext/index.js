@@ -4,6 +4,7 @@ import axios from 'axios';
 import initSocket from '../../socket';
 import reducer from './reducer';
 import getInitialState from './state';
+
 import {
   setChannelsHandler,
   setUserHandler,
@@ -16,24 +17,25 @@ import {
   generateUsersMapHandler,
   setFirstUserStatusHandler,
   setUserOfflineHandler,
-  setUserOnlineHandler
+  setUserOnlineHandler,
 } from './hooks';
 
 const initialState = getInitialState();
 
-const fetchMessagesHandler = setChannelsMap => async channelId => {
+const fetchMessagesHandler = setChannelsMap => async (channelId) => {
   const { data: messages } = await axios.get('http://localhost:8080/messages', {
     params: { channelId },
   });
   setChannelsMap(messages, channelId);
 };
 
-const fetchChannelsHandler = generateChannelsMap => async userId => {
+const fetchChannelsHandler = generateChannelsMap => async (userId) => {
   const { data: channels } = await axios.get('http://localhost:8080/channels', {
     params: { users: userId },
   });
   generateChannelsMap(channels);
 };
+
 const fetchUsersHandler = generateUsersMap => async () => {
   const { data: users } = await axios.get('http://localhost:8080/users');
   generateUsersMap(users);
@@ -52,13 +54,13 @@ const useHome = () => {
     allUserIds,
     allUsersMap,
   } = state;
+
   const generateChannelsMap = useRef(generateChannelsMapHandler(dispatch));
   const fetchChannels = useRef(
     fetchChannelsHandler(generateChannelsMap.current),
   );
   const generateUsersMap = useRef(generateUsersMapHandler(dispatch));
   const fetchUsers = useRef(fetchUsersHandler(generateUsersMap.current));
-  
   const setChannels = useRef(setChannelsHandler(dispatch));
   const setUser = useRef(setUserHandler(dispatch));
   const setConnected = useRef(setConnectedHandler(dispatch));
