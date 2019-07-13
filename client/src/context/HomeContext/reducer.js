@@ -24,6 +24,7 @@ const reducer = (state, action) => {
         channelsMap: {
           ...state.channelsMap,
           [action.payload.channelId]: {
+            ...state.channelsMap[action.payload.channelId],
             messages: action.payload.messages,
           },
         },
@@ -35,9 +36,24 @@ const reducer = (state, action) => {
           ...state.channelsMap,
           [action.payload.channelId]: {
             ...state.channelsMap[action.payload.channelId],
-            messages: [...state.channelsMap[action.payload.channelId].messages, action.payload.message],
+            messages: [
+              ...state.channelsMap[action.payload.channelId].messages,
+              action.payload.message,
+            ],
           },
-        }
+        },
+      };
+    case 'GENERATE_CHANNELS_MAP':
+      const newState = { ...state };
+      newState.channelsMap = action.payload.channels.reduce((acc, channel) => {
+        acc[channel._id] = {
+          ...channel,
+        };
+        return acc;
+      }, {});
+      newState.channelIds = Object.keys(newState.channelsMap);
+      return {
+        ...newState,
       };
     default:
       throw new Error('Action type not defined');

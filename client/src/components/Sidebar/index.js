@@ -1,36 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Icon } from 'antd';
-import axios from 'axios';
 import { useHomeContext } from '../../context/HomeContext';
 import AddChannelModal from '../AddChannelModal';
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 
 const Sidebar = () => {
-  const [userChannels, setUserChannels] = useState([]);
-  const [groupChannels, setGroupChannels] = useState([]);
   const [channelModalIsVisible, setChannelModalIsVisible] = useState(false);
 
-  const { user, setActiveChannel } = useHomeContext();
+  const {
+    user,
+    setActiveChannel,
+    channelIds,
+    channelsMap,
+    fetchChannels,
+  } = useHomeContext();
   useEffect(() => {
     if (user._id) {
-      axios
-        .get('http://localhost:8080/channels', {
-          params: {
-            users: user._id,
-          },
-        })
-        .then((res) => {
-          const { data: channels } = res;
-          console.log(channels);
-          const receivedUserChannels = channels.filter(channel => channel.isGroup === false);
-          const receivedGroupChannels = channels.filter(channel => channel.isGroup === true);
-          setGroupChannels(receivedGroupChannels);
-          setUserChannels(receivedUserChannels);
-        });
+      fetchChannels(user._id);
     }
   }, [user]);
-
   const toggleModal = () => {
     setChannelModalIsVisible(!channelModalIsVisible);
   };
@@ -38,6 +27,7 @@ const Sidebar = () => {
     setActiveChannel(channelId);
     console.log(channelId);
   };
+  console.log(channelIds, channelsMap)
   return (
     <Sider
       width={300}
@@ -57,32 +47,32 @@ const Sidebar = () => {
       >
         <SubMenu
           key="sub1"
-          title={(
+          title={
             <span>
               <Icon type="laptop" />
               Channels <Icon type="plus" onClick={toggleModal} />
             </span>
-)}
+          }
         >
-          {groupChannels.map(channel => (
+          {channelIds.map(channelId => (
             <Menu.Item
-              onClick={e => changeActiveChannel(channel._id)}
-              key={channel._id}
+              onClick={e => changeActiveChannel(channelId)}
+              key={channelId}
             >
-              {channel.name}
+              {channelsMap[channelId].name}
             </Menu.Item>
           ))}
         </SubMenu>
         <SubMenu
           key="sub2"
-          title={(
+          title={
             <span>
               <Icon type="user" />
               People
             </span>
-)}
+          }
         >
-          {userChannels.map(channel => (
+          {([]).map(channel => (
             <Menu.Item
               onClick={e => changeActiveChannel(channel._id)}
               key={channel._id}

@@ -41,8 +41,7 @@ const logoutAndResetHandler = dispatch => () => {
   });
 };
 
-
-const newMessageHandler = dispatch => (message) => {
+const newMessageHandler = dispatch => message => {
   dispatch({
     type: 'ADD_NEW_MESSAGE',
     payload: {
@@ -52,6 +51,12 @@ const newMessageHandler = dispatch => (message) => {
   });
 };
 
+const generateChannelsMapHandler = dispatch => channels => {
+  dispatch({
+    type: 'GENERATE_CHANNELS_MAP',
+    payload: { channels },
+  });
+};
 
 export {
   setChannelsHandler,
@@ -61,4 +66,5 @@ export {
   setActiveChannelHandler,
   setChannelsMapHandler,
   newMessageHandler,
+  generateChannelsMapHandler,
 };
