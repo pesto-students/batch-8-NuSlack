@@ -18,12 +18,14 @@ const setConnectedHandler = dispatch => () => {
     type: 'SET_CONNECTED',
   });
 };
+
 const setActiveChannelHandler = dispatch => (channelId) => {
   dispatch({
     type: 'SET_ACTIVE_CHANNEL',
     payload: channelId,
   });
 };
+
 const setChannelsMapHandler = dispatch => (messages, channelId) => {
   dispatch({
     type: 'SET_CHANNELS_MAP',
@@ -57,12 +59,14 @@ const generateChannelsMapHandler = dispatch => (channels) => {
     payload: { channels },
   });
 };
+
 const generateUsersMapHandler = dispatch => (users) => {
   dispatch({
     type: 'GENERATE_USERS_MAP',
     payload: { users },
   });
 };
+
 const setFirstUserStatusHandler = dispatch => (onlineUserIds) => {
   dispatch({
     type: 'SET_FIRST_USER_STATUS',
@@ -76,6 +80,7 @@ const setUserOnlineHandler = dispatch => (userId) => {
     payload: userId,
   });
 };
+
 const setUserOfflineHandler = dispatch => (userId) => {
   dispatch({
     type: 'SET_USER_OFFLINE',
