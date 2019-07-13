@@ -1,11 +1,11 @@
-const setChannelsHandler = dispatch => channels => {
+const setChannelsHandler = dispatch => (channels) => {
   dispatch({
     type: 'SET_CHANNELS',
     payload: { channels },
   });
 };
 
-const setUserHandler = dispatch => user => {
+const setUserHandler = dispatch => (user) => {
   localStorage.setItem('userDetails', JSON.stringify(user));
   dispatch({
     type: 'SET_USER',
@@ -18,7 +18,7 @@ const setConnectedHandler = dispatch => () => {
     type: 'SET_CONNECTED',
   });
 };
-const setActiveChannelHandler = dispatch => channelId => {
+const setActiveChannelHandler = dispatch => (channelId) => {
   dispatch({
     type: 'SET_ACTIVE_CHANNEL',
     payload: channelId,
@@ -41,7 +41,7 @@ const logoutAndResetHandler = dispatch => () => {
   });
 };
 
-const newMessageHandler = dispatch => message => {
+const newMessageHandler = dispatch => (message) => {
   dispatch({
     type: 'ADD_NEW_MESSAGE',
     payload: {
@@ -51,32 +51,32 @@ const newMessageHandler = dispatch => message => {
   });
 };
 
-const generateChannelsMapHandler = dispatch => channels => {
+const generateChannelsMapHandler = dispatch => (channels) => {
   dispatch({
     type: 'GENERATE_CHANNELS_MAP',
     payload: { channels },
   });
 };
-const generateUsersMapHandler = dispatch => users => {
+const generateUsersMapHandler = dispatch => (users) => {
   dispatch({
     type: 'GENERATE_USERS_MAP',
     payload: { users },
   });
 };
-const setFirstUserStatusHandler = dispatch => onlineUserIds => {
+const setFirstUserStatusHandler = dispatch => (onlineUserIds) => {
   dispatch({
     type: 'SET_FIRST_USER_STATUS',
     payload: onlineUserIds,
   });
 };
 
-const setUserOnlineHandler = dispatch => userId => {
+const setUserOnlineHandler = dispatch => (userId) => {
   dispatch({
     type: 'SET_USER_ONLINE',
     payload: userId,
   });
 };
-const setUserOfflineHandler = dispatch => userId => {
+const setUserOfflineHandler = dispatch => (userId) => {
   dispatch({
     type: 'SET_USER_OFFLINE',
     payload: userId,
@@ -95,5 +95,5 @@ export {
   generateUsersMapHandler,
   setFirstUserStatusHandler,
   setUserOfflineHandler,
-  setUserOnlineHandler
+  setUserOnlineHandler,
 };
