@@ -17,10 +17,12 @@ const LoggedInUser = styled.div`
     margin: 0;
   }
 `;
+
 const UserStatus = styled.div`
   font-size: 1.4em;
   line-height: 1.5em;
 `;
+
 const HomeHeader = styled(Header)`
   height: 100px;
   background: #607d8b;
@@ -33,6 +35,7 @@ const HomeHeader = styled(Header)`
     }
   }
 `;
+
 const MainHeader = () => {
   const { user, logoutUser } = useHomeContext();
 

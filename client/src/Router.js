@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './components/home';
 import LoginPage from './components/LoginPage';
 import { useHomeContext } from './context/HomeContext';
+
 const Router = () => (
   <useHomeContext.Provider>
     <BrowserRouter>
