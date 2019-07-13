@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import axios from 'axios';
 import { useHomeContext } from '../../context/HomeContext';
-import AddChannelModal from '../AddChannelModal'
+import AddChannelModal from '../AddChannelModal';
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 
@@ -11,7 +11,7 @@ const Sidebar = () => {
   const [groupChannels, setGroupChannels] = useState([]);
   const [channelModalIsVisible, setChannelModalIsVisible] = useState(false);
 
-  const { user } = useHomeContext();
+  const { user, setActiveChannel } = useHomeContext();
   useEffect(() => {
     if (user._id) {
       axios
@@ -32,10 +32,12 @@ const Sidebar = () => {
   }, [user]);
 
   const toggleModal = () => {
-    console.log('asas')
-    setChannelModalIsVisible(!channelModalIsVisible)
-  }
-
+    setChannelModalIsVisible(!channelModalIsVisible);
+  };
+  const changeActiveChannel = channelId => {
+    setActiveChannel(channelId);
+    console.log(channelId);
+  };
   return (
     <Sider
       width={300}
@@ -58,12 +60,17 @@ const Sidebar = () => {
           title={(
             <span>
               <Icon type="laptop" />
-              Channels <Icon type="plus" onClick={toggleModal}/>
+              Channels <Icon type="plus" onClick={toggleModal} />
             </span>
 )}
         >
           {groupChannels.map(channel => (
-            <Menu.Item key={channel.id}>{channel.name}</Menu.Item>
+            <Menu.Item
+              onClick={e => changeActiveChannel(channel._id)}
+              key={channel._id}
+            >
+              {channel.name}
+            </Menu.Item>
           ))}
         </SubMenu>
         <SubMenu
@@ -76,11 +83,19 @@ const Sidebar = () => {
 )}
         >
           {userChannels.map(channel => (
-            <Menu.Item key={channel.id}>{channel.name}</Menu.Item>
+            <Menu.Item
+              onClick={e => changeActiveChannel(channel._id)}
+              key={channel._id}
+            >
+              {channel.name}
+            </Menu.Item>
           ))}
         </SubMenu>
       </Menu>
-      <AddChannelModal visible={channelModalIsVisible} toggleModal={toggleModal}/>
+      <AddChannelModal
+        visible={channelModalIsVisible}
+        toggleModal={toggleModal}
+      />
     </Sider>
   );
 };
