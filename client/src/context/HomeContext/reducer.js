@@ -52,6 +52,7 @@ const reducer = (state, action) => {
         return acc;
       }, {});
       newState.channelIds = Object.keys(newState.channelsMap);
+      newState.activeChannel=newState.channelIds[0];
       return {
         ...newState,
       };
