@@ -2,9 +2,8 @@ import ioClient from 'socket.io-client';
 import mockingoose from 'mockingoose';
 import { io, server } from '../setup';
 import '../socket/index';
-import { newMessageEvent, connectedUserAckEvent, connectedUserEvent } from '../socket/eventNames';
+import { connectedUserAckEvent, connectedUserEvent } from '../socket/eventNames';
 import user from '../Schemas/users';
-import channel from '../Schemas/channels';
 
 jest.mock('../setup');
 
@@ -97,33 +96,6 @@ describe('Socket.io connection', () => {
       socket.on(connectedUserAckEvent, (data) => {
         expect(typeof data).toBe('object');
         expect(typeof data.socketId).toBe('string');
-        done();
-      });
-    });
-
-    test('should persist socket connections', (done) => {
-      const userDoc = {
-        _id: '507f191e810c19729de860ea',
-        username: 'saurabh',
-      };
-
-      const channelDoc = {
-        _id: '5d23ecfcb69ce662ece0b90a',
-        users: ['saurabh'],
-      };
-
-      mockingoose(user).toReturn(userDoc, 'findOne');
-      mockingoose(channel).toReturn(channelDoc, 'findOne');
-
-      socket.emit(connectedUserEvent, { userName: 'saurabh' });
-      socket.emit(newMessageEvent, {
-        channelId: '5d23ecfcb69ce662ece0b90a',
-        message: 'hello',
-        username: 'saurabh',
-      });
-      socket.on(newMessageEvent, (data) => {
-        expect(typeof data).toBe('object');
-        expect(data.message).toBe('hello');
         done();
       });
     });
