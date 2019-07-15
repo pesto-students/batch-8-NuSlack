@@ -1,52 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
   Layout, Icon, Avatar, Skeleton, List,
 } from 'antd';
-import styled from 'styled-components';
+import { ChatBox, ChatHistory, GreenHeader } from './style';
 import ChatInputBox from '../ChatInputBox';
-
-const { Header } = Layout;
-
-const ChatBox = styled.div`
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  padding: 10px;
-`;
-const ChatHistory = styled.div`
-  flex: 1;
-`;
+import ProfileModal from '../ProfileModal';
+import { useHomeContext } from '../../context/HomeContext';
 
 const { Content } = Layout;
+
 const IconText = ({ type, text }) => (
   <span>
     <Icon type={type} style={{ marginRight: 8 }} />
     {text}
   </span>
 );
+
 IconText.propTypes = {
   type: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 };
 
-const listData = [];
-for (let i = 0; i < 3; i += 1) {
-  listData.push({
-    href: '#',
-    title: `username ${i}`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  });
-}
-const GreenHeader = styled(Header)`
-  background-color: green;
-  color: white;
-`;
+const defaultUser = {};
+
 const ChatComponent = () => {
   const [loading] = useState(false);
+  const [modalIsVisible, setModal] = useState(false);
+  const [activeModalProfile, setActiveModalProfile] = useState(defaultUser);
+  const lastItemRef = useRef(null);
 
+  const { activeChannel, channelsMap, fetchMessages } = useHomeContext();
+
+  const messages = (
+    channelsMap && channelsMap[activeChannel] && channelsMap[activeChannel].messages) || [];
+  const toggleModal = (user) => {
+    if (user) {
+      setActiveModalProfile(user);
+    } else {
+      setActiveModalProfile(defaultUser);
+    }
+    setModal(!modalIsVisible);
+  };
+
+  useEffect(() => {
+    if (activeChannel) {
+      fetchMessages(activeChannel);
+    }
+  }, [activeChannel, fetchMessages]);
+
+  useEffect(() => {
+    lastItemRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, [channelsMap]);
   return (
     <>
       <GreenHeader className="channel-detail">Channel Detail</GreenHeader>
@@ -64,32 +69,42 @@ const ChatComponent = () => {
               <List
                 itemLayout="vertical"
                 size="large"
-                dataSource={listData}
+                dataSource={messages}
                 renderItem={item => (
                   <List.Item
-                    key={item.title}
+                    key={item.sender._id}
                     actions={
                       !loading && [
-                        <IconText type="star-o" text="156" />,
-                        <IconText type="like-o" text="156" />,
-                        <IconText type="message" text="2" />,
+                        <IconText type="like-o" text={item.likes ? String(item.likes) : '0'} />,
                       ]
                     }
                   >
                     <Skeleton loading={loading} active avatar>
                       <List.Item.Meta
-                        avatar={<Avatar src={item.avatar} />}
-                        title={<a href={item.href}>{item.title}</a>}
+                        avatar={<Avatar src={item.sender.avatar} />}
+                        title={
+                          <a href={item.sender.href}>{item.sender.name || item.sender.username}</a>
+                        }
+                        onClick={() => toggleModal(item.sender)}
+                        style={{ cursor: 'pointer' }}
                       />
-                      {item.content}
+                      {item.message}
                     </Skeleton>
                   </List.Item>
                 )}
+              />
+              <div
+                ref={lastItemRef}
               />
             </div>
           </ChatHistory>
           <ChatInputBox />
         </ChatBox>
+        <ProfileModal
+          toggleModal={() => toggleModal()}
+          visible={modalIsVisible}
+          userData={activeModalProfile}
+        />
       </Content>
     </>
   );

@@ -1,16 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Icon } from 'antd';
+import styled from 'styled-components';
+import { useHomeContext } from '../../context/HomeContext';
+import AddChannelModal from '../AddChannelModal';
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
+const Status = styled.div`
+display: inline-block;
+background-color: ${props => (props.online === true ? 'green' : '#cccccc')}
+border-radius: 50%;
+height: 0.5em;
+width: 0.5em;
+`;
 
+const UnreadCount = styled.span`
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  background-color: #d8e6df;
+  color: green;
+  padding: 0.2em 0.4em;
+`;
 const Sidebar = () => {
-  const [userChannels, setUserChannels] = useState([]);
-  const [groupChannels, setGroupChannels] = useState([]);
+  const [channelModalIsVisible, setChannelModalIsVisible] = useState(false);
+
+  const {
+    user,
+    setActiveChannel,
+    // FIXME
+    channelIds,
+    channelsMap,
+    fetchChannels,
+    fetchUsers,
+    allUserIds,
+    allUsersMap,
+  } = useHomeContext();
+
   useEffect(() => {
-    setGroupChannels([{ name: 'channel1', id: '123123' }, { name: 'channel2', id: '123122' }]);
-    setUserChannels([{ name: 'Person1', id: '1223' }, { name: 'Person2', id: '1122' }]);
-  }, []);
+    if (user._id) {
+      fetchChannels(user._id);
+      fetchUsers();
+    }
+  }, [user, fetchChannels, fetchUsers]);
+
+  const toggleModal = () => {
+    setChannelModalIsVisible(!channelModalIsVisible);
+  };
+
+  const changeActiveChannel = (channelId) => {
+    setActiveChannel(channelId);
+  };
+  //  console.log({ allUserIds, allUsersMap });
   return (
     <Sider
       width={300}
@@ -32,13 +73,29 @@ const Sidebar = () => {
           key="sub1"
           title={(
             <span>
-              <Icon type="laptop" />
-              Channels
+              <Icon type="usergroup-add" />
+              <span>
+                Channels <Icon type="plus" onClick={toggleModal} />
+              </span>
             </span>
 )}
         >
-          {groupChannels.map(channel => (
-            <Menu.Item key={channel.id}>{channel.name}</Menu.Item>
+          {channelIds.map(channelId => (
+            <Menu.Item
+              onClick={e => changeActiveChannel(channelId)}
+              key={channelId}
+            >
+              {channelsMap[channelId].name}{' '}
+              <span>
+                {!channelsMap[channelId].unreadMessages ? (
+                  <span />
+                ) : (
+                  <UnreadCount>
+                    {channelsMap[channelId].unreadMessages}
+                  </UnreadCount>
+                )}
+              </span>
+            </Menu.Item>
           ))}
         </SubMenu>
         <SubMenu
@@ -46,15 +103,22 @@ const Sidebar = () => {
           title={(
             <span>
               <Icon type="user" />
-              People
+              <span>People</span>
             </span>
 )}
         >
-          {userChannels.map(channel => (
-            <Menu.Item key={channel.id}>{channel.name}</Menu.Item>
+          {allUserIds.map(userId => (
+            <Menu.Item onClick={e => changeActiveChannel(userId)} key={userId}>
+              {allUsersMap[userId].username}{' '}
+              <Status online={allUsersMap[userId].online} />
+            </Menu.Item>
           ))}
         </SubMenu>
       </Menu>
+      <AddChannelModal
+        visible={channelModalIsVisible}
+        toggleModal={toggleModal}
+      />
     </Sider>
   );
 };

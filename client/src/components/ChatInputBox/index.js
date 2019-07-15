@@ -1,30 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Icon, Input } from 'antd';
 import styled from 'styled-components';
 import CircleButton from '../CircleButton';
+import { useHomeContext } from '../../context/HomeContext';
 
 const InputContainer = styled.div`
   margin-bottom: 0;
 `;
-const ChatInputBox = () => (
-  <InputContainer>
-    <Input
-      placeholder="Say it"
-      size="large"
-      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-      suffix={(
-        <>
-          <CircleButton>
-            <Icon type="smile" />
-          </CircleButton>
+const ChatInputBox = () => {
+  const { sendMessage, activeChannel } = useHomeContext();
+  const [input, setInput] = useState('');
+  const onInputChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  return (
+    <InputContainer>
+      <Input
+        placeholder="Say it"
+        size="large"
+        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+        value={input}
+        onChange={onInputChange}
+        onPressEnter={(event) => {
+          event.preventDefault();
+          setInput('');
+          return sendMessage(input, activeChannel);
+        }}
+        suffix={(
+          <>
+            <CircleButton>
+              <Icon type="smile" />
+            </CircleButton>
             &nbsp;
-          <CircleButton>
-            <Icon type="paper-clip" />
-          </CircleButton>
-        </>
+            <CircleButton>
+              <Icon type="paper-clip" />
+            </CircleButton>
+          </>
 )}
-    />
-  </InputContainer>
-);
+      />
+    </InputContainer>
+  );
+};
 
 export default ChatInputBox;
