@@ -1,9 +1,17 @@
 import ioClient from 'socket.io-client';
-import mockingoose from 'mockingoose';
+import 'sinon-mongoose';
+import sinon from 'sinon';
 import { io, server } from '../setup';
 import '../socket/index';
-import { connectedUserAckEvent, connectedUserEvent } from '../socket/eventNames';
+import {
+  messageEvent,
+  connectedUserAckEvent,
+  connectedUserEvent,
+  exceptionEvent,
+} from '../constants/eventNames';
 import user from '../Schemas/users';
+import channel from '../Schemas/channels';
+import message from '../Schemas/messages';
 
 jest.mock('../setup');
 
@@ -58,6 +66,7 @@ beforeEach((done) => {
  */
 afterEach((done) => {
   // Cleanup
+  sinon.restore();
   if (socket.connected) {
     socket.disconnect();
   }
@@ -77,25 +86,135 @@ describe('Socket.io connection', () => {
   describe('client', () => {
     test('should receive echo message', (done) => {
       ioServer.emit('echo', 'Hello World');
-      socket.once('echo', (message) => {
-        expect(message).toBe('Hello World');
+      socket.once('echo', (echoMessage) => {
+        expect(echoMessage).toBe('Hello World');
         done();
       });
     });
 
     test('should get Ack with user data', (done) => {
-      const doc = {
+      const userDoc = {
+        _doc: {
+          _id: '507f191e810c19729de860ea',
+        },
         _id: '507f191e810c19729de860ea',
         username: 'name',
         email: 'name@email.com',
       };
 
-      mockingoose(user).toReturn(doc, 'findOne');
+      const channels = [
+        {
+          id: 'channel-one',
+        },
+      ];
 
-      socket.emit(connectedUserEvent, { userName: 'saurabh' });
+      sinon
+        .mock(user)
+        .expects('findOne')
+        .resolves(userDoc);
+
+      sinon
+        .mock(channel)
+        .expects('find')
+        .chain('select')
+        .resolves(channels);
+
+      socket.emit(connectedUserEvent, { username: 'name' });
       socket.on(connectedUserAckEvent, (data) => {
         expect(typeof data).toBe('object');
-        expect(typeof data.socketId).toBe('string');
+        expect(typeof data.channels).toBe('object');
+        done();
+      });
+    });
+
+    describe('`username` field', () => {
+      describe('when not passed in connection event', () => {
+        test('should send `exception` event saying `Username is required.`', (done) => {
+          socket.emit(connectedUserEvent, {});
+          socket.on(exceptionEvent, (data) => {
+            expect(typeof data).toBe('object');
+            expect(data.message).toBe('Username is required.');
+            done();
+          });
+        });
+      });
+
+      describe('when passed incorrect value in connection event', () => {
+        test('should send `exception` event saying `Username is required.`', (done) => {
+          socket.emit(connectedUserEvent, { username: 'not-in-db' });
+
+          sinon
+            .mock(user)
+            .expects('findOne')
+            .resolves(null);
+
+          socket.on(exceptionEvent, (data) => {
+            expect(typeof data).toBe('object');
+            expect(data.message).toBe('User not found.');
+            done();
+          });
+        });
+      });
+    });
+
+    test('should persist socket connections', (done) => {
+      const userDoc = {
+        _doc: {
+          _id: '507f191e810c19729de860ea',
+        },
+        _id: '507f191e810c19729de860ea',
+        username: 'name',
+        email: 'name@email.com',
+      };
+
+      const channels = [
+        {
+          id: '5d23ecfcb69ce662ece0b90a',
+        },
+      ];
+
+      const messageDoc = {
+        channelId: '5d23ecfcb69ce662ece0b90a',
+        message: 'hello',
+        populate: () => ({
+          execPopulate: async () => {
+            Promise.resolve({
+              channelId: '5d23ecfcb69ce662ece0b90a',
+              message: 'hello',
+              sender: {
+                _id: '507f191e810c19729de860ea',
+                username: 'name',
+              },
+            });
+          },
+        }),
+      };
+
+      Object.defineProperty(message.prototype, 'save', {
+        value: message.prototype.save,
+        configurable: true,
+      });
+
+      const messageModelMock = sinon.mock(message.prototype);
+
+      sinon
+        .mock(user)
+        .expects('findOne')
+        .resolves(userDoc);
+
+      sinon
+        .mock(channel)
+        .expects('find')
+        .chain('select')
+        .resolves(channels);
+
+      messageModelMock.expects('save').resolves(messageDoc);
+
+      socket.emit(connectedUserEvent, { username: 'name' });
+      socket.emit(messageEvent, messageDoc);
+      socket.on(messageEvent, (data) => {
+        expect(typeof data).toBe('object');
+        expect(data.message).toBe('hello');
         done();
       });
     });
