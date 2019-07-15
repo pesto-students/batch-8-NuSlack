@@ -4,14 +4,17 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'SET_CHANNELS':
       return {
+        ...state,
         channels: [...action.payload.channels],
       };
     case 'SET_USER':
       return {
+        ...state,
         user: { ...action.payload.user },
       };
     case 'SET_CONNECTED':
       return {
+        ...state,
         isConnected: true,
       };
     case 'LOGOUT_USER':
