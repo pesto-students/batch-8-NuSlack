@@ -1,8 +1,19 @@
 import io from 'socket.io-client';
+import {
+  messageEvent,
+  connectedUserAckEvent,
+  connectedUserEvent,
+  userOnlineEvent,
+  userDisconnect,
+} from '../constants/eventNames';
 import { sendConnectedEvent, sendMessageEvent } from './emit';
 
-const initSockets = ({ 
-  user, newMessage, setFirstUserStatus, setUserOffline, setUserOnline,
+const initSockets = ({
+  user,
+  newMessage,
+  setFirstUserStatus,
+  setUserOffline,
+  setUserOnline,
 }) => {
   const client = io.connect('http://127.0.0.1:8080', {
     reconnection: true,
@@ -12,26 +23,25 @@ const initSockets = ({
     transports: ['websocket'],
   });
 
-  client.on('connect', () => {
+  client.on(connectedUserEvent, () => {
     sendConnectedEvent(client)(user);
   });
 
-  client.on('message', (message) => {
+  client.on(messageEvent, (message) => {
     newMessage(message);
   });
 
-  client.on('userDisconnected', (user) => {
-    setUserOffline(user._id)
+  client.on(userDisconnect, (user) => {
+    setUserOffline(user._id);
   });
 
-  client.on('userOnline', (user) => {
+  client.on(userOnlineEvent, (user) => {
     setUserOnline(user._id);
   });
 
-  client.on('connectedUserAck', (data) => {
-    setFirstUserStatus(data.onlineUsers)
+  client.on(connectedUserAckEvent, (data) => {
+    setFirstUserStatus(data.onlineUsers);
   });
-
 
   return {
     sendMessage: sendMessageEvent(client),
