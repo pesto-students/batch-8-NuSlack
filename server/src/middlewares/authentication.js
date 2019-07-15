@@ -1,12 +1,7 @@
-const isAuthenticated = (req, res, next) => {
-    return next();
-};
+const isAuthenticated = (req, res, next) => next();
 
 const strategy = () => {
-    // implement strategy here
+  // implement strategy here
 };
 
-export {
-    strategy,
-    isAuthenticated
-}
+export { strategy, isAuthenticated };

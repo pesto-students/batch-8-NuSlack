@@ -31,6 +31,7 @@
         ],
         "react/no-this-in-sfc": 0,
         "react/destructuring-assignment": 0,
-        "react/jsx-one-expression-per-line": 0
+        "react/jsx-one-expression-per-line": 0,
+        "no-underscore-dangle": 0,
     }
 }
