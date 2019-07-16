@@ -2,6 +2,7 @@ import { useReducer, useRef, useEffect } from 'react';
 import createUseContext from 'constate';
 import reducer from './reducer';
 import getInitialState from './state';
+import initSocket from '../../socket';
 
 import {
   setChannelsHandler,
@@ -14,6 +15,8 @@ import {
   generateChannelsMapHandler,
   generateUsersMapHandler,
   setFirstUserStatusHandler,
+  setUserOfflineHandler,
+  setUserOnlineHandler,
 } from './action-handlers';
 
 import {
@@ -53,6 +56,8 @@ const useHome = () => {
   const fetchMessages = useRef(fetchMessagesApi(setChannelsMap.current));
   const newMessage = useRef(newMessageHandler(dispatch));
   const setFirstUserStatus = useRef(setFirstUserStatusHandler(dispatch));
+  const setUserOffline = useRef(setUserOfflineHandler(dispatch));
+  const setUserOnline = useRef(setUserOnlineHandler(dispatch));
   const sendMessage = useRef((message, channelId) => {
     if (socketMethods) {
       socketMethods.current.sendMessage({ message, channelId });
@@ -62,10 +67,16 @@ const useHome = () => {
   useEffect(() => {
     if (user && user.username) {
       if (!socketMethods.current) {
-        //  TODO: connect with socket module
+        socketMethods.current = initSocket({
+          user,
+          newMessage: newMessage.current,
+          setFirstUserStatus: setFirstUserStatus.current,
+          setUserOffline: setUserOffline.current,
+          setUserOnline: setUserOnline.current,
+        });
       }
     }
-  }, [user, newMessage]);
+  }, [user]);
 
   return {
     user,
