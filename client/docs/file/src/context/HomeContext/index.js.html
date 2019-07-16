@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/context/HomeContext/index.js | client</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-register">register</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unregister">unregister</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#config">config</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-localStorageKeys">localStorageKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-server">server</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#context-homecontext">context/HomeContext</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateChannelsMapHandler">generateChannelsMapHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateUsersMapHandler">generateUsersMapHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-logoutAndResetHandler">logoutAndResetHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-newMessageHandler">newMessageHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setActiveChannelHandler">setActiveChannelHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setChannelsHandler">setChannelsHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setChannelsMapHandler">setChannelsMapHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setConnectedHandler">setConnectedHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setFirstUserStatusHandler">setFirstUserStatusHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setUserHandler">setUserHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setUserOfflineHandler">setUserOfflineHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setUserOnlineHandler">setUserOnlineHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetchChannelsApi">fetchChannelsApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetchMessagesApi">fetchMessagesApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetchUsersApi">fetchUsersApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-useHome">useHome</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getInitialState">getInitialState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ADD_NEW_MESSAGE">ADD_NEW_MESSAGE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GENERATE_CHANNELS_MAP">GENERATE_CHANNELS_MAP</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GENERATE_USERS_MAP">GENERATE_USERS_MAP</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LOGOUT_USER">LOGOUT_USER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SET_ACTIVE_CHANNEL">SET_ACTIVE_CHANNEL</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SET_CHANNELS">SET_CHANNELS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SET_CHANNELS_MAP">SET_CHANNELS_MAP</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SET_CONNECTED">SET_CONNECTED</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SET_FIRST_USER_STATUS">SET_FIRST_USER_STATUS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SET_USER">SET_USER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SET_USER_OFFLINE">SET_USER_OFFLINE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SET_USER_ONLINE">SET_USER_ONLINE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-useHomeContext">useHomeContext</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/context/HomeContext/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { useReducer, useRef, useEffect } from &apos;react&apos;;
+import createUseContext from &apos;constate&apos;;
+import reducer from &apos;./reducer&apos;;
+import getInitialState from &apos;./state&apos;;
+
+import {
+  setChannelsHandler,
+  setUserHandler,
+  setConnectedHandler,
+  logoutAndResetHandler,
+  setActiveChannelHandler,
+  setChannelsMapHandler,
+  newMessageHandler,
+  generateChannelsMapHandler,
+  generateUsersMapHandler,
+  setFirstUserStatusHandler,
+} from &apos;./action-handlers&apos;;
+
+import {
+  fetchMessagesApi,
+  fetchChannelsApi,
+  fetchUsersApi,
+} from &apos;./api&apos;;
+
+const initialState = getInitialState();
+
+const useHome = () =&gt; {
+  const socketMethods = useRef(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const {
+    user,
+    channels,
+    isConnected,
+    activeChannel,
+    channelsMap,
+    channelIds,
+    allUserIds,
+    allUsersMap,
+  } = state;
+
+  const generateChannelsMap = useRef(generateChannelsMapHandler(dispatch));
+  const fetchChannels = useRef(
+    fetchChannelsApi(generateChannelsMap.current),
+  );
+  const generateUsersMap = useRef(generateUsersMapHandler(dispatch));
+  const fetchUsers = useRef(fetchUsersApi(generateUsersMap.current));
+  const setChannels = useRef(setChannelsHandler(dispatch));
+  const setUser = useRef(setUserHandler(dispatch));
+  const setConnected = useRef(setConnectedHandler(dispatch));
+  const logoutUser = useRef(logoutAndResetHandler(dispatch));
+  const setActiveChannel = useRef(setActiveChannelHandler(dispatch));
+  const setChannelsMap = useRef(setChannelsMapHandler(dispatch));
+  const fetchMessages = useRef(fetchMessagesApi(setChannelsMap.current));
+  const newMessage = useRef(newMessageHandler(dispatch));
+  const setFirstUserStatus = useRef(setFirstUserStatusHandler(dispatch));
+  const sendMessage = useRef((message, channelId) =&gt; {
+    if (socketMethods) {
+      socketMethods.current.sendMessage({ message, channelId });
+    }
+  });
+
+  useEffect(() =&gt; {
+    if (user &amp;&amp; user.username) {
+      if (!socketMethods.current) {
+        //  TODO: connect with socket module
+      }
+    }
+  }, [user, newMessage]);
+
+  return {
+    user,
+    channels,
+    isConnected,
+    setChannels: setChannels.current,
+    setUser: setUser.current,
+    channelsMap,
+    setConnected: setConnected.current,
+    sendMessage: sendMessage.current,
+    logoutUser: logoutUser.current,
+    activeChannel,
+    setActiveChannel: setActiveChannel.current,
+    fetchMessages: fetchMessages.current,
+    fetchChannels: fetchChannels.current,
+    channelIds,
+    allUserIds,
+    allUsersMap,
+    fetchUsers: fetchUsers.current,
+    setFirstUserStatus: setFirstUserStatus.current,
+  };
+};
+
+const useHomeContext = createUseContext(useHome);
+
+export { useHomeContext, useHome };
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

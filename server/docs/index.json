@@ -1,0 +1,2146 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/Schemas/channels.js",
+    "content": "import mongoose from 'mongoose';\nimport * as constants from './constants';\n\nconst { Schema } = mongoose;\nconst { ObjectId } = Schema;\n\nconst ChannelSchema = new Schema({\n  name: String,\n  isGroup: { type: Boolean, default: false },\n  isPrivate: { type: Boolean, default: false },\n  autoJoin: { type: Boolean, default: false },\n  admins: [{ type: ObjectId, ref: constants.users }],\n  teamId: ObjectId,\n  users: [{ type: ObjectId, ref: constants.users }],\n});\n\nconst ChannelModel = mongoose.model(constants.channels, ChannelSchema);\n\nexport default ChannelModel;\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/Schemas/channels.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "variable",
+    "name": "Schema",
+    "memberof": "src/Schemas/channels.js",
+    "static": true,
+    "longname": "src/Schemas/channels.js~Schema",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/Schemas/channels.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 50,
+    "kind": "variable",
+    "name": "ObjectId",
+    "memberof": "src/Schemas/channels.js",
+    "static": true,
+    "longname": "src/Schemas/channels.js~ObjectId",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/Schemas/channels.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 51,
+    "kind": "variable",
+    "name": "ChannelSchema",
+    "memberof": "src/Schemas/channels.js",
+    "static": true,
+    "longname": "src/Schemas/channels.js~ChannelSchema",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/Schemas/channels.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 52,
+    "kind": "variable",
+    "name": "ChannelModel",
+    "memberof": "src/Schemas/channels.js",
+    "static": true,
+    "longname": "src/Schemas/channels.js~ChannelModel",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/Schemas/channels.js",
+    "importStyle": "ChannelModel",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "file",
+    "name": "src/Schemas/constants.js",
+    "content": "const defaultImage = 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';\nconst channels = 'ChannelsSchema';\nconst messages = 'MessagesSchema';\nconst users = 'UsersSchema';\n\nexport {\n  channels,\n  messages,\n  users,\n  defaultImage,\n};\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/Schemas/constants.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 54,
+    "kind": "variable",
+    "name": "channels",
+    "memberof": "src/Schemas/constants.js",
+    "static": true,
+    "longname": "src/Schemas/constants.js~channels",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/Schemas/constants.js",
+    "importStyle": "{channels}",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "variable",
+    "name": "messages",
+    "memberof": "src/Schemas/constants.js",
+    "static": true,
+    "longname": "src/Schemas/constants.js~messages",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/Schemas/constants.js",
+    "importStyle": "{messages}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "variable",
+    "name": "users",
+    "memberof": "src/Schemas/constants.js",
+    "static": true,
+    "longname": "src/Schemas/constants.js~users",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/Schemas/constants.js",
+    "importStyle": "{users}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "variable",
+    "name": "defaultImage",
+    "memberof": "src/Schemas/constants.js",
+    "static": true,
+    "longname": "src/Schemas/constants.js~defaultImage",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/Schemas/constants.js",
+    "importStyle": "{defaultImage}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "file",
+    "name": "src/Schemas/messages.js",
+    "content": "import mongoose from 'mongoose';\nimport * as constants from './constants';\n\nconst { Schema } = mongoose;\nconst { ObjectId } = Schema;\n\nconst MessageSchema = new Schema({\n  message: String,\n  read: Boolean,\n  timestamp: Date,\n  sender: { type: ObjectId, ref: constants.users },\n  receiver: { type: ObjectId, ref: constants.users },\n  channelId: { type: ObjectId, ref: constants.channels },\n  teamId: ObjectId,\n});\n\nconst MessagesModel = mongoose.model(constants.messages, MessageSchema);\n\nexport default MessagesModel;\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/Schemas/messages.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 59,
+    "kind": "variable",
+    "name": "Schema",
+    "memberof": "src/Schemas/messages.js",
+    "static": true,
+    "longname": "src/Schemas/messages.js~Schema",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/Schemas/messages.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 60,
+    "kind": "variable",
+    "name": "ObjectId",
+    "memberof": "src/Schemas/messages.js",
+    "static": true,
+    "longname": "src/Schemas/messages.js~ObjectId",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/Schemas/messages.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 61,
+    "kind": "variable",
+    "name": "MessageSchema",
+    "memberof": "src/Schemas/messages.js",
+    "static": true,
+    "longname": "src/Schemas/messages.js~MessageSchema",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/Schemas/messages.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 62,
+    "kind": "variable",
+    "name": "MessagesModel",
+    "memberof": "src/Schemas/messages.js",
+    "static": true,
+    "longname": "src/Schemas/messages.js~MessagesModel",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/Schemas/messages.js",
+    "importStyle": "MessagesModel",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 63,
+    "kind": "file",
+    "name": "src/Schemas/tableNames.js",
+    "content": "const channels = 'ChannelsSchema';\nconst messages = 'MessagesSchema';\nconst users = 'UsersSchema';\n\nexport { channels, messages, users };\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/Schemas/tableNames.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 64,
+    "kind": "variable",
+    "name": "channels",
+    "memberof": "src/Schemas/tableNames.js",
+    "static": true,
+    "longname": "src/Schemas/tableNames.js~channels",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/Schemas/tableNames.js",
+    "importStyle": "{channels}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "variable",
+    "name": "messages",
+    "memberof": "src/Schemas/tableNames.js",
+    "static": true,
+    "longname": "src/Schemas/tableNames.js~messages",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/Schemas/tableNames.js",
+    "importStyle": "{messages}",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 66,
+    "kind": "variable",
+    "name": "users",
+    "memberof": "src/Schemas/tableNames.js",
+    "static": true,
+    "longname": "src/Schemas/tableNames.js~users",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/Schemas/tableNames.js",
+    "importStyle": "{users}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "file",
+    "name": "src/Schemas/users.js",
+    "content": "import mongoose from 'mongoose';\nimport * as constants from './constants';\n\nconst { Schema } = mongoose;\nconst { ObjectId } = Schema;\n\nconst TeamSpecificData = new Schema({\n  dateJoined: Date,\n  role: String,\n  teamId: ObjectId,\n});\n\nconst UserSchema = new Schema({\n  avatar: { type: String, default: constants.defaultImage },\n  online: Boolean,\n  lastActive: Date,\n  username: String,\n  tagLine: String,\n  email: String,\n  teamSpecificData: [TeamSpecificData],\n});\n\nconst UserModel = mongoose.model(constants.users, UserSchema);\n\nexport default UserModel;\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/Schemas/users.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 68,
+    "kind": "variable",
+    "name": "Schema",
+    "memberof": "src/Schemas/users.js",
+    "static": true,
+    "longname": "src/Schemas/users.js~Schema",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/Schemas/users.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 69,
+    "kind": "variable",
+    "name": "ObjectId",
+    "memberof": "src/Schemas/users.js",
+    "static": true,
+    "longname": "src/Schemas/users.js~ObjectId",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/Schemas/users.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 70,
+    "kind": "variable",
+    "name": "TeamSpecificData",
+    "memberof": "src/Schemas/users.js",
+    "static": true,
+    "longname": "src/Schemas/users.js~TeamSpecificData",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/Schemas/users.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 71,
+    "kind": "variable",
+    "name": "UserSchema",
+    "memberof": "src/Schemas/users.js",
+    "static": true,
+    "longname": "src/Schemas/users.js~UserSchema",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/Schemas/users.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 72,
+    "kind": "variable",
+    "name": "UserModel",
+    "memberof": "src/Schemas/users.js",
+    "static": true,
+    "longname": "src/Schemas/users.js~UserModel",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/Schemas/users.js",
+    "importStyle": "UserModel",
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 73,
+    "kind": "file",
+    "name": "src/__mocks__/setup.js",
+    "content": "const http = require('http');\nconst socket = require('socket.io');\n\n// For mocking purpose no express app is used for creating server\nconst server = http.createServer();\nconst io = socket(server);\n\nexport { server, io };\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/__mocks__/setup.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 74,
+    "kind": "variable",
+    "name": "http",
+    "memberof": "src/__mocks__/setup.js",
+    "static": true,
+    "longname": "src/__mocks__/setup.js~http",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/__mocks__/setup.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 75,
+    "kind": "variable",
+    "name": "socket",
+    "memberof": "src/__mocks__/setup.js",
+    "static": true,
+    "longname": "src/__mocks__/setup.js~socket",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/__mocks__/setup.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 76,
+    "kind": "variable",
+    "name": "server",
+    "memberof": "src/__mocks__/setup.js",
+    "static": true,
+    "longname": "src/__mocks__/setup.js~server",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/__mocks__/setup.js",
+    "importStyle": "{server}",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 77,
+    "kind": "variable",
+    "name": "io",
+    "memberof": "src/__mocks__/setup.js",
+    "static": true,
+    "longname": "src/__mocks__/setup.js~io",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/__mocks__/setup.js",
+    "importStyle": "{io}",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 78,
+    "kind": "file",
+    "name": "src/app.js",
+    "content": "import express from 'express';\nimport cors from 'cors';\nimport bodyParser from 'body-parser';\nimport logger from 'morgan';\nimport routes from './routes';\n\nconst app = express();\n\n// middleware\napp.use(logger('dev'));\napp.use(cors());\napp.use(bodyParser.urlencoded({ extended: false }));\napp.use(bodyParser.json());\n\napp.use('/', routes);\n\nexport default app;\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/app.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 79,
+    "kind": "variable",
+    "name": "app",
+    "memberof": "src/app.js",
+    "static": true,
+    "longname": "src/app.js~app",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/app.js",
+    "importStyle": "app",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 80,
+    "kind": "file",
+    "name": "src/config/database.js",
+    "content": "import mongoose from 'mongoose';\n\nmongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/config/database.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 81,
+    "kind": "file",
+    "name": "src/constants/eventNames.js",
+    "content": "const messageEvent = 'message';\nconst connectedUserAckEvent = 'connectedUserAck';\nconst connectedUserEvent = 'userConnected';\nconst fetchOldChannelMessagesEvent = 'fetchOldChannelMessages';\nconst userOnlineEvent = 'userOnline';\nconst userDisconnectEvent = 'disconnect';\nconst exceptionEvent = 'exception';\n\nexport {\n  messageEvent,\n  connectedUserAckEvent,\n  connectedUserEvent,\n  fetchOldChannelMessagesEvent,\n  userOnlineEvent,\n  userDisconnectEvent,\n  exceptionEvent,\n};\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/constants/eventNames.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 82,
+    "kind": "variable",
+    "name": "messageEvent",
+    "memberof": "src/constants/eventNames.js",
+    "static": true,
+    "longname": "src/constants/eventNames.js~messageEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/constants/eventNames.js",
+    "importStyle": "{messageEvent}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "variable",
+    "name": "connectedUserAckEvent",
+    "memberof": "src/constants/eventNames.js",
+    "static": true,
+    "longname": "src/constants/eventNames.js~connectedUserAckEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/constants/eventNames.js",
+    "importStyle": "{connectedUserAckEvent}",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 84,
+    "kind": "variable",
+    "name": "connectedUserEvent",
+    "memberof": "src/constants/eventNames.js",
+    "static": true,
+    "longname": "src/constants/eventNames.js~connectedUserEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/constants/eventNames.js",
+    "importStyle": "{connectedUserEvent}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 85,
+    "kind": "variable",
+    "name": "fetchOldChannelMessagesEvent",
+    "memberof": "src/constants/eventNames.js",
+    "static": true,
+    "longname": "src/constants/eventNames.js~fetchOldChannelMessagesEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/constants/eventNames.js",
+    "importStyle": "{fetchOldChannelMessagesEvent}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 86,
+    "kind": "variable",
+    "name": "userOnlineEvent",
+    "memberof": "src/constants/eventNames.js",
+    "static": true,
+    "longname": "src/constants/eventNames.js~userOnlineEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/constants/eventNames.js",
+    "importStyle": "{userOnlineEvent}",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 87,
+    "kind": "variable",
+    "name": "userDisconnectEvent",
+    "memberof": "src/constants/eventNames.js",
+    "static": true,
+    "longname": "src/constants/eventNames.js~userDisconnectEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/constants/eventNames.js",
+    "importStyle": "{userDisconnectEvent}",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 88,
+    "kind": "variable",
+    "name": "exceptionEvent",
+    "memberof": "src/constants/eventNames.js",
+    "static": true,
+    "longname": "src/constants/eventNames.js~exceptionEvent",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/constants/eventNames.js",
+    "importStyle": "{exceptionEvent}",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 89,
+    "kind": "file",
+    "name": "src/constants/failedResponse.js",
+    "content": "const channelNotFound = 'channel not found';\nconst userNotFound = 'user not found';\nconst messageNotFound = 'message not found';\nconst userAlreadyPresent = 'User already Present';\n\nexport {\n  channelNotFound,\n  userNotFound,\n  messageNotFound,\n  userAlreadyPresent,\n};\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/constants/failedResponse.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 90,
+    "kind": "variable",
+    "name": "channelNotFound",
+    "memberof": "src/constants/failedResponse.js",
+    "static": true,
+    "longname": "src/constants/failedResponse.js~channelNotFound",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/constants/failedResponse.js",
+    "importStyle": "{channelNotFound}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 91,
+    "kind": "variable",
+    "name": "userNotFound",
+    "memberof": "src/constants/failedResponse.js",
+    "static": true,
+    "longname": "src/constants/failedResponse.js~userNotFound",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/constants/failedResponse.js",
+    "importStyle": "{userNotFound}",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 92,
+    "kind": "variable",
+    "name": "messageNotFound",
+    "memberof": "src/constants/failedResponse.js",
+    "static": true,
+    "longname": "src/constants/failedResponse.js~messageNotFound",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/constants/failedResponse.js",
+    "importStyle": "{messageNotFound}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 93,
+    "kind": "variable",
+    "name": "userAlreadyPresent",
+    "memberof": "src/constants/failedResponse.js",
+    "static": true,
+    "longname": "src/constants/failedResponse.js~userAlreadyPresent",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/constants/failedResponse.js",
+    "importStyle": "{userAlreadyPresent}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 94,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "import 'dotenv/config';\nimport { server } from './setup';\n/**\n * setup db\n */\n\nimport './config/database';\n/**\n * setup socket\n */\nimport './socket/index';\n\n/**\n * Get port from environment and store in Express.\n */\nconst normalizePort = (val) => {\n  // Normalize a port into a number, string, or false.\n  const port = parseInt(val, 10);\n  if (Number.isNaN(port)) {\n    return val;\n  }\n  if (port >= 0) {\n    return port;\n  }\n  return false;\n};\n\nconst port = normalizePort(process.env.PORT || '8080');\n\n/**\n * Event listener for HTTP server \"error\" event.\n */\n\nfunction onError(error) {\n  if (error.syscall !== 'listen') {\n    throw error;\n  }\n\n  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;\n\n  // handle specific listen errors with friendly messages\n  switch (error.code) {\n    case 'EACCES':\n      console.error(`${bind} requires elevated privileges`);\n      process.exit(1);\n      break;\n    case 'EADDRINUSE':\n      console.error(`${bind} is already in use`);\n      process.exit(1);\n      break;\n    default:\n      throw error;\n  }\n}\n\n/**\n * Event listener for HTTP server \"listening\" event.\n */\nfunction onListening() {\n  const addr = server.address();\n  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;\n  console.info(`Listening on ${bind}`);\n}\n\n/**\n * Listen on provided port, on all network interfaces.\n */\nserver.listen(port);\nserver.on('error', onError);\nserver.on('listening', onListening);\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 95,
+    "kind": "function",
+    "name": "normalizePort",
+    "memberof": "src/index.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/index.js~normalizePort",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/index.js",
+    "importStyle": null,
+    "description": "Get port from environment and store in Express.",
+    "lineNumber": 16,
+    "params": [
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 96,
+    "kind": "variable",
+    "name": "port",
+    "memberof": "src/index.js",
+    "static": true,
+    "longname": "src/index.js~port",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/index.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 28,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 97,
+    "kind": "function",
+    "name": "onError",
+    "memberof": "src/index.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/index.js~onError",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/index.js",
+    "importStyle": null,
+    "description": "Event listener for HTTP server \"error\" event.",
+    "lineNumber": 34,
+    "params": [
+      {
+        "name": "error",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 98,
+    "kind": "function",
+    "name": "onListening",
+    "memberof": "src/index.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/index.js~onListening",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/index.js",
+    "importStyle": null,
+    "description": "Event listener for HTTP server \"listening\" event.",
+    "lineNumber": 59,
+    "params": [],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 99,
+    "kind": "file",
+    "name": "src/middlewares/authentication.js",
+    "content": "const isAuthenticated = (req, res, next) => next();\n\nconst strategy = () => {\n  // implement strategy here\n};\n\nexport { strategy, isAuthenticated };\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/middlewares/authentication.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 100,
+    "kind": "function",
+    "name": "strategy",
+    "memberof": "src/middlewares/authentication.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/middlewares/authentication.js~strategy",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/middlewares/authentication.js",
+    "importStyle": "{strategy}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 101,
+    "kind": "function",
+    "name": "isAuthenticated",
+    "memberof": "src/middlewares/authentication.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/middlewares/authentication.js~isAuthenticated",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/middlewares/authentication.js",
+    "importStyle": "{isAuthenticated}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "params": [
+      {
+        "name": "req",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "res",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "next",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 102,
+    "kind": "file",
+    "name": "src/model-functions/channelsFunctions.js",
+    "content": "import mongoose from 'mongoose';\nimport Channels from '../Schemas/channels';\n\nconst getChannel = id => Channels.findById(id);\n\nconst getChannelsListFor = userId => Channels.find({\n  users: mongoose.Types.ObjectId(userId),\n}).select({ name: 1 });\n\nexport { getChannel, getChannelsListFor };\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/model-functions/channelsFunctions.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 103,
+    "kind": "function",
+    "name": "getChannel",
+    "memberof": "src/model-functions/channelsFunctions.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/model-functions/channelsFunctions.js~getChannel",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/model-functions/channelsFunctions.js",
+    "importStyle": "{getChannel}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "params": [
+      {
+        "name": "id",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 104,
+    "kind": "function",
+    "name": "getChannelsListFor",
+    "memberof": "src/model-functions/channelsFunctions.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/model-functions/channelsFunctions.js~getChannelsListFor",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/model-functions/channelsFunctions.js",
+    "importStyle": "{getChannelsListFor}",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "params": [
+      {
+        "name": "userId",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 105,
+    "kind": "file",
+    "name": "src/routes/channels.js",
+    "content": "import express from 'express';\n\nimport {\n  getChannels,\n  getChannel,\n  saveChannel,\n  updateChannel,\n  deleteChannel,\n  addUserToChannel,\n  removeUserFromChannel,\n} from '../controllers/channels';\n\nconst router = express.Router();\n\nrouter.get('/', getChannels);\n\nrouter.get('/:id', getChannel);\n\nrouter.post('/', saveChannel);\n\nrouter.patch('/:id', updateChannel);\n\nrouter.delete('/:id', deleteChannel);\n\nrouter.post('/:channelId/add-user/:userId', addUserToChannel);\n\nrouter.post('/:channelId/remove-user/:userId', removeUserFromChannel);\n\nexport default router;\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/routes/channels.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 106,
+    "kind": "variable",
+    "name": "router",
+    "memberof": "src/routes/channels.js",
+    "static": true,
+    "longname": "src/routes/channels.js~router",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/routes/channels.js",
+    "importStyle": "router",
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 107,
+    "kind": "file",
+    "name": "src/routes/index.js",
+    "content": "import { Router } from 'express';\nimport users from './users';\nimport channels from './channels';\nimport messages from './messages';\n\nconst api = Router();\n\n// '/api/'\napi.get('/', (req, res) => {\n  res.json({ hi: 'there' });\n});\n\n// '/api/_health'\napi.get('/_health', (req, res) => {\n  res.sendStatus(200);\n});\n\n// set routes below\napi.use('/users', users);\n\napi.use('/channels', channels);\n\napi.use('/messages', messages);\n\nexport default api;\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/routes/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 108,
+    "kind": "variable",
+    "name": "api",
+    "memberof": "src/routes/index.js",
+    "static": true,
+    "longname": "src/routes/index.js~api",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/routes/index.js",
+    "importStyle": "api",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 109,
+    "kind": "file",
+    "name": "src/routes/messages.js",
+    "content": "import express from 'express';\n\nimport {\n  getMessages,\n  saveMessage,\n  updateMessage,\n  deleteMessage,\n} from '../controllers/messages';\n\nconst router = express.Router();\n\nrouter.get('/', getMessages);\n\nrouter.post('/', saveMessage);\n\nrouter.patch('/:id', updateMessage);\n\nrouter.delete('/:id', deleteMessage);\n\nexport default router;\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/routes/messages.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 110,
+    "kind": "variable",
+    "name": "router",
+    "memberof": "src/routes/messages.js",
+    "static": true,
+    "longname": "src/routes/messages.js~router",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/routes/messages.js",
+    "importStyle": "router",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 111,
+    "kind": "file",
+    "name": "src/routes/users.js",
+    "content": "import express from 'express';\n\nimport {\n  getUsers,\n  getUser,\n  saveUser,\n  updateUser,\n  deleteUser,\n} from '../controllers/users';\n\nconst router = express.Router();\n\nrouter.get('/', getUsers);\n\nrouter.get('/:id', getUser);\n\nrouter.post('/', saveUser);\n\nrouter.patch('/:id', updateUser);\n\nrouter.delete('/:id', deleteUser);\n\nexport default router;\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/routes/users.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 112,
+    "kind": "variable",
+    "name": "router",
+    "memberof": "src/routes/users.js",
+    "static": true,
+    "longname": "src/routes/users.js~router",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/routes/users.js",
+    "importStyle": "router",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 113,
+    "kind": "file",
+    "name": "src/setup.js",
+    "content": "import http from 'http';\nimport socket from 'socket.io';\nimport app from './app';\n\nconst server = http.createServer(app);\nconst io = socket(server);\n\nexport { io, server };\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/setup.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 114,
+    "kind": "variable",
+    "name": "io",
+    "memberof": "src/setup.js",
+    "static": true,
+    "longname": "src/setup.js~io",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/setup.js",
+    "importStyle": "{io}",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 115,
+    "kind": "variable",
+    "name": "server",
+    "memberof": "src/setup.js",
+    "static": true,
+    "longname": "src/setup.js~server",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/setup.js",
+    "importStyle": "{server}",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 116,
+    "kind": "file",
+    "name": "src/socket/handlers/handleConnectedUser.js",
+    "content": "import { connectedUserAckEvent, userOnlineEvent, exceptionEvent } from '../../constants/eventNames';\nimport Users from '../../Schemas/users';\nimport { getChannelsListFor } from '../../model-functions/channelsFunctions';\n\nconst createException = socket => message => socket.emit(exceptionEvent, { message });\n\nconst joinChannels = socket => async (id) => {\n  const channels = await getChannelsListFor(id);\n  channels.forEach(channel => socket.join(String(channel.id)));\n  return channels;\n};\n\nconst emitOnlineStatus = socket => user => socket.nsp.emit(userOnlineEvent, user);\n\nconst handleConnectedUser = socket => async ({ username }) => {\n  const exception = createException(socket);\n\n  if (!username || typeof username !== 'string') {\n    return exception('Username is required.');\n  }\n\n  const user = await Users.findOne({ username });\n\n  if (!user) {\n    return exception('User not found.');\n  }\n\n  Object.assign(socket, { store: { user } });\n\n  const socketIds = Object.keys(socket.nsp.sockets);\n  const onlineUsers = socketIds\n    .filter(socketId => Boolean(socket.nsp.sockets[socketId].store))\n    .map(socketId => socket.nsp.sockets[socketId].store.user._doc._id);\n\n  const channels = await joinChannels(socket)(user.id);\n\n  emitOnlineStatus(socket)(user);\n\n  return socket.emit(connectedUserAckEvent, { channels, onlineUsers });\n};\n\nexport default handleConnectedUser;\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/socket/handlers/handleConnectedUser.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 117,
+    "kind": "function",
+    "name": "createException",
+    "memberof": "src/socket/handlers/handleConnectedUser.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/socket/handlers/handleConnectedUser.js~createException",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/socket/handlers/handleConnectedUser.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "params": [
+      {
+        "name": "socket",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 118,
+    "kind": "function",
+    "name": "joinChannels",
+    "memberof": "src/socket/handlers/handleConnectedUser.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/socket/handlers/handleConnectedUser.js~joinChannels",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/socket/handlers/handleConnectedUser.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "params": [
+      {
+        "name": "socket",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 119,
+    "kind": "function",
+    "name": "emitOnlineStatus",
+    "memberof": "src/socket/handlers/handleConnectedUser.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/socket/handlers/handleConnectedUser.js~emitOnlineStatus",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/socket/handlers/handleConnectedUser.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "params": [
+      {
+        "name": "socket",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 120,
+    "kind": "function",
+    "name": "handleConnectedUser",
+    "memberof": "src/socket/handlers/handleConnectedUser.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/socket/handlers/handleConnectedUser.js~handleConnectedUser",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/socket/handlers/handleConnectedUser.js",
+    "importStyle": "handleConnectedUser",
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "params": [
+      {
+        "name": "socket",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 121,
+    "kind": "file",
+    "name": "src/socket/handlers/handleMessage.js",
+    "content": "import mongoose from 'mongoose';\n\nimport Messages from '../../Schemas/messages';\nimport { messageEvent } from '../../constants/eventNames';\n\nconst handleMessage = socket => async ({ channelId, message }) => {\n  const senderId = socket.store.user._id;\n  const messageData = {\n    message,\n    read: false,\n    channelId: mongoose.Types.ObjectId(channelId),\n    sender: mongoose.Types.ObjectId(senderId),\n    timestamp: new Date(),\n  };\n\n  const savedMessage = await new Messages(messageData).save();\n  await savedMessage.populate('sender').execPopulate();\n\n  socket.nsp.to(channelId).emit(messageEvent, savedMessage);\n};\n\nexport default handleMessage;\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/socket/handlers/handleMessage.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 122,
+    "kind": "function",
+    "name": "handleMessage",
+    "memberof": "src/socket/handlers/handleMessage.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/socket/handlers/handleMessage.js~handleMessage",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/socket/handlers/handleMessage.js",
+    "importStyle": "handleMessage",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "params": [
+      {
+        "name": "socket",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 123,
+    "kind": "file",
+    "name": "src/socket/handlers/handleUserDisconnect.js",
+    "content": "import { userDisconnectEvent } from '../../constants/eventNames';\n\nconst handleUserDisconnect = socket => () => {\n  if (socket.store && socket.store.user) {\n    socket.nsp.emit(userDisconnectEvent, socket.store.user._doc);\n  }\n};\n\nexport default handleUserDisconnect;\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/socket/handlers/handleUserDisconnect.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 124,
+    "kind": "function",
+    "name": "handleUserDisconnect",
+    "memberof": "src/socket/handlers/handleUserDisconnect.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/socket/handlers/handleUserDisconnect.js~handleUserDisconnect",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/socket/handlers/handleUserDisconnect.js",
+    "importStyle": "handleUserDisconnect",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "params": [
+      {
+        "name": "socket",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 125,
+    "kind": "file",
+    "name": "src/socket/handlers/index.js",
+    "content": "import handleConnectedUser from './handleConnectedUser';\nimport handleMessage from './handleMessage';\nimport handleUserDisconnect from './handleUserDisconnect';\n\nexport { handleConnectedUser, handleMessage, handleUserDisconnect };\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/socket/handlers/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 126,
+    "kind": "file",
+    "name": "src/socket/index.js",
+    "content": "import { io } from '../setup';\nimport {\n  messageEvent,\n  connectedUserEvent,\n  userDisconnectEvent,\n} from '../constants/eventNames';\n\nimport {\n  handleConnectedUser,\n  handleMessage,\n  handleUserDisconnect,\n} from './handlers';\n\nconst handleConnection = (socket) => {\n  socket.on(connectedUserEvent, handleConnectedUser(socket));\n  socket.on(messageEvent, handleMessage(socket));\n  socket.on(userDisconnectEvent, handleUserDisconnect(socket));\n};\n\nio.on('connection', handleConnection);\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/socket/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 127,
+    "kind": "function",
+    "name": "handleConnection",
+    "memberof": "src/socket/index.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/socket/index.js~handleConnection",
+    "access": "public",
+    "export": false,
+    "importPath": "server/src/socket/index.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "params": [
+      {
+        "name": "socket",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 128,
+    "kind": "file",
+    "name": "src/utils/tests.js",
+    "content": "const parse = object => JSON.parse(JSON.stringify(object));\nconst mockResponse = () => {\n  const res = {};\n  res.status = () => res;\n  res.send = result => result;\n  return res;\n};\n\nexport { parse, mockResponse };\n",
+    "static": true,
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/src/utils/tests.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 129,
+    "kind": "function",
+    "name": "parse",
+    "memberof": "src/utils/tests.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/tests.js~parse",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/utils/tests.js",
+    "importStyle": "{parse}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "params": [
+      {
+        "name": "object",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 130,
+    "kind": "function",
+    "name": "mockResponse",
+    "memberof": "src/utils/tests.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/tests.js~mockResponse",
+    "access": "public",
+    "export": true,
+    "importPath": "server/src/utils/tests.js",
+    "importStyle": "{mockResponse}",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "index",
+    "content": "",
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"server\",\n  \"version\": \"1.0.0\",\n  \"main\": \"index.js\",\n  \"license\": \"MIT\",\n  \"scripts\": {\n    \"dev\": \"cross-env NODE_ENV=development nodemon --exec babel-node src\",\n    \"build\": \"rimraf dist && babel src -s -D -d dist\",\n    \"start\": \"node dist/index.js\",\n    \"test\": \"jest --runInBand\"\n  },\n  \"dependencies\": {\n    \"axios\": \"^0.19.0\",\n    \"body-parser\": \"^1.19.0\",\n    \"cookie-parser\": \"^1.4.4\",\n    \"cors\": \"^2.8.5\",\n    \"debug\": \"^4.1.1\",\n    \"dotenv\": \"^8.0.0\",\n    \"express\": \"^4.17.1\",\n    \"mongoose\": \"^5.6.4\",\n    \"morgan\": \"^1.9.1\",\n    \"path\": \"^0.12.7\",\n    \"sinon\": \"^7.3.2\",\n    \"sinon-mongoose\": \"^2.3.0\",\n    \"socket.io\": \"^2.2.0\",\n    \"socket.io-client\": \"^2.2.0\"\n  },\n  \"devDependencies\": {\n    \"@babel/cli\": \"^7.5.0\",\n    \"@babel/core\": \"^7.5.0\",\n    \"@babel/node\": \"^7.5.0\",\n    \"@babel/preset-env\": \"^7.5.2\",\n    \"cross-env\": \"^5.2.0\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"jest\": \"^24.8.0\",\n    \"jest-websocket-mock\": \"^1.5.0\",\n    \"mock-socket\": \"^8.0.5\",\n    \"mockingoose\": \"^2.13.1\",\n    \"nodemon\": \"^1.19.1\",\n    \"rimraf\": \"^2.6.3\"\n  },\n  \"jest\": {\n    \"verbose\": true,\n    \"testEnvironment\": \"node\"\n  }\n}\n",
+    "longname": "/home/eklavya/projects/work/Pesto/portfolio/batch-8-NuSlack/server/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]
