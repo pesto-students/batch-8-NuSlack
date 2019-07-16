@@ -1,0 +1,93 @@
+{
+  "coverage": "0%",
+  "expectCount": 38,
+  "actualCount": 0,
+  "files": {
+    "src/config/local-storage-keys.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "src/config/server.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "src/context/HomeContext/action-handlers.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        17,
+        24,
+        32,
+        55,
+        38,
+        45,
+        62,
+        72,
+        79,
+        86,
+        100,
+        93
+      ]
+    },
+    "src/context/HomeContext/actions-types.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    "src/context/HomeContext/api.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        11,
+        4,
+        18
+      ]
+    },
+    "src/context/HomeContext/index.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        25,
+        92,
+        27
+      ]
+    },
+    "src/context/HomeContext/state.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "src/serviceWorker.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        13,
+        23,
+        57,
+        101,
+        129
+      ]
+    }
+  }
+}
