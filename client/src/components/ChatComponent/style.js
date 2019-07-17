@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import { Layout } from 'antd';
-
-const { Header } = Layout;
 
 const ChatBox = styled.div`
   display: flex;
@@ -15,9 +12,4 @@ const ChatHistory = styled.div`
   overflow-y: scroll;
 `;
 
-const GreenHeader = styled(Header)`
-  background-color: green;
-  color: white;
-`;
-
-export { ChatBox, ChatHistory, GreenHeader };
+export { ChatBox, ChatHistory };

@@ -2,6 +2,7 @@
 
 exports[`<AddChannelForm /> should match the snapshot 1`] = `
 <AddChannelForm
+  closeModal={[Function]}
   form={
     Object {
       "getFieldDecorator": [Function],

@@ -2,11 +2,9 @@
 
 exports[`<ChatComponent /> should match the snapshot 1`] = `
 <Fragment>
-  <Styled(Adapter)
-    className="channel-detail"
-  >
-    Channel Detail
-  </Styled(Adapter)>
+  <ChatHeader
+    activeChannelName="Loading"
+  />
   <Adapter
     style={
       Object {

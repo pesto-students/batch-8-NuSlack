@@ -13,6 +13,7 @@ import {
   SET_USER_ONLINE,
   SET_USER_OFFLINE,
   ADD_NEW_CHANNEL,
+  REMOVE_CHANNEL,
 } from './actions-types';
 
 const generateChannelsMap = (channels) => {
@@ -148,10 +149,23 @@ const reducer = (state, action) => {
       };
       const { channelIds } = state;
       channelIds.push(action.payload._id);
+      const updatedChannelIds = [...channelIds];
+      return {
+        ...state,
+        channelIds: updatedChannelIds,
+        channelsMap,
+      };
+    }
+    case REMOVE_CHANNEL: {
+      const { channelsMap } = state;
+      const channelIds = state.channelIds.filter(channelId => channelId !== action.payload);
+      delete channelsMap[action.payload];
+      const activeChannel = channelIds[0];
       return {
         ...state,
         channelIds,
         channelsMap,
+        activeChannel,
       };
     }
     default:
