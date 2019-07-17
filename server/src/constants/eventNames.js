@@ -5,6 +5,8 @@ const fetchOldChannelMessagesEvent = 'fetchOldChannelMessages';
 const userOnlineEvent = 'userOnline';
 const userDisconnectEvent = 'disconnect';
 const exceptionEvent = 'exception';
+const addUsersEvent = 'addUser';
+const removeUserEvent = 'removeUser';
 
 export {
   messageEvent,
@@ -14,4 +16,6 @@ export {
   userOnlineEvent,
   userDisconnectEvent,
   exceptionEvent,
+  addUsersEvent,
+  removeUserEvent,
 };

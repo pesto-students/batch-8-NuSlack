@@ -78,6 +78,7 @@ const removeUserFromChannel = async (req, res) => {
   const channel = await Channels.findOneAndUpdate(
     { _id: req.params.channelId },
     { $pull: { users: req.params.userId } },
+    { new: true },
   );
   if (!channel) {
     return res.status(404).send(constants.channelNotFound);

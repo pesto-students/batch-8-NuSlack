@@ -11,7 +11,7 @@ const MessageSchema = new Schema({
   sender: { type: ObjectId, ref: constants.users },
   receiver: { type: ObjectId, ref: constants.users },
   channelId: { type: ObjectId, ref: constants.channels },
-  teamId: ObjectId,
+  teamId: { type: ObjectId, ref: constants.teams },
 });
 
 const MessagesModel = mongoose.model(constants.messages, MessageSchema);
