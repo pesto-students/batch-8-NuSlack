@@ -118,7 +118,8 @@ const reducer = (state, action) => {
         ...generateUsersMap(action.payload.users),
       };
     case SET_FIRST_USER_STATUS:
-      return { ...state, ...setFirstUserStatus(state, action.payload.onlineUserIds) };
+      console.log(action.payload);
+      return { ...state, ...setFirstUserStatus(state, action.payload) };
     case SET_USER_OFFLINE:
       return {
         ...state,
