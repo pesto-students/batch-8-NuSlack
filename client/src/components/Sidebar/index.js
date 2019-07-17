@@ -4,6 +4,7 @@ import { Layout, Menu, Icon } from 'antd';
 import styled from 'styled-components';
 import { useHomeContext } from '../../context/HomeContext';
 import AddChannelModal from '../AddChannelModal';
+import SearchBox from '../ChannelUserSearch';
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
@@ -122,6 +123,7 @@ const Sidebar = () => {
           </Menu.Item>
         )) : ''}
       </SubMenu>
+      <SearchBox />
       <AddChannelModal
         visible={channelModalIsVisible}
         toggleModal={toggleModal}
