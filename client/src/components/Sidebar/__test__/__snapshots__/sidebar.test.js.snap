@@ -1,59 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Sidebar /> should match the snapshot 1`] = `
-<Sider
-  breakpoint="sm"
-  collapsible={true}
-  style={
-    Object {
-      "height": "100%",
-      "overflow": "hidden",
-    }
-  }
-  theme="light"
-  width={300}
->
-  <Menu
-    defaultOpenKeys={
-      Array [
-        "sub1",
-      ]
-    }
-    defaultSelectedKeys={
-      Array [
-        "1",
-      ]
-    }
-    mode="inline"
-    style={
-      Object {
-        "borderRight": 0,
-        "height": "100%",
-      }
-    }
-  >
-    <SubMenu
-      key="sub1"
-      title={
+<SideBarContainer>
+  <SubMenu
+    key="sub1"
+    title={
+      <span>
+        <Icon
+          type="usergroup-add"
+        />
         <span>
+          Channels 
           <Icon
-            type="laptop"
+            onClick={[Function]}
+            type="plus"
           />
-          Channels
         </span>
-      }
-    />
-    <SubMenu
-      key="sub2"
-      title={
+      </span>
+    }
+  />
+  <SubMenu
+    key="sub2"
+    title={
+      <span>
+        <Icon
+          type="user"
+        />
         <span>
-          <Icon
-            type="user"
-          />
           People
         </span>
-      }
-    />
-  </Menu>
-</Sider>
+      </span>
+    }
+  />
+  <AddChannelModal
+    toggleModal={[Function]}
+    visible={false}
+  />
+</SideBarContainer>
 `;

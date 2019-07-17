@@ -88,7 +88,7 @@ const Sidebar = () => {
           </span>
         )}
       >
-        {channelIds.map(channelId => (
+        {channelIds ? channelIds.map(channelId => (
           <Menu.Item
             onClick={() => changeActiveChannel(channelId)}
             key={channelId}
@@ -104,7 +104,7 @@ const Sidebar = () => {
               )}
             </span>
           </Menu.Item>
-        ))}
+        )) : ''}
       </SubMenu>
       <SubMenu
         key="sub2"
@@ -115,12 +115,12 @@ const Sidebar = () => {
           </span>
         )}
       >
-        {allUserIds.map(userId => (
+        {allUserIds ? allUserIds.map(userId => (
           <Menu.Item onClick={() => changeActiveChannel(userId)} key={userId}>
             {allUsersMap[userId].username}{' '}
             <Status online={allUsersMap[userId].online} />
           </Menu.Item>
-        ))}
+        )) : ''}
       </SubMenu>
       <AddChannelModal
         visible={channelModalIsVisible}
