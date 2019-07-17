@@ -12,6 +12,7 @@ import {
   SET_USER_ONLINE,
   SET_USER_OFFLINE,
   ADD_NEW_CHANNEL,
+  REMOVE_CHANNEL,
 } from './actions-types';
 import { localStorageKeys } from '../../config';
 
@@ -112,6 +113,13 @@ const addChannelHandler = dispatch => (channel) => {
   });
 };
 
+const removeChannelHandler = dispatch => (channel) => {
+  dispatch({
+    type: REMOVE_CHANNEL,
+    payload: channel,
+  });
+};
+
 export {
   setChannelsHandler,
   setUserHandler,
@@ -126,4 +134,5 @@ export {
   setUserOfflineHandler,
   setUserOnlineHandler,
   addChannelHandler,
+  removeChannelHandler,
 };

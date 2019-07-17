@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {
   Layout, Icon, Avatar, Skeleton, List,
 } from 'antd';
-import { ChatBox, ChatHistory, GreenHeader } from './style';
+import { ChatBox, ChatHistory } from './style';
 import ChatInputBox from '../ChatInputBox';
 import ProfileModal from '../ProfileModal';
 import { useHomeContext } from '../../context/HomeContext';
+import ChatHeader from '../ChatHeader';
 
 const { Content } = Layout;
-
 const IconText = ({ type, text }) => (
   <span>
     <Icon type={type} style={{ marginRight: 8 }} />
@@ -27,26 +27,41 @@ const defaultUser = {};
 const ChatComponent = () => {
   const [loading] = useState(false);
   const [modalIsVisible, setModal] = useState(false);
+  const [activeChannelName, setActiveChannelName] = useState('Loading');
   const [activeModalProfile, setActiveModalProfile] = useState(defaultUser);
   const lastItemRef = useRef(null);
-
-  const { activeChannel, channelsMap, fetchMessages } = useHomeContext();
+  const updateChannelRef = useRef();
+  const {
+    activeChannel,
+    channelsMap,
+    fetchMessages,
+    allUsersMap,
+  } = useHomeContext();
 
   const messages = (
-    channelsMap && channelsMap[activeChannel] && channelsMap[activeChannel].messages) || [];
-  const toggleModal = (user) => {
-    if (user) {
-      setActiveModalProfile(user);
+    channelsMap && channelsMap[activeChannel] && channelsMap[activeChannel].messages
+  ) || [];
+  const toggleModal = (userProfile) => {
+    if (userProfile) {
+      setActiveModalProfile(userProfile);
     } else {
       setActiveModalProfile(defaultUser);
     }
     setModal(!modalIsVisible);
   };
-
-  useEffect(() => {
+  const updateChannel = () => {
     if (activeChannel) {
       fetchMessages(activeChannel);
+      if (channelsMap[activeChannel]) {
+        setActiveChannelName(channelsMap[activeChannel].name);
+      } else if (allUsersMap[activeChannel]) {
+        setActiveChannelName(allUsersMap[activeChannel].username);
+      }
     }
+  };
+  updateChannelRef.current = updateChannel;
+  useEffect(() => {
+    updateChannelRef.current();
   }, [activeChannel, fetchMessages]);
 
   useEffect(() => {
@@ -54,7 +69,7 @@ const ChatComponent = () => {
   }, [channelsMap]);
   return (
     <>
-      <GreenHeader className="channel-detail">Channel Detail</GreenHeader>
+      <ChatHeader activeChannelName={activeChannelName} />
       <Content
         style={{
           background: '#fff',
@@ -93,9 +108,7 @@ const ChatComponent = () => {
                   </List.Item>
                 )}
               />
-              <div
-                ref={lastItemRef}
-              />
+              <div ref={lastItemRef} />
             </div>
           </ChatHistory>
           <ChatInputBox />
