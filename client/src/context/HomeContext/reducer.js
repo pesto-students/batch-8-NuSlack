@@ -12,6 +12,7 @@ import {
   SET_FIRST_USER_STATUS,
   SET_USER_ONLINE,
   SET_USER_OFFLINE,
+  ADD_NEW_CHANNEL,
 } from './actions-types';
 
 const generateChannelsMap = (channels) => {
@@ -117,7 +118,7 @@ const reducer = (state, action) => {
         ...generateUsersMap(action.payload.users),
       };
     case SET_FIRST_USER_STATUS:
-      return { ...state, ...setFirstUserStatus(state, action.payload.onlineUserIds) };
+      return { ...state, ...setFirstUserStatus(state, action.payload) };
     case SET_USER_OFFLINE:
       return {
         ...state,
@@ -140,6 +141,19 @@ const reducer = (state, action) => {
           },
         },
       };
+    case ADD_NEW_CHANNEL: {
+      const channelsMap = {
+        ...state.channelsMap,
+        [action.payload._id]: action.payload,
+      };
+      const { channelIds } = state;
+      channelIds.push(action.payload._id);
+      return {
+        ...state,
+        channelIds,
+        channelsMap,
+      };
+    }
     default:
       throw new Error('Action type not defined');
   }
