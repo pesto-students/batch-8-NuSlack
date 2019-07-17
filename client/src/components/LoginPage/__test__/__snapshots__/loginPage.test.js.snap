@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginPage /> should match the snapshot 1`] = `
+<styled.div>
+  <h1>
+    Login
+  </h1>
+  <Input
+    disabled={false}
+    onChange={[Function]}
+    onPressEnter={[Function]}
+    type="text"
+    value=""
+  />
+  <Button
+    block={false}
+    disabled={false}
+    ghost={false}
+    htmlType="button"
+    loading={false}
+    onClick={[Function]}
+  >
+    Login
+  </Button>
+</styled.div>
+`;

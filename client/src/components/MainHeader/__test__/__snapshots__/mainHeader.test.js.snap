@@ -29,16 +29,14 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
         <styled.div>
           <h1
             className="user-name"
-          >
-            JohnDoe
-          </h1>
+          />
           <styled.div>
             <Icon
               theme="twoTone"
               twoToneColor="#52c41a"
               type="check-circle"
             />
-             Online
+            Online
           </styled.div>
         </styled.div>
       </Row>
@@ -62,15 +60,16 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
         >
           <index>
             <Icon
-              type="bell"
+              type="setting"
             />
           </index>
            
-          <index>
+          <SmallButton>
             <Icon
-              type="menu"
+              type="logout"
             />
-          </index>
+             Logout
+          </SmallButton>
         </Col>
       </Row>
     </Col>

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Icon, Row, Col, Avatar, Layout,
 } from 'antd';
 import styled from 'styled-components';
 import CircleButton from '../CircleButton';
+import SmallButton from '../SmallButton';
+import { useHomeContext } from '../../context/HomeContext';
 
 const { Header } = Layout;
 
@@ -17,16 +19,28 @@ const LoggedInUser = styled.div`
     margin: 0;
   }
 `;
+
 const UserStatus = styled.div`
   font-size: 1.4em;
   line-height: 1.5em;
 `;
+
 const HomeHeader = styled(Header)`
   height: 100px;
   background: #607d8b;
+  @media only screen and (max-width: 600px) {
+    padding: 0 25px;
+    font-size: 11px;
+    .ant-avatar {
+      height: 60px !important;
+      width: 60px !important;
+    }
+  }
 `;
+
 const MainHeader = () => {
-  const [username] = useState('JohnDoe');
+  const { user, logoutUser } = useHomeContext();
+
   return (
     <HomeHeader className="home-header">
       <Row>
@@ -34,9 +48,10 @@ const MainHeader = () => {
           <Row type="flex" align="middle" justify="start" style={{ height: '100px' }}>
             <Avatar shape="square" size={90} icon="user" />
             <LoggedInUser>
-              <h1 className="user-name">{username}</h1>
+              <h1 className="user-name">{user && user.username}</h1>
               <UserStatus>
-                <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Online
+                <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" />
+                Online
               </UserStatus>
             </LoggedInUser>
           </Row>
@@ -45,12 +60,12 @@ const MainHeader = () => {
           <Row type="flex" align="middle" justify="end" style={{ height: '100px' }}>
             <Col span={32}>
               <CircleButton>
-                <Icon type="bell" />
+                <Icon type="setting" />
               </CircleButton>
               &nbsp;
-              <CircleButton>
-                <Icon type="menu" />
-              </CircleButton>
+              <SmallButton onClick={logoutUser}>
+                <Icon type="logout" /> Logout
+              </SmallButton>
             </Col>
           </Row>
         </Col>
