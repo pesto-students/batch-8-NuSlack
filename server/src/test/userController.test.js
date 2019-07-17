@@ -52,6 +52,7 @@ describe('user APIs', () => {
       sinon
         .mock(UsersModel)
         .expects('findOne')
+        .chain('populate')
         .resolves(user);
       const controllerResponse = await getUser(request, response);
       const parsedResponse = testUtils.parse(controllerResponse);
@@ -62,6 +63,7 @@ describe('user APIs', () => {
       sinon
         .mock(UsersModel)
         .expects('findOne')
+        .chain('populate')
         .resolves(null);
       const controllerResponse = await getUser(request, response);
       expect(controllerResponse).toBe(constants.userNotFound);

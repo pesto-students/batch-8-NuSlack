@@ -2,6 +2,7 @@ import { Router } from 'express';
 import users from './users';
 import channels from './channels';
 import messages from './messages';
+import teams from './teams';
 
 const api = Router();
 
@@ -21,5 +22,7 @@ api.use('/users', users);
 api.use('/channels', channels);
 
 api.use('/messages', messages);
+
+api.use('/teams', teams);
 
 export default api;

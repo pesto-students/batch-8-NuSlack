@@ -8,7 +8,7 @@ const getUsers = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const user = await Users.findOne({ _id: req.params.id });
+  const user = await Users.findOne({ _id: req.params.id }).populate('teams');
   if (!user) {
     return res.status(404).send(constants.userNotFound);
   }

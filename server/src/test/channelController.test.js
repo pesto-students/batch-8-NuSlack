@@ -25,6 +25,7 @@ describe('Channel APIs', () => {
       autoJoin: false,
       admins: ['507f191e810c19729de860eb'],
       users: ['507f191e810c19729de860eb', '507f191e810c19729de860ec'],
+      teamId: '507f191e810c19729de11111',
     },
   ];
   const channel = channels[0];

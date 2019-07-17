@@ -10,7 +10,7 @@ const ChannelSchema = new Schema({
   isPrivate: { type: Boolean, default: false },
   autoJoin: { type: Boolean, default: false },
   admins: [{ type: ObjectId, ref: constants.users }],
-  teamId: ObjectId,
+  teamId: { type: ObjectId, ref: constants.teams },
   users: [{ type: ObjectId, ref: constants.users }],
 });
 

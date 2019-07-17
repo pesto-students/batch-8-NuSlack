@@ -2,10 +2,12 @@ const defaultImage = 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXC
 const channels = 'ChannelsSchema';
 const messages = 'MessagesSchema';
 const users = 'UsersSchema';
+const teams = 'TeamsSchema';
 
 export {
   channels,
   messages,
   users,
   defaultImage,
+  teams,
 };

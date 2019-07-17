@@ -17,6 +17,7 @@ const UserSchema = new Schema({
   username: String,
   tagLine: String,
   email: String,
+  teams: [{ type: ObjectId, ref: constants.teams }],
   teamSpecificData: [TeamSpecificData],
 });
 
