@@ -17,6 +17,7 @@ import {
   setFirstUserStatusHandler,
   setUserOfflineHandler,
   setUserOnlineHandler,
+  addChannelHandler,
 } from './action-handlers';
 
 import {
@@ -58,6 +59,7 @@ const useHome = () => {
   const setFirstUserStatus = useRef(setFirstUserStatusHandler(dispatch));
   const setUserOffline = useRef(setUserOfflineHandler(dispatch));
   const setUserOnline = useRef(setUserOnlineHandler(dispatch));
+  const addChannel = useRef(addChannelHandler(dispatch));
   const sendMessage = useRef((message, channelId) => {
     if (socketMethods) {
       socketMethods.current.sendMessage({ message, channelId });
@@ -105,6 +107,7 @@ const useHome = () => {
     allUsersMap,
     fetchUsers: fetchUsers.current,
     setFirstUserStatus: setFirstUserStatus.current,
+    addChannel: addChannel.current,
   };
 };
 
