@@ -18,6 +18,7 @@ import {
   setUserOfflineHandler,
   setUserOnlineHandler,
   addChannelHandler,
+  removeChannelHandler,
 } from './action-handlers';
 
 import {
@@ -60,9 +61,20 @@ const useHome = () => {
   const setUserOffline = useRef(setUserOfflineHandler(dispatch));
   const setUserOnline = useRef(setUserOnlineHandler(dispatch));
   const addChannel = useRef(addChannelHandler(dispatch));
+  const removeChannel = useRef(removeChannelHandler(dispatch));
   const sendMessage = useRef((message, channelId) => {
     if (socketMethods) {
       socketMethods.current.sendMessage({ message, channelId });
+    }
+  });
+  const addUserToChannel = useRef((data) => {
+    if (socketMethods) {
+      socketMethods.current.emitAddUserToChannel(data);
+    }
+  });
+  const removeUserFromChannel = useRef((data) => {
+    if (socketMethods) {
+      socketMethods.current.emitRemoveUserFromChannel(data);
     }
   });
 
@@ -108,6 +120,9 @@ const useHome = () => {
     fetchUsers: fetchUsers.current,
     setFirstUserStatus: setFirstUserStatus.current,
     addChannel: addChannel.current,
+    removeChannel: removeChannel.current,
+    addUserToChannel: addUserToChannel.current,
+    removeUserFromChannel: removeUserFromChannel.current,
   };
 };
 

@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import {
-  Layout, Icon, Avatar, Skeleton, List,
+  Layout, Icon, Avatar, Skeleton, List, Button,
 } from 'antd';
 import { ChatBox, ChatHistory, GreenHeader } from './style';
 import ChatInputBox from '../ChatInputBox';
 import ProfileModal from '../ProfileModal';
 import { useHomeContext } from '../../context/HomeContext';
+import AddUsersToChannelModal from '../AddUsersToChannelModal';
+import ChannelUserListModal from '../ChannelUserListModal';
+import { serverConfig } from '../../config';
 
 const { Content } = Layout;
-
 const IconText = ({ type, text }) => (
   <span>
     <Icon type={type} style={{ marginRight: 8 }} />
@@ -25,36 +28,87 @@ IconText.propTypes = {
 const defaultUser = {};
 
 const ChatComponent = () => {
+  const { SERVER_BASE_URL } = serverConfig;
   const [loading] = useState(false);
   const [modalIsVisible, setModal] = useState(false);
+  const [activeChannelName, setActiveChannelName] = useState('Loading');
   const [activeModalProfile, setActiveModalProfile] = useState(defaultUser);
+  const [addUserModalIsVisible, setAddUserModalIsVisible] = useState(false);
+  const [userListModalIsVisible, setUserListModalIsVisible] = useState(false);
   const lastItemRef = useRef(null);
-
-  const { activeChannel, channelsMap, fetchMessages } = useHomeContext();
+  const updateChannelRef = useRef();
+  const {
+    user,
+    activeChannel,
+    channelsMap,
+    fetchMessages,
+    allUsersMap,
+    removeChannel,
+    setActiveChannel,
+    channelIds,
+  } = useHomeContext();
 
   const messages = (
-    channelsMap && channelsMap[activeChannel] && channelsMap[activeChannel].messages) || [];
-  const toggleModal = (user) => {
-    if (user) {
-      setActiveModalProfile(user);
+    channelsMap && channelsMap[activeChannel] && channelsMap[activeChannel].messages
+  ) || [];
+  const toggleModal = (userProfile) => {
+    if (userProfile) {
+      setActiveModalProfile(userProfile);
     } else {
       setActiveModalProfile(defaultUser);
     }
     setModal(!modalIsVisible);
   };
-
-  useEffect(() => {
+  const updateChannel = () => {
     if (activeChannel) {
       fetchMessages(activeChannel);
+      if (channelsMap[activeChannel]) {
+        setActiveChannelName(channelsMap[activeChannel].name);
+      } else if (allUsersMap[activeChannel]) {
+        setActiveChannelName(allUsersMap[activeChannel].username);
+      }
     }
+  };
+  updateChannelRef.current = updateChannel;
+  useEffect(() => {
+    updateChannelRef.current();
   }, [activeChannel, fetchMessages]);
 
   useEffect(() => {
     lastItemRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [channelsMap]);
+
+  const handleLeaveChannel = () => {
+    axios
+      .post(`${SERVER_BASE_URL}/channels/${activeChannel}/remove-user/${user._id}`)
+      .then((resp) => {
+        removeChannel(resp.data._id);
+        setActiveChannel(channelIds[0]);
+      });
+  };
+
+  const toggleAddUserModal = () => {
+    setAddUserModalIsVisible(!addUserModalIsVisible);
+  };
+
+  const toggleUserListModal = () => {
+    setUserListModalIsVisible(!userListModalIsVisible);
+  };
+
   return (
     <>
-      <GreenHeader className="channel-detail">Channel Detail</GreenHeader>
+      <GreenHeader className="channel-detail">
+        {activeChannelName}
+        <span style={{ float: 'right' }}>
+          <Button onClick={toggleUserListModal} style={{ marginRight: '5px' }}>
+            Users
+          </Button>
+          <Button onClick={toggleAddUserModal} style={{ marginRight: '5px' }}>
+            Add users
+          </Button>
+          <Button onClick={handleLeaveChannel}>Leave</Button>
+        </span>
+      </GreenHeader>
       <Content
         style={{
           background: '#fff',
@@ -93,9 +147,7 @@ const ChatComponent = () => {
                   </List.Item>
                 )}
               />
-              <div
-                ref={lastItemRef}
-              />
+              <div ref={lastItemRef} />
             </div>
           </ChatHistory>
           <ChatInputBox />
@@ -105,6 +157,8 @@ const ChatComponent = () => {
           visible={modalIsVisible}
           userData={activeModalProfile}
         />
+        <AddUsersToChannelModal toggleModal={toggleAddUserModal} visible={addUserModalIsVisible} />
+        <ChannelUserListModal toggleModal={toggleUserListModal} visible={userListModalIsVisible} />
       </Content>
     </>
   );

@@ -5,15 +5,16 @@ import {
   userOnlineEvent,
   userDisconnect,
 } from '../constants/eventNames';
-import { sendConnectedEvent, sendMessageEvent } from './emit';
+import {
+  sendConnectedEvent,
+  sendMessageEvent,
+  emitAddUserToChannel,
+  emitRemoveUserFromChannel,
+} from './emit';
 import { serverConfig } from '../config';
 
 const initSockets = ({
-  user,
-  newMessage,
-  setFirstUserStatus,
-  setUserOffline,
-  setUserOnline,
+  user, newMessage, setFirstUserStatus, setUserOffline, setUserOnline,
 }) => {
   const client = io.connect(serverConfig.SERVER_BASE_URL, {
     reconnection: true,
@@ -50,6 +51,8 @@ const initSockets = ({
 
   return {
     sendMessage: sendMessageEvent(client),
+    emitAddUserToChannel: emitAddUserToChannel(client),
+    emitRemoveUserFromChannel: emitRemoveUserFromChannel(client),
     close,
   };
 };
