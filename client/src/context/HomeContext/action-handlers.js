@@ -11,6 +11,7 @@ import {
   SET_FIRST_USER_STATUS,
   SET_USER_ONLINE,
   SET_USER_OFFLINE,
+  ADD_NEW_CHANNEL,
 } from './actions-types';
 import { localStorageKeys } from '../../config';
 
@@ -104,6 +105,13 @@ const setUserOfflineHandler = dispatch => (userId) => {
   });
 };
 
+const addChannelHandler = dispatch => (channel) => {
+  dispatch({
+    type: ADD_NEW_CHANNEL,
+    payload: channel,
+  });
+};
+
 export {
   setChannelsHandler,
   setUserHandler,
@@ -117,4 +125,5 @@ export {
   setFirstUserStatusHandler,
   setUserOfflineHandler,
   setUserOnlineHandler,
+  addChannelHandler,
 };
