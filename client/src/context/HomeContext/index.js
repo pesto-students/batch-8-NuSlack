@@ -50,7 +50,7 @@ const useHome = () => {
   const setChannels = useRef(setChannelsHandler(dispatch));
   const setUser = useRef(setUserHandler(dispatch));
   const setConnected = useRef(setConnectedHandler(dispatch));
-  const logoutUser = useRef(logoutAndResetHandler(dispatch));
+  const logoutAndReset = useRef(logoutAndResetHandler(dispatch));
   const setActiveChannel = useRef(setActiveChannelHandler(dispatch));
   const setChannelsMap = useRef(setChannelsMapHandler(dispatch));
   const fetchMessages = useRef(fetchMessagesApi(setChannelsMap.current));
@@ -64,8 +64,16 @@ const useHome = () => {
     }
   });
 
+  const logoutUser = useRef(() => {
+    if (socketMethods.current) {
+      socketMethods.current.close();
+      socketMethods.current = null;
+      logoutAndReset.current();
+    }
+  });
+
   useEffect(() => {
-    if (user && user.username) {
+    if (user && user.username && channelIds.length && allUserIds.length) {
       if (!socketMethods.current) {
         socketMethods.current = initSocket({
           user,
@@ -76,7 +84,7 @@ const useHome = () => {
         });
       }
     }
-  }, [user]);
+  }, [user, channelIds, allUserIds]);
 
   return {
     user,

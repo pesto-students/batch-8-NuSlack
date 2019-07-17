@@ -2,7 +2,6 @@ import io from 'socket.io-client';
 import {
   messageEvent,
   connectedUserAckEvent,
-  connectedUserEvent,
   userOnlineEvent,
   userDisconnect,
 } from '../constants/eventNames';
@@ -24,7 +23,7 @@ const initSockets = ({
     transports: ['websocket'],
   });
 
-  client.on(connectedUserEvent, () => {
+  client.on('connect', () => {
     sendConnectedEvent(client)(user);
   });
 
@@ -44,8 +43,14 @@ const initSockets = ({
     setFirstUserStatus(data.onlineUsers);
   });
 
+  const close = () => {
+    client.removeAllListeners();
+    client.close();
+  };
+
   return {
     sendMessage: sendMessageEvent(client),
+    close,
   };
 };
 

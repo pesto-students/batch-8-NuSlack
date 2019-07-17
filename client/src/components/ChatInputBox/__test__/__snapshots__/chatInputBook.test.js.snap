@@ -4,6 +4,8 @@ exports[`<ChatInputBox /> should match the snapshot 1`] = `
 <styled.div>
   <Input
     disabled={false}
+    onChange={[Function]}
+    onPressEnter={[Function]}
     placeholder="Say it"
     prefix={
       <Icon
@@ -32,6 +34,7 @@ exports[`<ChatInputBox /> should match the snapshot 1`] = `
       </React.Fragment>
     }
     type="text"
+    value=""
   />
 </styled.div>
 `;
