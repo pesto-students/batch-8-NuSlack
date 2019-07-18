@@ -4,9 +4,10 @@ import {
   SET_USER,
   SET_CONNECTED,
   SET_ACTIVE_CHANNEL,
+  SET_ACTIVE_USER,
   SET_CHANNELS_MAP,
   LOGOUT_USER,
-  ADD_NEW_MESSAGE,
+  ADD_NEW_CHANNEL_MESSAGE,
   GENERATE_CHANNELS_MAP,
   GENERATE_USERS_MAP,
   SET_FIRST_USER_STATUS,
@@ -14,6 +15,8 @@ import {
   SET_USER_OFFLINE,
   ADD_NEW_CHANNEL,
   REMOVE_CHANNEL,
+  SET_USER_MESSAGES_MAP,
+  ADD_NEW_USER_MESSAGE,
 } from './actions-types';
 
 const generateChannelsMap = (channels) => {
@@ -48,10 +51,11 @@ const generateUsersMap = (users) => {
   };
 };
 
-const setFirstUserStatus = (state, onlineUserIds) => {
+const setFirstUserStatus = (state, onlineUsers) => {
   const { allUsersMap } = state;
-  onlineUserIds.forEach((onlineUserId) => {
-    allUsersMap[onlineUserId].online = true;
+  onlineUsers.forEach((onlineUser) => {
+    allUsersMap[onlineUser.userId].online = true;
+    allUsersMap[onlineUser.userId].socketId = onlineUser.socketId;
   });
 
   return allUsersMap;
@@ -77,7 +81,9 @@ const reducer = (state, action) => {
     case LOGOUT_USER:
       return getInitialState();
     case SET_ACTIVE_CHANNEL:
-      return { ...state, activeChannel: action.payload };
+      return { ...state, activeChannel: action.payload, activeUser: null };
+    case SET_ACTIVE_USER:
+      return { ...state, activeUser: action.payload, activeChannel: null };
     case SET_CHANNELS_MAP:
       return {
         ...state,
@@ -90,7 +96,7 @@ const reducer = (state, action) => {
           },
         },
       };
-    case ADD_NEW_MESSAGE:
+    case ADD_NEW_CHANNEL_MESSAGE:
       return {
         ...state,
         channelsMap: {
@@ -136,9 +142,21 @@ const reducer = (state, action) => {
         ...state,
         allUsersMap: {
           ...state.allUsersMap,
-          [action.payload]: {
-            ...state.allUsersMap[action.payload],
+          [action.payload.userId]: {
+            ...state.allUsersMap[action.payload.userId],
             online: true,
+            socketId: action.payload.socketId,
+          },
+        },
+      };
+    case SET_USER_MESSAGES_MAP:
+      return {
+        ...state,
+        userMessages: {
+          ...state.userMessages,
+          [action.payload.receiverId]: {
+            ...state.userMessages[action.payload.receiverId],
+            messages: action.payload.messages,
           },
         },
       };
@@ -168,6 +186,20 @@ const reducer = (state, action) => {
         activeChannel,
       };
     }
+    case ADD_NEW_USER_MESSAGE:
+      return {
+        ...state,
+        userMessages: {
+          ...state.userMessages,
+          [action.payload.receiverId]: {
+            ...state.userMessages[action.payload.receiverId],
+            messages: [
+              ...state.userMessages[action.payload.receiverId].messages,
+              action.payload.message,
+            ],
+          },
+        },
+      };
     default:
       throw new Error('Action type not defined');
   }

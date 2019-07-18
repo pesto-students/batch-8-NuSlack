@@ -16,11 +16,7 @@ const saveMessage = async (req, res) => {
 };
 
 const updateMessage = async (req, res) => {
-  const message = await Messages.findOneAndUpdate(
-    { _id: req.params.id },
-    req.body,
-    { new: true },
-  );
+  const message = await Messages.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
   if (!message) {
     return res.status(404).send(constants.messageNotFound);
   }
@@ -35,9 +31,23 @@ const deleteMessage = async (req, res) => {
   return res.send(message);
 };
 
+const getOneToOneMessages = async (req, res) => {
+  const { senderId, receiverId } = req.query;
+  const messages = await Messages.find({
+    $or: [
+      {
+        sender: senderId,
+        receiver: receiverId,
+      },
+      {
+        receiver: senderId,
+        sender: receiverId,
+      },
+    ],
+  }).populate('sender');
+  return res.send(messages);
+};
+
 export {
-  getMessages,
-  saveMessage,
-  updateMessage,
-  deleteMessage,
+  getMessages, saveMessage, updateMessage, deleteMessage, getOneToOneMessages,
 };

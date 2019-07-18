@@ -7,10 +7,12 @@ const createException = socket => message => socket.emit(exceptionEvent, { messa
 const joinChannels = socket => async (id) => {
   const channels = await getChannelsListFor(id);
   channels.forEach(channel => socket.join(String(channel.id)));
-  return channels;
 };
 
-const emitOnlineStatus = socket => user => socket.nsp.emit(userOnlineEvent, user);
+const emitOnlineStatus = socket => user => socket.nsp.emit(userOnlineEvent, ({
+  userId: user._id,
+  socketId: socket.id,
+}));
 
 const handleConnectedUser = socket => async ({ username }) => {
   const exception = createException(socket);
@@ -30,13 +32,16 @@ const handleConnectedUser = socket => async ({ username }) => {
   const socketIds = Object.keys(socket.nsp.sockets);
   const onlineUsers = socketIds
     .filter(socketId => Boolean(socket.nsp.sockets[socketId].store))
-    .map(socketId => socket.nsp.sockets[socketId].store.user._doc._id);
+    .map(socketId => ({
+      userId: socket.nsp.sockets[socketId].store.user._doc._id,
+      socketId,
+    }));
 
-  const channels = await joinChannels(socket)(user.id);
+  await joinChannels(socket)(user.id);
 
   emitOnlineStatus(socket)(user);
 
-  return socket.emit(connectedUserAckEvent, { channels, onlineUsers });
+  return socket.emit(connectedUserAckEvent, { onlineUsers });
 };
 
 export default handleConnectedUser;

@@ -10,6 +10,7 @@ import {
   setConnectedHandler,
   logoutAndResetHandler,
   setActiveChannelHandler,
+  setActiveUserHandler,
   setChannelsMapHandler,
   newMessageHandler,
   generateChannelsMapHandler,
@@ -19,10 +20,12 @@ import {
   setUserOnlineHandler,
   addChannelHandler,
   removeChannelHandler,
+  setUserMessagesMapHandler,
 } from './action-handlers';
 
 import {
-  fetchMessagesApi,
+  fetchChannelMessagesApi,
+  fetchUserMessagesApi,
   fetchChannelsApi,
   fetchUsersApi,
 } from './api';
@@ -37,16 +40,16 @@ const useHome = () => {
     channels,
     isConnected,
     activeChannel,
+    activeUser,
     channelsMap,
     channelIds,
     allUserIds,
     allUsersMap,
+    userMessages,
   } = state;
 
   const generateChannelsMap = useRef(generateChannelsMapHandler(dispatch));
-  const fetchChannels = useRef(
-    fetchChannelsApi(generateChannelsMap.current),
-  );
+  const fetchChannels = useRef(fetchChannelsApi(generateChannelsMap.current));
   const generateUsersMap = useRef(generateUsersMapHandler(dispatch));
   const fetchUsers = useRef(fetchUsersApi(generateUsersMap.current));
   const setChannels = useRef(setChannelsHandler(dispatch));
@@ -54,17 +57,22 @@ const useHome = () => {
   const setConnected = useRef(setConnectedHandler(dispatch));
   const logoutAndReset = useRef(logoutAndResetHandler(dispatch));
   const setActiveChannel = useRef(setActiveChannelHandler(dispatch));
+  const setActiveUser = useRef(setActiveUserHandler(dispatch));
   const setChannelsMap = useRef(setChannelsMapHandler(dispatch));
-  const fetchMessages = useRef(fetchMessagesApi(setChannelsMap.current));
+  const setUserMessagesMap = useRef(setUserMessagesMapHandler(dispatch));
+  const fetchChannelMessages = useRef(fetchChannelMessagesApi(setChannelsMap.current));
+  const fetchUserMessages = useRef(fetchUserMessagesApi(setUserMessagesMap.current));
   const newMessage = useRef(newMessageHandler(dispatch));
   const setFirstUserStatus = useRef(setFirstUserStatusHandler(dispatch));
   const setUserOffline = useRef(setUserOfflineHandler(dispatch));
   const setUserOnline = useRef(setUserOnlineHandler(dispatch));
   const addChannel = useRef(addChannelHandler(dispatch));
   const removeChannel = useRef(removeChannelHandler(dispatch));
-  const sendMessage = useRef((message, channelId) => {
+  const sendMessage = useRef((message, channelId, receiverId, receiverSocketId) => {
     if (socketMethods) {
-      socketMethods.current.sendMessage({ message, channelId });
+      socketMethods.current.sendMessage({
+        message, channelId, receiverId, receiverSocketId,
+      });
     }
   });
   const addUserToChannel = useRef((data) => {
@@ -111,8 +119,10 @@ const useHome = () => {
     sendMessage: sendMessage.current,
     logoutUser: logoutUser.current,
     activeChannel,
+    activeUser,
     setActiveChannel: setActiveChannel.current,
-    fetchMessages: fetchMessages.current,
+    setActiveUser: setActiveUser.current,
+    fetchChannelMessages: fetchChannelMessages.current,
     fetchChannels: fetchChannels.current,
     channelIds,
     allUserIds,
@@ -123,6 +133,8 @@ const useHome = () => {
     removeChannel: removeChannel.current,
     addUserToChannel: addUserToChannel.current,
     removeUserFromChannel: removeUserFromChannel.current,
+    fetchUserMessages: fetchUserMessages.current,
+    userMessages,
   };
 };
 

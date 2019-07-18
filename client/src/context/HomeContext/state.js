@@ -13,6 +13,7 @@ const getInitialState = () => {
     allUsersMap: {},
     activeChannel: null,
     activeUser: null,
+    userMessages: {},
     error: null,
   };
 

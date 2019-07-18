@@ -10,7 +10,7 @@ const { SubMenu } = Menu;
 const { Sider } = Layout;
 const Status = styled.div`
   display: inline-block;
-  background-color: ${props => (props.online === true ? 'green' : '#cccccc')}
+  background-color: ${props => (props.online === true ? 'green' : '#cccccc')};
   border-radius: 50%;
   height: 0.5em;
   width: 0.5em;
@@ -60,6 +60,7 @@ const Sidebar = () => {
     fetchUsers,
     allUserIds,
     allUsersMap,
+    setActiveUser,
   } = useHomeContext();
 
   useEffect(() => {
@@ -76,6 +77,11 @@ const Sidebar = () => {
   const changeActiveChannel = (channelId) => {
     setActiveChannel(channelId);
   };
+
+  const changeActiveUser = (userId) => {
+    setActiveUser(userId);
+  };
+
   return (
     <SideBarContainer>
       <SubMenu
@@ -117,7 +123,7 @@ const Sidebar = () => {
         )}
       >
         {allUserIds ? allUserIds.map(userId => (
-          <Menu.Item onClick={() => changeActiveChannel(userId)} key={userId}>
+          <Menu.Item onClick={() => changeActiveUser(userId)} key={userId}>
             {allUsersMap[userId].username}{' '}
             <Status online={allUsersMap[userId].online} />
           </Menu.Item>
