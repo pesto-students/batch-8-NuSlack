@@ -3,7 +3,8 @@ import { Icon, Input, AutoComplete } from 'antd';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useHomeContext } from '../../context/HomeContext';
-import { serverConfig } from '../../config'
+import { serverConfig } from '../../config';
+
 const AutocompleteContainer = styled.div`
   .certain-category-search.ant-select-auto-complete
     .ant-input-affix-wrapper
@@ -51,7 +52,28 @@ const AutocompleteContainer = styled.div`
 `;
 
 const { Option, OptGroup } = AutoComplete;
-const Complete = () => {
+
+const generateOptions = (dataSource, searchText, handleSearchClick, user) => (
+  dataSource.map(group => (
+    <OptGroup key={group.title}>
+      {group.children
+        .filter(item => item.title.toLowerCase().indexOf(searchText) >= 0)
+        .map(opt => (
+          <Option
+            key={opt.title}
+            value={opt.title}
+            onClick={() => handleSearchClick(opt._id)}
+          >
+            {opt.title}
+            <span className="certain-search-item-searchText">
+              {opt.users && opt.users.indexOf(user._id) < 0 ? <span style={{ float: 'right' }}>+JOIN</span> : ''}
+            </span>
+          </Option>
+        ))}
+    </OptGroup>
+  ))
+);
+const SearchBox = () => {
   const [channelsSearchMap, setChannelsSearchMap] = useState({});
   const [searchText, setSearchText] = useState('');
   const updateChannelsSearchMapRef = useRef();
@@ -105,27 +127,10 @@ const Complete = () => {
       });
   }, [channelIds]);
   const updateChannelsSearchMap = (publicChannelsMap) => {
-    setChannelsSearchMap(() => ({ ...channelsSearchMap, ...publicChannelsMap }));
+    setChannelsSearchMap(() => ({ ...channelsMap, ...publicChannelsMap }));
   };
   updateChannelsSearchMapRef.current = updateChannelsSearchMap;
-  const options = dataSource.map(group => (
-    <OptGroup key={group.title}>
-      {group.children
-        .filter(item => item.title.toLowerCase().indexOf(searchText) >= 0)
-        .map(opt => (
-          <Option
-            key={opt.title}
-            value={opt.title}
-            onClick={() => handleSearchClick(opt._id)}
-          >
-            {opt.title}
-            <span className="certain-search-item-searchText">
-              {opt.users && opt.users.indexOf(user._id) < 0 ? <span style={{ float: 'right' }}>+JOIN</span> : ''}
-            </span>
-          </Option>
-        ))}
-    </OptGroup>
-  ));
+  const options = generateOptions(dataSource, searchText, handleSearchClick, user);
   return (
     <AutocompleteContainer
       className="certain-category-search-wrapper"
@@ -166,4 +171,4 @@ const Complete = () => {
   );
 };
 
-export default Complete;
+export default SearchBox;
