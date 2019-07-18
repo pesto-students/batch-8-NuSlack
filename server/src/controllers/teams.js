@@ -22,35 +22,36 @@ const saveTeam = async (req, res) => {
   const team = new Teams(req.body);
 
   const savedTeam = await team.save();
-
+  await Users.findOneAndUpdate(
+    { _id: req.body.adminId },
+    { $push: { teams: savedTeam.id } },
+    { new: true },
+  );
   return res.send(savedTeam);
 };
 
-
 const deleteTeam = async (req, res) => {
   const team = await Teams.findOneAndDelete({ _id: req.params.id });
+  await Users.updateMany(
+    {
+      teams: mongoose.Types.ObjectId(req.params.id),
+    },
+    {
+      $pull: { users: mongoose.Types.ObjectId(req.params.id) },
+    },
+  );
   if (!team) {
     return res.status(404).send(constants.teamNotFound);
   }
   return res.send(team);
 };
 
-const addUserToTeam = async (req, res) => {
-  const initialUser = await Users.findOne({
-    _id: req.params.userId,
-    teams: req.params.teamId,
-  });
-  if (initialUser) {
-    return res.status(400).send(constants.userAlreadyPresent);
-  }
-  const user = await Users.findOneAndUpdate(
-    { _id: req.params.userId },
+const addUsersToTeam = async (req, res) => {
+  const arrayOfIds = req.body.users.map(id => mongoose.Types.ObjectId(id));
+  const user = await Users.updateMany(
+    { _id: { $in: arrayOfIds } },
     { $push: { teams: mongoose.Types.ObjectId(req.params.teamId) } },
-    { new: true },
   );
-  if (!user) {
-    return res.status(404).send(constants.userNotFound);
-  }
   return res.send(user);
 };
 
@@ -66,10 +67,5 @@ const removeUserFromTeam = async (req, res) => {
   return res.send(user);
 };
 export {
-  getTeams,
-  getTeam,
-  saveTeam,
-  deleteTeam,
-  removeUserFromTeam,
-  addUserToTeam,
+  getTeams, getTeam, saveTeam, deleteTeam, removeUserFromTeam, addUsersToTeam,
 };

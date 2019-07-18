@@ -31,12 +31,7 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
             className="user-name"
           />
           <styled.div>
-            <Icon
-              theme="twoTone"
-              twoToneColor="#52c41a"
-              type="check-circle"
-            />
-            Online
+             Team: 
           </styled.div>
         </styled.div>
       </Row>
@@ -55,22 +50,30 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
         }
         type="flex"
       >
-        <Col
-          span={32}
+        <Link
+          to="/teams"
         >
-          <index>
-            <Icon
-              type="setting"
-            />
-          </index>
-           
-          <SmallButton>
-            <Icon
-              type="logout"
-            />
-             Logout
-          </SmallButton>
-        </Col>
+          <Button
+            block={false}
+            ghost={false}
+            htmlType="button"
+            loading={false}
+            type="primary"
+          >
+            Invitations
+          </Button>
+        </Link>
+         
+        <index>
+          <TeamsDrawer />
+        </index>
+         
+        <SmallButton>
+          <Icon
+            type="logout"
+          />
+           Logout
+        </SmallButton>
       </Row>
     </Col>
   </Row>

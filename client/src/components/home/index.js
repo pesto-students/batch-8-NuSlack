@@ -4,10 +4,12 @@ import { useHomeContext } from '../../context/HomeContext';
 import HomeLayout from '../home-layout';
 
 function Home() {
-  const { user } = useHomeContext();
-
+  const { user, teamIds } = useHomeContext();
   if (!user || !user.username) {
     return <Redirect to="/" push />;
+  }
+  if (!teamIds.length) {
+    return <Redirect to="/teams" push />;
   }
   return <HomeLayout />;
 }

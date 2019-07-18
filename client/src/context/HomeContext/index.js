@@ -21,6 +21,9 @@ import {
   addChannelHandler,
   removeChannelHandler,
   setUserMessagesMapHandler,
+  setActiveTeamHandler,
+  addTeamHandler,
+  generateTeamsMapHandler,
 } from './action-handlers';
 
 import {
@@ -28,6 +31,7 @@ import {
   fetchUserMessagesApi,
   fetchChannelsApi,
   fetchUsersApi,
+  fetchTeamsApi,
 } from './api';
 
 const initialState = getInitialState();
@@ -46,8 +50,10 @@ const useHome = () => {
     allUserIds,
     allUsersMap,
     userMessages,
+    activeTeam,
+    teamsMap,
+    teamIds,
   } = state;
-
   const generateChannelsMap = useRef(generateChannelsMapHandler(dispatch));
   const fetchChannels = useRef(fetchChannelsApi(generateChannelsMap.current));
   const generateUsersMap = useRef(generateUsersMapHandler(dispatch));
@@ -68,6 +74,10 @@ const useHome = () => {
   const setUserOnline = useRef(setUserOnlineHandler(dispatch));
   const addChannel = useRef(addChannelHandler(dispatch));
   const removeChannel = useRef(removeChannelHandler(dispatch));
+  const setActiveTeam = useRef(setActiveTeamHandler(dispatch));
+  const addTeam = useRef(addTeamHandler(dispatch));
+  const generateTeamsMap = useRef(generateTeamsMapHandler(dispatch));
+  const fetchTeams = useRef(fetchTeamsApi(generateTeamsMap.current));
   const sendMessage = useRef((message, channelId, receiverId, receiverSocketId) => {
     if (socketMethods) {
       socketMethods.current.sendMessage({
@@ -135,6 +145,12 @@ const useHome = () => {
     removeUserFromChannel: removeUserFromChannel.current,
     fetchUserMessages: fetchUserMessages.current,
     userMessages,
+    activeTeam,
+    setActiveTeam: setActiveTeam.current,
+    addTeam: addTeam.current,
+    fetchTeams: fetchTeams.current,
+    teamsMap,
+    teamIds,
   };
 };
 

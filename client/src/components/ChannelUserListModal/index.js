@@ -25,6 +25,7 @@ const UsersInChannelModal = (props) => {
     }
     const listOfUserObjects = channelsMap[activeChannel].users
       .filter(userId => userId !== user._id)
+      .filter(userId => allUsersMap[userId])
       .map(userId => allUsersMap[userId]);
     return listOfUserObjects.map(userObject => (
       <div key={userObject.username} style={{ display: 'flex', justifyContent: 'space-between' }}>

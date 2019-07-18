@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  Icon, Row, Col, Avatar, Layout,
+  Icon, Row, Col, Avatar, Layout, Button,
 } from 'antd';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import CircleButton from '../CircleButton';
 import SmallButton from '../SmallButton';
 import { useHomeContext } from '../../context/HomeContext';
+import TeamsDrawer from '../TeamsDrawer';
 
 const { Header } = Layout;
 
@@ -39,8 +41,18 @@ const HomeHeader = styled(Header)`
 `;
 
 const MainHeader = () => {
-  const { user, logoutUser } = useHomeContext();
-
+  const {
+    user, logoutUser, activeTeam, fetchTeams, teamsMap,
+  } = useHomeContext();
+  const [teamName, setTeamName] = useState('');
+  useEffect(() => {
+    fetchTeams(user._id);
+  }, [user, fetchTeams]);
+  useEffect(() => {
+    if (teamsMap) {
+      setTeamName(teamsMap[activeTeam].name || '');
+    }
+  }, [activeTeam, teamsMap]);
   return (
     <HomeHeader className="home-header">
       <Row>
@@ -49,24 +61,23 @@ const MainHeader = () => {
             <Avatar shape="square" size={90} icon="user" />
             <LoggedInUser>
               <h1 className="user-name">{user && user.username}</h1>
-              <UserStatus>
-                <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" />
-                Online
-              </UserStatus>
+              <UserStatus> Team: {teamName}</UserStatus>
             </LoggedInUser>
           </Row>
         </Col>
         <Col span={12}>
           <Row type="flex" align="middle" justify="end" style={{ height: '100px' }}>
-            <Col span={32}>
-              <CircleButton>
-                <Icon type="setting" />
-              </CircleButton>
-              &nbsp;
-              <SmallButton onClick={logoutUser}>
-                <Icon type="logout" /> Logout
-              </SmallButton>
-            </Col>
+            <Link to="/teams">
+              <Button type="primary">Invitations</Button>
+            </Link>
+            &nbsp;
+            <CircleButton>
+              <TeamsDrawer />
+            </CircleButton>
+            &nbsp;
+            <SmallButton onClick={logoutUser}>
+              <Icon type="logout" /> Logout
+            </SmallButton>
           </Row>
         </Col>
       </Row>

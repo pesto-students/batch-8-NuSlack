@@ -14,7 +14,10 @@ const getInitialState = () => {
     activeChannel: null,
     activeUser: null,
     userMessages: {},
+    activeTeam: null,
     error: null,
+    teamsMap: {},
+    teamIds: [],
   };
 
   return initialState;

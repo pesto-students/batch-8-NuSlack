@@ -3,7 +3,7 @@ import Channels from '../Schemas/channels';
 import * as constants from '../constants/failedResponse';
 
 const getUsers = async (req, res) => {
-  const users = await Users.find({ ...req.query });
+  const users = await Users.find({ ...req.query }).populate('teams');
   return res.send(users);
 };
 

@@ -85,6 +85,7 @@ const SearchBox = () => {
     setActiveChannel,
     user,
     addChannel,
+    activeTeam,
   } = useHomeContext();
   const dataSource = [];
   dataSource.push({
@@ -116,7 +117,7 @@ const SearchBox = () => {
   useEffect(() => {
     axios
       .get(`${serverConfig.SERVER_BASE_URL}/channels`, {
-        params: { isPrivate: false },
+        params: { isPrivate: false, teamId: activeTeam },
       })
       .then((resp) => {
         const publicChannelsMap = resp.data.reduce((acc, channel) => {
@@ -125,7 +126,7 @@ const SearchBox = () => {
         }, {});
         updateChannelsSearchMapRef.current(publicChannelsMap);
       });
-  }, [channelIds]);
+  }, [channelIds, activeTeam]);
   const updateChannelsSearchMap = (publicChannelsMap) => {
     setChannelsSearchMap(() => ({ ...channelsMap, ...publicChannelsMap }));
   };
