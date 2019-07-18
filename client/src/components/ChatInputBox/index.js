@@ -8,7 +8,9 @@ const InputContainer = styled.div`
   margin-bottom: 0;
 `;
 const ChatInputBox = () => {
-  const { sendMessage, activeChannel } = useHomeContext();
+  const {
+    sendMessage, activeChannel, activeUser, allUsersMap,
+  } = useHomeContext();
   const [input, setInput] = useState('');
   const onInputChange = (e) => {
     setInput(e.target.value);
@@ -25,7 +27,10 @@ const ChatInputBox = () => {
         onPressEnter={(event) => {
           event.preventDefault();
           setInput('');
-          return sendMessage(input, activeChannel);
+          if (activeChannel) {
+            return sendMessage(input, activeChannel);
+          }
+          return sendMessage(input, null, activeUser, allUsersMap[activeUser].socketId);
         }}
         suffix={(
           <>

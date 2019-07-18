@@ -37,7 +37,7 @@ const initSockets = ({
   });
 
   client.on(userOnlineEvent, (onlineUser) => {
-    setUserOnline(onlineUser._id);
+    setUserOnline(onlineUser);
   });
 
   client.on(connectedUserAckEvent, (data) => {

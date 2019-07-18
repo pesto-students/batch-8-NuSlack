@@ -122,7 +122,7 @@ describe('Socket.io connection', () => {
       socket.emit(connectedUserEvent, { username: 'name' });
       socket.on(connectedUserAckEvent, (data) => {
         expect(typeof data).toBe('object');
-        expect(typeof data.channels).toBe('object');
+        expect(typeof data.onlineUsers).toBe('object');
         done();
       });
     });
@@ -211,11 +211,13 @@ describe('Socket.io connection', () => {
       messageModelMock.expects('save').resolves(messageDoc);
 
       socket.emit(connectedUserEvent, { username: 'name' });
-      socket.emit(messageEvent, messageDoc);
-      socket.on(messageEvent, (data) => {
-        expect(typeof data).toBe('object');
-        expect(data.message).toBe('hello');
-        done();
+      socket.on(connectedUserAckEvent, () => {
+        socket.emit(messageEvent, messageDoc);
+        socket.on(messageEvent, (data) => {
+          expect(typeof data).toBe('object');
+          expect(data.message).toBe('hello');
+          done();
+        });
       });
     });
   });

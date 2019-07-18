@@ -3,9 +3,10 @@ import {
   SET_USER,
   SET_CONNECTED,
   SET_ACTIVE_CHANNEL,
+  SET_ACTIVE_USER,
   SET_CHANNELS_MAP,
   LOGOUT_USER,
-  ADD_NEW_MESSAGE,
+  ADD_NEW_CHANNEL_MESSAGE,
   GENERATE_CHANNELS_MAP,
   GENERATE_USERS_MAP,
   SET_FIRST_USER_STATUS,
@@ -13,6 +14,8 @@ import {
   SET_USER_OFFLINE,
   ADD_NEW_CHANNEL,
   REMOVE_CHANNEL,
+  SET_USER_MESSAGES_MAP,
+  ADD_NEW_USER_MESSAGE,
 } from './actions-types';
 import { localStorageKeys } from '../../config';
 
@@ -44,6 +47,13 @@ const setActiveChannelHandler = dispatch => (channelId) => {
   });
 };
 
+const setActiveUserHandler = dispatch => (userId) => {
+  dispatch({
+    type: SET_ACTIVE_USER,
+    payload: userId,
+  });
+};
+
 const setChannelsMapHandler = dispatch => (messages, channelId) => {
   dispatch({
     type: SET_CHANNELS_MAP,
@@ -62,11 +72,20 @@ const logoutAndResetHandler = dispatch => () => {
 };
 
 const newMessageHandler = dispatch => (message) => {
-  dispatch({
-    type: ADD_NEW_MESSAGE,
+  if (message.channelId) {
+    return dispatch({
+      type: ADD_NEW_CHANNEL_MESSAGE,
+      payload: {
+        message,
+        channelId: message.channelId,
+      },
+    });
+  }
+  return dispatch({
+    type: ADD_NEW_USER_MESSAGE,
     payload: {
-      message,
-      channelId: message.channelId,
+      message: message.message,
+      receiverId: message.receiverId,
     },
   });
 };
@@ -85,17 +104,17 @@ const generateUsersMapHandler = dispatch => (users) => {
   });
 };
 
-const setFirstUserStatusHandler = dispatch => (onlineUserIds) => {
+const setFirstUserStatusHandler = dispatch => (onlineUsers) => {
   dispatch({
     type: SET_FIRST_USER_STATUS,
-    payload: onlineUserIds,
+    payload: onlineUsers,
   });
 };
 
-const setUserOnlineHandler = dispatch => (userId) => {
+const setUserOnlineHandler = dispatch => (user) => {
   dispatch({
     type: SET_USER_ONLINE,
-    payload: userId,
+    payload: user,
   });
 };
 
@@ -120,12 +139,23 @@ const removeChannelHandler = dispatch => (channel) => {
   });
 };
 
+const setUserMessagesMapHandler = dispatch => (messages, receiverId) => {
+  dispatch({
+    type: SET_USER_MESSAGES_MAP,
+    payload: {
+      messages,
+      receiverId,
+    },
+  });
+};
+
 export {
   setChannelsHandler,
   setUserHandler,
   setConnectedHandler,
   logoutAndResetHandler,
   setActiveChannelHandler,
+  setActiveUserHandler,
   setChannelsMapHandler,
   newMessageHandler,
   generateChannelsMapHandler,
@@ -135,4 +165,5 @@ export {
   setUserOnlineHandler,
   addChannelHandler,
   removeChannelHandler,
+  setUserMessagesMapHandler,
 };

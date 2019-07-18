@@ -32,41 +32,55 @@ const ChatComponent = () => {
   const lastItemRef = useRef(null);
   const updateChannelRef = useRef();
   const {
+    user: loggedInUser,
     activeChannel,
+    activeUser,
     channelsMap,
-    fetchMessages,
     allUsersMap,
+    fetchChannelMessages,
+    fetchUserMessages,
+    userMessages,
   } = useHomeContext();
 
-  const messages = (
-    channelsMap && channelsMap[activeChannel] && channelsMap[activeChannel].messages
-  ) || [];
-  const toggleModal = (userProfile) => {
-    if (userProfile) {
-      setActiveModalProfile(userProfile);
+  let messages = [];
+  if (activeChannel && channelsMap && channelsMap[activeChannel]) {
+    messages = channelsMap[activeChannel].messages || [];
+  } else if (activeUser && userMessages[activeUser]) {
+    messages = userMessages[activeUser].messages || [];
+  }
+  const toggleModal = (user) => {
+    if (user) {
+      setActiveModalProfile(user);
     } else {
       setActiveModalProfile(defaultUser);
     }
     setModal(!modalIsVisible);
   };
+
   const updateChannel = () => {
     if (activeChannel) {
-      fetchMessages(activeChannel);
+      fetchChannelMessages(activeChannel);
       if (channelsMap[activeChannel]) {
         setActiveChannelName(channelsMap[activeChannel].name);
-      } else if (allUsersMap[activeChannel]) {
-        setActiveChannelName(allUsersMap[activeChannel].username);
+      }
+    }
+
+    if (activeUser) {
+      fetchUserMessages(loggedInUser._id, activeUser);
+      if (allUsersMap[activeUser]) {
+        setActiveChannelName(allUsersMap[activeUser].username);
       }
     }
   };
+
   updateChannelRef.current = updateChannel;
   useEffect(() => {
     updateChannelRef.current();
-  }, [activeChannel, fetchMessages]);
+  }, [activeChannel, activeUser, fetchChannelMessages, fetchUserMessages, loggedInUser]);
 
   useEffect(() => {
     lastItemRef.current.scrollIntoView({ behavior: 'smooth' });
-  }, [channelsMap]);
+  }, [channelsMap, userMessages]);
   return (
     <>
       <ChatHeader activeChannelName={activeChannelName} />
