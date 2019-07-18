@@ -61,14 +61,14 @@ const Sidebar = () => {
     allUserIds,
     allUsersMap,
     setActiveUser,
+    activeTeam,
   } = useHomeContext();
-
   useEffect(() => {
     if (user._id) {
-      fetchChannels(user._id);
-      fetchUsers();
+      fetchChannels(user._id, activeTeam);
+      fetchUsers(activeTeam);
     }
-  }, [user, fetchChannels, fetchUsers]);
+  }, [user, fetchChannels, fetchUsers, activeTeam]);
 
   const toggleModal = () => {
     setChannelModalIsVisible(!channelModalIsVisible);

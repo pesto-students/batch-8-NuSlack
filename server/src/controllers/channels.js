@@ -24,7 +24,7 @@ const saveChannel = async (req, res) => {
     body.users = [];
   }
   if (body.autoJoin === true) {
-    const users = await Users.find();
+    const users = await Users.find({ teams: mongoose.Types.ObjectId(body.teamId) });
     const userIds = users.map(user => user.id);
     body.users = [...body.users, ...userIds];
   }

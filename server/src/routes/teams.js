@@ -5,7 +5,7 @@ import {
   getTeam,
   saveTeam,
   deleteTeam,
-  addUserToTeam,
+  addUsersToTeam,
   removeUserFromTeam,
 } from '../controllers/teams';
 
@@ -19,7 +19,7 @@ router.post('/', saveTeam);
 
 router.delete('/:id', deleteTeam);
 
-router.post('/:teamId/add-user/:userId', addUserToTeam);
+router.post('/:teamId/add-users', addUsersToTeam);
 
 router.post('/:teamId/remove-user/:userId', removeUserFromTeam);
 

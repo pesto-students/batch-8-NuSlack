@@ -17,6 +17,9 @@ import {
   REMOVE_CHANNEL,
   SET_USER_MESSAGES_MAP,
   ADD_NEW_USER_MESSAGE,
+  SET_ACTIVE_TEAM,
+  ADD_TEAM,
+  GENERATE_TEAMS_MAP,
 } from './actions-types';
 
 const generateChannelsMap = (channels) => {
@@ -34,6 +37,18 @@ const generateChannelsMap = (channels) => {
     channelsMap,
     channelIds,
     activeChannel,
+  };
+};
+
+const generateTeamsMap = (teams) => {
+  const teamsMap = teams.reduce((acc, team) => {
+    acc[team._id] = team;
+    return acc;
+  }, {});
+  const teamIds = Object.keys(teamsMap);
+  return {
+    teamsMap,
+    teamIds,
   };
 };
 
@@ -84,6 +99,8 @@ const reducer = (state, action) => {
       return { ...state, activeChannel: action.payload, activeUser: null };
     case SET_ACTIVE_USER:
       return { ...state, activeUser: action.payload, activeChannel: null };
+    case SET_ACTIVE_TEAM:
+      return { ...state, activeTeam: action.payload };
     case SET_CHANNELS_MAP:
       return {
         ...state,
@@ -199,6 +216,23 @@ const reducer = (state, action) => {
             ],
           },
         },
+      };
+    case ADD_TEAM: {
+      {
+        const { teamsMap, teamIds } = state;
+        teamIds.push(action.payload._id);
+        teamsMap[action.payload._id] = action.payload;
+        return {
+          ...state,
+          teamsMap,
+          teamIds,
+        };
+      }
+    }
+    case GENERATE_TEAMS_MAP:
+      return {
+        ...state,
+        ...generateTeamsMap(action.payload.teams),
       };
     default:
       throw new Error('Action type not defined');

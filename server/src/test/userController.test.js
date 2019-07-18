@@ -37,6 +37,7 @@ describe('user APIs', () => {
       sinon
         .mock(UsersModel)
         .expects('find')
+        .chain('populate')
         .resolves(users);
 
       const controllerResponse = await getUsers(request, response);

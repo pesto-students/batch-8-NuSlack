@@ -16,6 +16,9 @@ import {
   REMOVE_CHANNEL,
   SET_USER_MESSAGES_MAP,
   ADD_NEW_USER_MESSAGE,
+  SET_ACTIVE_TEAM,
+  ADD_TEAM,
+  GENERATE_TEAMS_MAP,
 } from './actions-types';
 import { localStorageKeys } from '../../config';
 
@@ -51,6 +54,12 @@ const setActiveUserHandler = dispatch => (userId) => {
   dispatch({
     type: SET_ACTIVE_USER,
     payload: userId,
+  });
+};
+const setActiveTeamHandler = dispatch => (teamId) => {
+  dispatch({
+    type: SET_ACTIVE_TEAM,
+    payload: teamId,
   });
 };
 
@@ -149,6 +158,20 @@ const setUserMessagesMapHandler = dispatch => (messages, receiverId) => {
   });
 };
 
+const addTeamHandler = dispatch => (team) => {
+  dispatch({
+    type: ADD_TEAM,
+    payload: team,
+  });
+};
+
+const generateTeamsMapHandler = dispatch => (teams) => {
+  dispatch({
+    type: GENERATE_TEAMS_MAP,
+    payload: { teams },
+  });
+};
+
 export {
   setChannelsHandler,
   setUserHandler,
@@ -166,4 +189,7 @@ export {
   addChannelHandler,
   removeChannelHandler,
   setUserMessagesMapHandler,
+  setActiveTeamHandler,
+  addTeamHandler,
+  generateTeamsMapHandler,
 };
