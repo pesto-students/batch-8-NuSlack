@@ -105,7 +105,7 @@ const useHome = () => {
   });
 
   useEffect(() => {
-    if (user && user.username && channelIds.length && allUserIds.length) {
+    if (user && user.username && allUserIds.length) {
       if (!socketMethods.current) {
         socketMethods.current = initSocket({
           user,
@@ -116,7 +116,7 @@ const useHome = () => {
         });
       }
     }
-  }, [user, channelIds, allUserIds]);
+  }, [user, allUserIds]);
 
   return {
     user,

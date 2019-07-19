@@ -3,6 +3,7 @@ const userNotFound = 'user not found';
 const messageNotFound = 'message not found';
 const teamNotFound = 'team not found';
 const userAlreadyPresent = 'User already Present';
+const notAuthenticated = 'User Not Authenticated';
 
 export {
   channelNotFound,
@@ -10,4 +11,5 @@ export {
   messageNotFound,
   userAlreadyPresent,
   teamNotFound,
+  notAuthenticated,
 };

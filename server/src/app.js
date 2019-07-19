@@ -3,7 +3,9 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import routes from './routes';
+import initPassport from './passport';
 
+initPassport();
 const app = express();
 
 // middleware

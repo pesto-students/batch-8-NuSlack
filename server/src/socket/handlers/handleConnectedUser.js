@@ -14,14 +14,15 @@ const emitOnlineStatus = socket => user => socket.nsp.emit(userOnlineEvent, ({
   socketId: socket.id,
 }));
 
-const handleConnectedUser = socket => async ({ username }) => {
+const handleConnectedUser = socket => async (connectedUser) => {
+  const { _id } = connectedUser;
   const exception = createException(socket);
 
-  if (!username || typeof username !== 'string') {
-    return exception('Username is required.');
+  if (!_id || typeof _id !== 'string') {
+    return exception('User Id is required.');
   }
 
-  const user = await Users.findOne({ username });
+  const user = await Users.findById(_id);
 
   if (!user) {
     return exception('User not found.');
