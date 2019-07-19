@@ -12,7 +12,12 @@ const AddChannelForm = (props) => {
   const { SERVER_BASE_URL } = serverConfig;
   const [autoJoin, setAutoJoin] = useState(true);
   const {
-    allUserIds, allUsersMap, user, addChannel, setActiveChannel, activeTeam,
+    allUserIds,
+    allUsersMap,
+    user,
+    addChannel,
+    setActiveChannel,
+    activeTeam,
   } = useHomeContext();
 
   const handleSubmit = (event) => {
@@ -22,7 +27,11 @@ const AddChannelForm = (props) => {
         if (!autoJoin) {
           values.users.push(user._id);
         }
-        const channel = await axios.post(`${SERVER_BASE_URL}/channels`, { ...values, teamId: activeTeam });
+        const channel = await axios.post(`${SERVER_BASE_URL}/channels`, {
+          ...values,
+          teamId: activeTeam,
+          admins: [user._id],
+        });
         addChannel(channel.data);
         setActiveChannel(channel.data._id);
         props.closeModal();

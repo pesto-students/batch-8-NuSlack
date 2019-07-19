@@ -10,7 +10,7 @@ const AddUserToTeamModal = () => {
   return (
     <div>
       <Button type="primary" onClick={() => setVisible(true)}>
-        Add to Team
+        Invite
       </Button>
       <Modal
         title={`Add to Team ${name}`}

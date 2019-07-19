@@ -23,14 +23,16 @@ const UsersInChannelModal = (props) => {
     if (!channelsMap[activeChannel].users) {
       return 'You are in User chat';
     }
+
+    const isAdmin = channelsMap[activeChannel].admins.indexOf(user._id) >= 0;
     const listOfUserObjects = channelsMap[activeChannel].users
       .filter(userId => userId !== user._id)
       .filter(userId => allUsersMap[userId])
       .map(userId => allUsersMap[userId]);
     return listOfUserObjects.map(userObject => (
-      <div key={userObject.username} style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div key={userObject.username} style={{ height: '2.5em', display: 'flex', justifyContent: 'space-between' }}>
         {userObject.username}
-        <Button onClick={() => kickUser(userObject._id)}>Kick User</Button>
+        {isAdmin ? <Button onClick={() => kickUser(userObject._id)}>Kick User</Button> : ''}
       </div>
     ));
   };
