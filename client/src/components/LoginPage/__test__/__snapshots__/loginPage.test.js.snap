@@ -2,25 +2,42 @@
 
 exports[`<LoginPage /> should match the snapshot 1`] = `
 <styled.div>
-  <h1>
-    Login
-  </h1>
-  <Input
-    disabled={false}
-    onChange={[Function]}
-    onPressEnter={[Function]}
-    type="text"
-    value=""
+  <img
+    alt="logo image"
+    src="/images/logo.png"
   />
-  <Button
-    block={false}
-    disabled={false}
-    ghost={false}
-    htmlType="button"
-    loading={false}
-    onClick={[Function]}
-  >
-    Login
-  </Button>
+  <h1>
+    Login to NuSlack
+  </h1>
+  <Form(LoginForm)
+    handleFormSubmit={[Function]}
+  />
+  <div>
+    OR
+  </div>
+  <e
+    accessType="online"
+    buttonText="Login with Google"
+    clientId="478468868101-i9uk561c3coju59vdtjir6hipo17v6m8.apps.googleusercontent.com"
+    cookiePolicy="single_host_origin"
+    disabledStyle={
+      Object {
+        "opacity": 0.6,
+      }
+    }
+    fetchBasicProfile={true}
+    icon={true}
+    isSignedIn={false}
+    jsSrc="https://apis.google.com/js/api.js"
+    onFailure={[Function]}
+    onRequest={[Function]}
+    onSuccess={[Function]}
+    prompt=""
+    scope="profile email"
+    tag="button"
+    theme="light"
+    type="button"
+    uxMode="popup"
+  />
 </styled.div>
 `;

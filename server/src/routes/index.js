@@ -3,6 +3,7 @@ import users from './users';
 import channels from './channels';
 import messages from './messages';
 import teams from './teams';
+import auth from './auth';
 
 const api = Router();
 
@@ -15,6 +16,8 @@ api.get('/', (req, res) => {
 api.get('/_health', (req, res) => {
   res.sendStatus(200);
 });
+
+api.use('/auth', auth);
 
 // set routes below
 api.use('/users', users);

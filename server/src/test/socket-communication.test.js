@@ -110,7 +110,7 @@ describe('Socket.io connection', () => {
 
       sinon
         .mock(user)
-        .expects('findOne')
+        .expects('findById')
         .resolves(userDoc);
 
       sinon
@@ -119,7 +119,7 @@ describe('Socket.io connection', () => {
         .chain('select')
         .resolves(channels);
 
-      socket.emit(connectedUserEvent, { username: 'name' });
+      socket.emit(connectedUserEvent, { _id: '507f191e810c19729de860ea' });
       socket.on(connectedUserAckEvent, (data) => {
         expect(typeof data).toBe('object');
         expect(typeof data.onlineUsers).toBe('object');
@@ -127,25 +127,25 @@ describe('Socket.io connection', () => {
       });
     });
 
-    describe('`username` field', () => {
+    describe('`_id` field', () => {
       describe('when not passed in connection event', () => {
-        test('should send `exception` event saying `Username is required.`', (done) => {
+        test('should send `exception` event saying `User Id is required.`', (done) => {
           socket.emit(connectedUserEvent, {});
           socket.on(exceptionEvent, (data) => {
             expect(typeof data).toBe('object');
-            expect(data.message).toBe('Username is required.');
+            expect(data.message).toBe('User Id is required.');
             done();
           });
         });
       });
 
       describe('when passed incorrect value in connection event', () => {
-        test('should send `exception` event saying `Username is required.`', (done) => {
-          socket.emit(connectedUserEvent, { username: 'not-in-db' });
+        test('should send `exception` event saying `User not found.`', (done) => {
+          socket.emit(connectedUserEvent, { _id: 'not-in-db' });
 
           sinon
             .mock(user)
-            .expects('findOne')
+            .expects('findById')
             .resolves(null);
 
           socket.on(exceptionEvent, (data) => {
@@ -199,7 +199,7 @@ describe('Socket.io connection', () => {
 
       sinon
         .mock(user)
-        .expects('findOne')
+        .expects('findById')
         .resolves(userDoc);
 
       sinon
@@ -210,7 +210,7 @@ describe('Socket.io connection', () => {
 
       messageModelMock.expects('save').resolves(messageDoc);
 
-      socket.emit(connectedUserEvent, { username: 'name' });
+      socket.emit(connectedUserEvent, { _id: '507f191e810c19729de860ea' });
       socket.on(connectedUserAckEvent, () => {
         socket.emit(messageEvent, messageDoc);
         socket.on(messageEvent, (data) => {

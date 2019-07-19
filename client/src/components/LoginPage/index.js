@@ -1,34 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { Input, Button, notification } from 'antd';
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import React, { useEffect } from 'react';
+import { notification } from 'antd';
 import { Redirect } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
+import LoginForm from '../LoginForm';
 import { useHomeContext } from '../../context/HomeContext';
 import { useApi } from '../../custom-hooks';
-import { getUser } from '../../API';
+import { authenticateUser } from '../../API';
 import { LoginContainer } from './style';
+import { authClients } from '../../config';
 
-const openErrorAlert = () => {
+const openErrorAlert = (error) => {
   notification.error({
-    message: 'User not found!',
+    message: error.message || 'User not found!',
   });
 };
 
 const LoginPage = () => {
-  const [input, setInput] = useState('');
   const { user, setUser } = useHomeContext();
-  const [data, loadData, loading] = useApi(getUser, null);
+  const [data, loadData, loading] = useApi(authenticateUser, null);
 
-  const onInputChange = (e) => {
-    setInput(e.target.value);
+  const handleFormSubmit = (formData) => {
+    loadData('basic', formData);
   };
 
-  const getUserDetails = () => {
-    loadData(input);
+  const handleGoogleLogin = (response) => {
+    const { tokenId } = response;
+    loadData('google', { tokenId });
   };
 
   useEffect(() => {
-    if (data && Array.isArray(data.data)) {
-      if (data.data.length) {
-        setUser({ ...data.data[0] });
+    if (data && data.data) {
+      if (data.data.user && data.data.user._id) {
+        setUser(data.data.user);
       } else {
         openErrorAlert();
       }
@@ -41,16 +45,18 @@ const LoginPage = () => {
 
   return (
     <LoginContainer>
-      <h1>Login</h1>
-      <Input
-        value={input}
-        onChange={onInputChange}
-        disabled={loading}
-        onPressEnter={getUserDetails}
+      <img src="/images/logo.png" alt="logo image" />
+      <h1>Login to NuSlack</h1>
+      {loading ? <div>loading...</div> : null}
+
+      <LoginForm handleFormSubmit={handleFormSubmit} />
+      <div>OR</div>
+      <GoogleLogin
+        clientId={authClients.GOOGLE_CLIENT_ID}
+        buttonText="Login with Google"
+        onSuccess={handleGoogleLogin}
+        onFailure={openErrorAlert}
       />
-      <Button onClick={getUserDetails} disabled={loading}>
-        Login
-      </Button>
     </LoginContainer>
   );
 };
