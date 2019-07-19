@@ -24,7 +24,7 @@ const CreateTeamModal = ({ visible, handleCancel, form }) => {
       if (!err) {
         const team = await axios.post(`${SERVER_BASE_URL}/teams`, {
           ...values,
-          adminId: user._id,
+          admins: [user._id],
         });
         addTeam(team.data);
         handleCancel();

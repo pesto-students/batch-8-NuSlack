@@ -21,7 +21,7 @@ const ChatHeader = ({ activeChannelName }) => {
   const [addUserModalIsVisible, setAddUserModalIsVisible] = useState(false);
   const [userListModalIsVisible, setUserListModalIsVisible] = useState(false);
   const {
-    user, removeChannel, activeChannel,
+    user, removeChannel, activeChannel, channelsMap,
   } = useHomeContext();
   const handleLeaveChannel = () => {
     axios
@@ -38,10 +38,13 @@ const ChatHeader = ({ activeChannelName }) => {
   const toggleUserListModal = () => {
     setUserListModalIsVisible(!userListModalIsVisible);
   };
+  const isAdmin = channelsMap[activeChannel]
+    ? channelsMap[activeChannel].admins.indexOf(user._id) >= 0
+    : true;
   const menu = (
     <Menu>
       <Menu.Item onClick={toggleUserListModal}>User</Menu.Item>
-      <Menu.Item onClick={toggleAddUserModal}>Add Users</Menu.Item>
+      {isAdmin ? <Menu.Item onClick={toggleAddUserModal}>Add Users</Menu.Item> : ''}
       <Menu.Item onClick={handleLeaveChannel}>Leave Channel</Menu.Item>
     </Menu>
   );

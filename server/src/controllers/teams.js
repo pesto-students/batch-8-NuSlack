@@ -23,7 +23,7 @@ const saveTeam = async (req, res) => {
 
   const savedTeam = await team.save();
   await Users.findOneAndUpdate(
-    { _id: req.body.adminId },
+    { _id: req.body.admins[0] },
     { $push: { teams: savedTeam.id } },
     { new: true },
   );
@@ -58,7 +58,7 @@ const addUsersToTeam = async (req, res) => {
 const removeUserFromTeam = async (req, res) => {
   const user = await Users.findOneAndUpdate(
     { _id: req.params.userId },
-    { $pull: { users: req.params.teamId } },
+    { $pull: { teams: req.params.teamId } },
     { new: true },
   );
   if (!user) {

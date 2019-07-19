@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import {
@@ -9,7 +9,7 @@ import { serverConfig } from '../../config';
 
 const { Option } = Select;
 
-const successFullMessage = 'Users added succesfully';
+const successFullMessage = 'Users added successfully';
 
 const openNotificationWithIcon = (type) => {
   notification[type]({
@@ -20,14 +20,14 @@ const AddUserToTeamForm = (props) => {
   const { SERVER_BASE_URL } = serverConfig;
   const [allUsers, setAllUsers] = useState([]);
   const { activeTeam, allUserIds: allTeamUsers, fetchUsers } = useHomeContext();
-  const fetchAllUsers = () => {
+  const fetchAllUsers = useRef(() => {
     axios.get(`${SERVER_BASE_URL}/users`).then((resp) => {
       const users = resp.data;
       setAllUsers(users);
     });
-  };
+  });
   useEffect(() => {
-    fetchAllUsers();
+    fetchAllUsers.current();
     fetchUsers(activeTeam);
   }, [activeTeam, fetchUsers]);
   const handleSubmit = (event) => {
@@ -40,7 +40,7 @@ const AddUserToTeamForm = (props) => {
           })
           .then(() => {
             openNotificationWithIcon('success');
-            fetchAllUsers();
+            fetchAllUsers.current();
             fetchUsers(activeTeam);
             props.closeModal();
           });

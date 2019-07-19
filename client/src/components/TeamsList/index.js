@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useHomeContext } from '../../context/HomeContext';
 import CreateTeamModal from '../CreateTeamModal';
 import AddUserToTeamModal from '../AddUserToTeamModal';
+import TeamUserListModal from '../TeamUserListModal';
 
 const TeamCards = styled.div`
   display: flex;
@@ -44,7 +45,7 @@ const TeamsList = () => {
 
   return (
     <div>
-      <h1>Teams</h1>
+      <h1>Switch Teams</h1>
       <TeamCards>
         <TeamCard onClick={toggleCreateModalVisibility}>Create New</TeamCard>
         {teamIds.map(teamId => (
@@ -60,7 +61,12 @@ const TeamsList = () => {
               onClick={() => setActiveTeam(teamId)}
               style={{ backgroundColor: 'rgba(0,0,0,0)', border: '0' }}
             >
-              <AddUserToTeamModal teamId={teamId} />{' '}
+              {teamsMap[teamId].admins.indexOf(user._id) < 0 ? (
+                ''
+              ) : (
+                <AddUserToTeamModal teamId={teamId} />
+              )}
+              <TeamUserListModal teamId={teamId} />
             </div>
           </TeamCard>
         ))}
