@@ -234,6 +234,13 @@ const reducer = (state, action) => {
         ...state,
         ...generateTeamsMap(action.payload.teams),
       };
+            // TODO
+    case 'ADD_TYPING_USER':
+      return {
+        ...state,
+        isTyping: true,
+      };
+
     default:
       throw new Error('Action type not defined');
   }

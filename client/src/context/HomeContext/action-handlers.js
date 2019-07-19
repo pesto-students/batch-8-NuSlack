@@ -172,6 +172,15 @@ const generateTeamsMapHandler = dispatch => (teams) => {
   });
 };
 
+// addTypingUser
+// TODO remove naked string
+const setUserTypingHandler = dispatch => (user) => {
+  dispatch({
+    type: 'SET_USER_TYPING',
+    payload: user,
+  });
+};
+
 export {
   setChannelsHandler,
   setUserHandler,
@@ -192,4 +201,5 @@ export {
   setActiveTeamHandler,
   addTeamHandler,
   generateTeamsMapHandler,
+  setUserTypingHandler,
 };

@@ -24,6 +24,7 @@ import {
   setActiveTeamHandler,
   addTeamHandler,
   generateTeamsMapHandler,
+  setUserTypingHandler,
 } from './action-handlers';
 
 import {
@@ -53,6 +54,7 @@ const useHome = () => {
     activeTeam,
     teamsMap,
     teamIds,
+    typingUsers,
   } = state;
   const generateChannelsMap = useRef(generateChannelsMapHandler(dispatch));
   const fetchChannels = useRef(fetchChannelsApi(generateChannelsMap.current));
@@ -72,6 +74,9 @@ const useHome = () => {
   const setFirstUserStatus = useRef(setFirstUserStatusHandler(dispatch));
   const setUserOffline = useRef(setUserOfflineHandler(dispatch));
   const setUserOnline = useRef(setUserOnlineHandler(dispatch));
+  // TODO
+  const setUserTyping = useRef(setUserTypingHandler(dispatch));
+  
   const addChannel = useRef(addChannelHandler(dispatch));
   const removeChannel = useRef(removeChannelHandler(dispatch));
   const setActiveTeam = useRef(setActiveTeamHandler(dispatch));
@@ -113,6 +118,8 @@ const useHome = () => {
           setFirstUserStatus: setFirstUserStatus.current,
           setUserOffline: setUserOffline.current,
           setUserOnline: setUserOnline.current,
+          // TODO
+          typingEvent: setUserTyping.current,
         });
       }
     }
@@ -151,6 +158,8 @@ const useHome = () => {
     fetchTeams: fetchTeams.current,
     teamsMap,
     teamIds,
+    // TODO
+    typingEvent: setUserTyping.current,
   };
 };
 

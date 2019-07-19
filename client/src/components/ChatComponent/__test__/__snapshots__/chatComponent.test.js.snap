@@ -32,6 +32,15 @@ exports[`<ChatComponent /> should match the snapshot 1`] = `
         </div>
       </styled.div>
       <ChatInputBox />
+      <TypingIndicator
+        isTyping={true}
+        text="typing"
+        users={
+          Array [
+            "Abhinav",
+          ]
+        }
+      />
     </styled.div>
     <ProfileModal
       toggleModal={[Function]}

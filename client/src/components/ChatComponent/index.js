@@ -8,6 +8,7 @@ import ChatInputBox from '../ChatInputBox';
 import ProfileModal from '../ProfileModal';
 import { useHomeContext } from '../../context/HomeContext';
 import ChatHeader from '../ChatHeader';
+import TypingIndicator from '../TypingIndicator';
 
 const { Content } = Layout;
 const IconText = ({ type, text }) => (
@@ -126,6 +127,7 @@ const ChatComponent = () => {
             </div>
           </ChatHistory>
           <ChatInputBox />
+          <TypingIndicator isTyping={true} users={["Abhinav"]} text={"typing"} />
         </ChatBox>
         <ProfileModal
           toggleModal={() => toggleModal()}

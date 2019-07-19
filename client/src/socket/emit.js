@@ -13,6 +13,9 @@ const emitAddUserToChannel = client => data => client.emit(addUserEvent, data);
 
 const emitRemoveUserFromChannel = client => data => client.emit(removeUserEvent, data);
 
+// TODO: Remove naked strings
+const startTyping = client => message => client.emit('startTyping', message);
+
 export {
-  sendConnectedEvent, sendMessageEvent, emitAddUserToChannel, emitRemoveUserFromChannel,
+  sendConnectedEvent, sendMessageEvent, emitAddUserToChannel, emitRemoveUserFromChannel, startTyping, 
 };
