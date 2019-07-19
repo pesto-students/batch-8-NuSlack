@@ -9,41 +9,16 @@ const InputContainer = styled.div`
 `;
 const ChatInputBox = () => {
   const {
-    sendMessage, activeChannel, activeUser, allUsersMap, typingEvent, 
+    sendMessage, activeChannel, activeUser, allUsersMap, sendTypingEvent,
   } = useHomeContext();
   const [input, setInput] = useState('');
 
-  // Hook the chat input box to a listener which activates onChange and emits the event to the server via socket
-  // Inherit the event from HomeContext
-  function fireTypingEvent(event) {
-    event.preventDefault();
-    console.log('User is typing');
-    typingEvent();
-/*
-    // console.log(event.type);
-    // TODO replace with emit socket actions
-    // TODO  when user stops typing print "User is NOT typing"
-    const doneTypingInterval = 5000;  // time in ms (5 seconds)
-    // on keyup, start the countdown
-    event.Change('keyup', () => {
-      if (event.keyCode === 13) {
-        console.log('User is typing');
-        setTimeout(doneTyping, doneTypingInterval);
-      }
-    });
-    // user is "finished typing," do something
-    function doneTyping() {
-    // do something
-      console.log('User is NOT typing');
-    }
-
-*/
-  };
-
-
   const onInputChange = (e) => {
     setInput(e.target.value);
-    fireTypingEvent(e);
+    if (activeChannel) {
+      return sendTypingEvent(activeChannel);
+    }
+    return sendTypingEvent(null, activeUser, allUsersMap[activeUser].socketId);
   };
 
   return (

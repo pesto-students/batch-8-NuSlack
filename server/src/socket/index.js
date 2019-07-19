@@ -13,6 +13,7 @@ import {
   handleUserDisconnect,
   handleAddUser,
   handleRemoveUser,
+  handleTypingEvent,
 } from './handlers';
 
 const handleConnection = (socket) => {
@@ -21,6 +22,7 @@ const handleConnection = (socket) => {
   socket.on(userDisconnectEvent, handleUserDisconnect(socket));
   socket.on(removeUserEvent, handleRemoveUser(socket));
   socket.on(addUsersEvent, handleAddUser(socket));
+  socket.on('typeEvent', handleTypingEvent(socket));
 };
 
 io.on('connection', handleConnection);

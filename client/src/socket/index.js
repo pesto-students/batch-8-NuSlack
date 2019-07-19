@@ -10,7 +10,7 @@ import {
   sendMessageEvent,
   emitAddUserToChannel,
   emitRemoveUserFromChannel,
-  startTyping,
+  sendTypingEvent,
 } from './emit';
 import { serverConfig } from '../config';
 
@@ -45,10 +45,10 @@ const initSockets = ({
     setFirstUserStatus(data.onlineUsers);
   });
 
-
-// TODO
-  client.on('userTyping', (userTyping) => {
-    startTyping(userTyping._id);
+// TODO // receiving
+  client.on('typeEvent', (userTyping) => {
+    console.log('client/RECIEVING');
+    //startTyping(userTyping._id);
   });
 
   const close = () => {
@@ -60,6 +60,7 @@ const initSockets = ({
     sendMessage: sendMessageEvent(client),
     emitAddUserToChannel: emitAddUserToChannel(client),
     emitRemoveUserFromChannel: emitRemoveUserFromChannel(client),
+    sendTypingEvent: sendTypingEvent(client),
     close,
   };
 };

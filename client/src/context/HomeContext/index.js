@@ -74,7 +74,7 @@ const useHome = () => {
   const setFirstUserStatus = useRef(setFirstUserStatusHandler(dispatch));
   const setUserOffline = useRef(setUserOfflineHandler(dispatch));
   const setUserOnline = useRef(setUserOnlineHandler(dispatch));
-  // TODO
+  // TODO for receiving
   const setUserTyping = useRef(setUserTypingHandler(dispatch));
   
   const addChannel = useRef(addChannelHandler(dispatch));
@@ -90,6 +90,15 @@ const useHome = () => {
       });
     }
   });
+// NOTE for sending
+  const sendTypingEvent = useRef((channelId, receiverId, receiverSocketId) => {
+    if (socketMethods) {
+      socketMethods.current.sendTypingEvent({
+        channelId, receiverId, receiverSocketId,
+      });
+    }
+  });
+
   const addUserToChannel = useRef((data) => {
     if (socketMethods) {
       socketMethods.current.emitAddUserToChannel(data);
@@ -159,10 +168,11 @@ const useHome = () => {
     teamsMap,
     teamIds,
     // TODO
-    typingEvent: setUserTyping.current,
+    //typingEvent: setUserTyping.current,
+    sendTypingEvent: sendTypingEvent.current,
   };
 };
-
+// useRef avoid re-initializng the function. <.current> takes a snapshot of a useRef
 const useHomeContext = createUseContext(useHome);
 
 export { useHomeContext, useHome };
