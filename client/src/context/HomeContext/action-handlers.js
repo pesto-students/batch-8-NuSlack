@@ -19,6 +19,8 @@ import {
   SET_ACTIVE_TEAM,
   ADD_TEAM,
   GENERATE_TEAMS_MAP,
+  REMOVE_FROM_CHANNEL_LISTENER,
+  ADD_TO_CHANNEL_LISTENER,
 } from './actions-types';
 import { localStorageKeys } from '../../config';
 
@@ -172,6 +174,20 @@ const generateTeamsMapHandler = dispatch => (teams) => {
   });
 };
 
+const removeUserFromChannelListenerHandler = dispatch => (data) => {
+  dispatch({
+    type: REMOVE_FROM_CHANNEL_LISTENER,
+    payload: data,
+  });
+};
+const addUserToChannelListenerHandler = dispatch => (data) => {
+  dispatch({
+    type: ADD_TO_CHANNEL_LISTENER,
+    payload: data,
+  });
+};
+
+
 export {
   setChannelsHandler,
   setUserHandler,
@@ -192,4 +208,6 @@ export {
   setActiveTeamHandler,
   addTeamHandler,
   generateTeamsMapHandler,
+  addUserToChannelListenerHandler,
+  removeUserFromChannelListenerHandler,
 };

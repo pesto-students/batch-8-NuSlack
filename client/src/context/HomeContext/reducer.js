@@ -20,6 +20,8 @@ import {
   SET_ACTIVE_TEAM,
   ADD_TEAM,
   GENERATE_TEAMS_MAP,
+  ADD_TO_CHANNEL_LISTENER,
+  REMOVE_FROM_CHANNEL_LISTENER,
 } from './actions-types';
 
 const generateChannelsMap = (channels) => {
@@ -114,6 +116,11 @@ const reducer = (state, action) => {
         },
       };
     case ADD_NEW_CHANNEL_MESSAGE:
+      if (!state.channelsMap[action.payload.channelId]) {
+        return {
+          ...state,
+        };
+      }
       return {
         ...state,
         channelsMap: {
@@ -234,6 +241,45 @@ const reducer = (state, action) => {
         ...state,
         ...generateTeamsMap(action.payload.teams),
       };
+    case ADD_TO_CHANNEL_LISTENER: {
+      const { channelsMap, channelIds } = state;
+      const { users, channelId, channel } = action.payload;
+      if (users.indexOf(state.user._id) >= 0) {
+        channelIds.push(channelId);
+      }
+
+      channelsMap[channelId] = { ...channelsMap[channelId], ...channel };
+      if (!channelsMap[channelId].messages) {
+        channelsMap[channelId].messages = [];
+      }
+      return {
+        ...state,
+        channelsMap,
+        channelIds,
+      };
+    }
+    case REMOVE_FROM_CHANNEL_LISTENER: {
+      const { userId, channelId } = action.payload;
+      const { channelsMap, channelIds, activeChannel } = state;
+      if (userId === state.user._id) {
+        const newChannelIds = channelIds.filter(idInstance => idInstance !== channelId);
+        delete channelsMap[channelId];
+        const newActiveChannel = activeChannel === channelId ? newChannelIds[0] : activeChannel;
+        return {
+          ...state,
+          activeChannel: newActiveChannel,
+          channelsMap,
+          channelIds: newChannelIds,
+        };
+      }
+      const channelUsers = channelsMap[channelId].users;
+      const updatedChannelUsers = channelUsers.filter(channelUserId => channelUserId !== userId);
+      channelsMap[channelId].users = updatedChannelUsers;
+      return {
+        ...state,
+        channelsMap,
+      };
+    }
     default:
       throw new Error('Action type not defined');
   }

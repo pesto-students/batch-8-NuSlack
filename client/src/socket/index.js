@@ -4,6 +4,8 @@ import {
   connectedUserAckEvent,
   userOnlineEvent,
   userDisconnect,
+  addUserEvent,
+  removeUserEvent,
 } from '../constants/eventNames';
 import {
   sendConnectedEvent,
@@ -14,7 +16,13 @@ import {
 import { serverConfig } from '../config';
 
 const initSockets = ({
-  user, newMessage, setFirstUserStatus, setUserOffline, setUserOnline,
+  user,
+  newMessage,
+  setFirstUserStatus,
+  setUserOffline,
+  setUserOnline,
+  removeUserFromChannelListener,
+  addUserToChannelListener,
 }) => {
   const client = io.connect(serverConfig.SERVER_BASE_URL, {
     reconnection: true,
@@ -42,6 +50,13 @@ const initSockets = ({
 
   client.on(connectedUserAckEvent, (data) => {
     setFirstUserStatus(data.onlineUsers);
+  });
+
+  client.on(removeUserEvent, (data) => {
+    removeUserFromChannelListener(data);
+  });
+  client.on(addUserEvent, (data) => {
+    addUserToChannelListener(data);
   });
 
   const close = () => {
