@@ -104,8 +104,8 @@ const useHome = () => {
     if (socketMethods.current) {
       socketMethods.current.close();
       socketMethods.current = null;
-      logoutAndReset.current();
     }
+    logoutAndReset.current();
   });
 
   useEffect(() => {

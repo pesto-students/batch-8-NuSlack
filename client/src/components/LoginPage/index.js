@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect } from 'react';
-import { notification } from 'antd';
+import { notification, Spin } from 'antd';
 import { Redirect } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import LoginForm from '../LoginForm';
@@ -47,16 +47,17 @@ const LoginPage = () => {
     <LoginContainer>
       <img src="/images/logo.png" alt="logo image" />
       <h1>Login to NuSlack</h1>
-      {loading ? <div>loading...</div> : null}
 
-      <LoginForm handleFormSubmit={handleFormSubmit} />
-      <div>OR</div>
-      <GoogleLogin
-        clientId={authClients.GOOGLE_CLIENT_ID}
-        buttonText="Login with Google"
-        onSuccess={handleGoogleLogin}
-        onFailure={openErrorAlert}
-      />
+      <Spin spinning={loading}>
+        <LoginForm handleFormSubmit={handleFormSubmit} />
+        <div>OR</div>
+        <GoogleLogin
+          clientId={authClients.GOOGLE_CLIENT_ID}
+          buttonText="Login with Google"
+          onSuccess={handleGoogleLogin}
+          onFailure={openErrorAlert}
+        />
+      </Spin>
     </LoginContainer>
   );
 };

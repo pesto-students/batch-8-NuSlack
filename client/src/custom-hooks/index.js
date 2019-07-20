@@ -18,7 +18,14 @@ const useApi = (action, initial) => {
     });
   };
 
-  return [data.value, loadData, data.loading];
+  const resetData = () => {
+    setData({
+      value: initial,
+      loading: false,
+    });
+  };
+
+  return [data.value, loadData, data.loading, resetData];
 };
 
 const someOtherHook = () => {};

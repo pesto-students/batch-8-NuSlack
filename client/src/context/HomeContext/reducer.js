@@ -115,29 +115,32 @@ const reducer = (state, action) => {
           },
         },
       };
-    case ADD_NEW_CHANNEL_MESSAGE:
-      if (!state.channelsMap[action.payload.channelId]) {
-        return {
-          ...state,
-        };
+    case ADD_NEW_CHANNEL_MESSAGE: {
+      const existingChannel = state.channelsMap[action.payload.channelId] || {};
+      if (!existingChannel.messages) {
+        existingChannel.messages = [];
+      }
+      if (!existingChannel.unreadMessages) {
+        existingChannel.unreadMessages = 0;
       }
       return {
         ...state,
         channelsMap: {
           ...state.channelsMap,
           [action.payload.channelId]: {
-            ...state.channelsMap[action.payload.channelId],
+            ...existingChannel,
             messages: [
-              ...state.channelsMap[action.payload.channelId].messages,
+              ...existingChannel.messages,
               action.payload.message,
             ],
             unreadMessages:
               action.payload.channelId !== state.activeChannel
-                ? state.channelsMap[action.payload.channelId].unreadMessages + 1
+                ? existingChannel.unreadMessages + 1
                 : 0,
           },
         },
       };
+    }
     case GENERATE_CHANNELS_MAP:
       return {
         ...state,
@@ -210,20 +213,25 @@ const reducer = (state, action) => {
         activeChannel,
       };
     }
-    case ADD_NEW_USER_MESSAGE:
+    case ADD_NEW_USER_MESSAGE: {
+      const existingReceiver = state.userMessages[action.payload.receiverId] || {};
+      if (!existingReceiver.messages) {
+        existingReceiver.messages = [];
+      }
       return {
         ...state,
         userMessages: {
           ...state.userMessages,
           [action.payload.receiverId]: {
-            ...state.userMessages[action.payload.receiverId],
+            ...existingReceiver,
             messages: [
-              ...state.userMessages[action.payload.receiverId].messages,
+              ...existingReceiver.messages,
               action.payload.message,
             ],
           },
         },
       };
+    }
     case ADD_TEAM: {
       {
         const { teamsMap, teamIds } = state;

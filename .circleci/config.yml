@@ -23,6 +23,8 @@ jobs:
           name: Client Testing
           command: |
             yarn && yarn test:client
+          environment:
+            REACT_APP_GOOGLE_CLIENT_ID: google-client-id
       - deploy:
           name: If master passes all test, deploy backend to Netlify 
           command: |

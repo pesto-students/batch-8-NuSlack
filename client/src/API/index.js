@@ -56,4 +56,23 @@ const signupUser = async (signupData) => {
   return result;
 };
 
-export { getUser, authenticateUser, signupUser };
+const updateUser = async (userId, userData) => {
+  let result;
+  try {
+    result = await axios.patch(`${serverConfig.SERVER_BASE_URL}/users/${userId}`, {
+      ...userData,
+    });
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      openErrorAlert(error.response.data.message);
+    } else {
+      openErrorAlert(error.message);
+    }
+  }
+
+  return result;
+};
+
+export {
+  getUser, authenticateUser, signupUser, updateUser,
+};
