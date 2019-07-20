@@ -24,6 +24,8 @@ import {
   setActiveTeamHandler,
   addTeamHandler,
   generateTeamsMapHandler,
+  addUserToChannelListenerHandler,
+  removeUserFromChannelListenerHandler,
 } from './action-handlers';
 
 import {
@@ -78,6 +80,8 @@ const useHome = () => {
   const addTeam = useRef(addTeamHandler(dispatch));
   const generateTeamsMap = useRef(generateTeamsMapHandler(dispatch));
   const fetchTeams = useRef(fetchTeamsApi(generateTeamsMap.current));
+  const addUserToChannelListener = useRef(addUserToChannelListenerHandler(dispatch));
+  const removeUserFromChannelListener = useRef(removeUserFromChannelListenerHandler(dispatch));
   const sendMessage = useRef((message, channelId, receiverId, receiverSocketId) => {
     if (socketMethods) {
       socketMethods.current.sendMessage({
@@ -113,6 +117,8 @@ const useHome = () => {
           setFirstUserStatus: setFirstUserStatus.current,
           setUserOffline: setUserOffline.current,
           setUserOnline: setUserOnline.current,
+          addUserToChannelListener: addUserToChannelListener.current,
+          removeUserFromChannelListener: removeUserFromChannelListener.current,
         });
       }
     }
