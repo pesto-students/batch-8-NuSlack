@@ -49,7 +49,7 @@ const MainHeader = () => {
     fetchTeams(user._id);
   }, [user, fetchTeams]);
   useEffect(() => {
-    if (teamsMap) {
+    if (teamsMap && teamsMap[activeTeam]) {
       setTeamName(teamsMap[activeTeam].name || '');
     }
   }, [activeTeam, teamsMap]);
@@ -60,7 +60,7 @@ const MainHeader = () => {
           <Row type="flex" align="middle" justify="start" style={{ height: '100px' }}>
             <Avatar shape="square" size={90} icon="user" />
             <LoggedInUser>
-              <h1 className="user-name">{user && user.username}</h1>
+              <Link to="/profile"><h1 className="user-name">{user && user.username}</h1></Link>
               <UserStatus> Team: {teamName}</UserStatus>
             </LoggedInUser>
           </Row>

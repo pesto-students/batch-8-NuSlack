@@ -27,9 +27,13 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
           size={90}
         />
         <styled.div>
-          <h1
-            className="user-name"
-          />
+          <Link
+            to="/profile"
+          >
+            <h1
+              className="user-name"
+            />
+          </Link>
           <styled.div>
              Team: 
           </styled.div>
