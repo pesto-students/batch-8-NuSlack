@@ -5,12 +5,10 @@ import TeamsList from '../TeamsList';
 import { useHomeContext } from '../../context/HomeContext';
 
 const TeamsPageContainer = styled.div`
-  padding: 10em;
+  padding: 5vw;
 `;
 const TeamsPage = () => {
-  const {
-    user,
-  } = useHomeContext();
+  const { user } = useHomeContext();
   return (
     <TeamsPageContainer>
       <h1>{user.username}</h1>

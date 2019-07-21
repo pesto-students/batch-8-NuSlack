@@ -36,9 +36,11 @@ const fetchUsersApi = generateUsersMap => async (teamId) => {
 };
 
 const fetchTeamsApi = generateTeamsMap => async (userId) => {
-  const { data: user } = await axios.get(`${serverConfig.SERVER_BASE_URL}/users/${userId}`);
-  const { teams } = user;
-  generateTeamsMap(teams);
+  if (userId) {
+    const { data: user } = await axios.get(`${serverConfig.SERVER_BASE_URL}/users/${userId}`);
+    const { teams } = user;
+    generateTeamsMap(teams);
+  }
 };
 
 export {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import { Button } from 'antd';
 import { useHomeContext } from '../../context/HomeContext';
 import CreateTeamModal from '../CreateTeamModal';
 import AddUserToTeamModal from '../AddUserToTeamModal';
@@ -8,7 +9,7 @@ import TeamUserListModal from '../TeamUserListModal';
 
 const TeamCards = styled.div`
   display: flex;
-  overflow-x: auto;
+  flex-wrap: wrap;
 `;
 const TeamCard = styled.div`
   cursor: pointer;
@@ -18,9 +19,19 @@ const TeamCard = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 2em;
+  margin-right: 1.5em;
+  margin-top: 1.5em;
   font-size: 25px;
   background-color: #eeeeee;
+  > button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+  }
+  @media only screen and (max-width: 600px) {
+    height: 150px;
+    min-width: 150px;
+    font-size: 16px;
+  }
 `;
 
 const TeamsList = () => {
@@ -29,6 +40,7 @@ const TeamsList = () => {
     user, setActiveTeam, teamsMap, teamIds, fetchTeams,
   } = useHomeContext();
   const [createTeamModalVisibility, setCreateTeamModalVisibility] = useState(false);
+  const [userListModalVisibility, setUserListModalVisibility] = useState(false);
   const handleClick = (teamId) => {
     setActiveTeam(teamId);
     setRedirect('/home');
@@ -41,6 +53,10 @@ const TeamsList = () => {
   }
   const toggleCreateModalVisibility = () => {
     setCreateTeamModalVisibility(!createTeamModalVisibility);
+  };
+
+  const toggleUserListModalVisibility = () => {
+    setUserListModalVisibility(!userListModalVisibility);
   };
 
   return (
@@ -57,20 +73,31 @@ const TeamsList = () => {
               role="button"
               onKeyDown={() => {}}
               tabIndex={0}
-              type="button"
               onClick={() => setActiveTeam(teamId)}
-              style={{ backgroundColor: 'rgba(0,0,0,0)', border: '0' }}
+              style={{
+                backgroundColor: 'rgba(0,0,0,0)',
+                border: '0',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
             >
-              {teamsMap[teamId].admins.indexOf(user._id) < 0 ? (
-                ''
-              ) : (
+              {teamsMap[teamId].admins.indexOf(user._id) >= 0 ? (
                 <AddUserToTeamModal teamId={teamId} />
+              ) : (
+                ''
               )}
-              <TeamUserListModal teamId={teamId} />
+              <Button type="primary" onClick={toggleUserListModalVisibility}>
+                Users
+              </Button>
             </div>
           </TeamCard>
         ))}
       </TeamCards>
+      <TeamUserListModal
+        visible={userListModalVisibility}
+        handleCancel={toggleUserListModalVisibility}
+      />
       <CreateTeamModal
         visible={createTeamModalVisibility}
         handleCancel={toggleCreateModalVisibility}

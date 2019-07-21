@@ -19,7 +19,9 @@ const openNotificationWithIcon = (type) => {
 const AddUserToTeamForm = (props) => {
   const { SERVER_BASE_URL } = serverConfig;
   const [allUsers, setAllUsers] = useState([]);
-  const { activeTeam, allUserIds: allTeamUsers, fetchUsers } = useHomeContext();
+  const {
+    activeTeam, allUserIds: allTeamUsers, fetchUsers, user,
+  } = useHomeContext();
   const fetchAllUsers = useRef(() => {
     axios.get(`${SERVER_BASE_URL}/users`).then((resp) => {
       const users = resp.data;
@@ -35,19 +37,19 @@ const AddUserToTeamForm = (props) => {
     props.form.validateFields(async (err, values) => {
       if (!err) {
         axios
-          .post(`${SERVER_BASE_URL}/teams/${props.teamId || activeTeam}/add-users`, {
-            ...values,
+          .post(`${SERVER_BASE_URL}/invitations`, {
+            invitedBy: user._id,
+            invitedUsers: values.users,
+            team: activeTeam,
           })
           .then(() => {
             openNotificationWithIcon('success');
-            fetchAllUsers.current();
-            fetchUsers(activeTeam);
             props.closeModal();
           });
       }
     });
   };
-  const listOfUsers = allUsers.filter(user => allTeamUsers.indexOf(user._id) < 0);
+  const listOfUsers = allUsers.filter(userObject => allTeamUsers.indexOf(userObject._id) < 0);
   const { getFieldDecorator } = props.form;
   if (!activeTeam && !props.teamId) {
     return 'Error: no teamId';

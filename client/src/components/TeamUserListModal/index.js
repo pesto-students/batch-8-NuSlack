@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Modal, Button, notification } from 'antd';
 import { useHomeContext } from '../../context/HomeContext';
 import { serverConfig } from '../../config';
@@ -13,9 +14,8 @@ const openNotificationWithIcon = (type) => {
   });
 };
 const StyledModal = styled(Modal)``;
-const UsersInTeamModal = () => {
+const UsersInTeamModal = ({ visible, handleCancel }) => {
   const { SERVER_BASE_URL } = serverConfig;
-  const [visible, setVisible] = useState(false);
   const [allTeamUsers, setAllTeamUsers] = useState([]);
   const { activeTeam, teamsMap, user } = useHomeContext();
   const fetchAllUsers = useRef((activeTeamId) => {
@@ -53,6 +53,7 @@ const UsersInTeamModal = () => {
         style={{ height: '2.5em', display: 'flex', justifyContent: 'space-between' }}
       >
         {userObject.username}
+        {teamsMap[activeTeam].admins.indexOf(userObject._id) >= 0 ? ' (Admin) ' : ''}
         {isAdmin && userObject._id !== user._id ? (
           <Button onClick={() => kickUser(userObject._id)}>Kick User</Button>
         ) : (
@@ -62,16 +63,14 @@ const UsersInTeamModal = () => {
     ));
   };
   return (
-    <div>
-      <Button type="primary" onClick={() => setVisible(true)}>
-        Users
-      </Button>
-      <StyledModal onCancel={() => setVisible(false)} visible={visible} title="Users" footer={null}>
-        {ListOfUsers()}
-      </StyledModal>
-    </div>
+    <StyledModal onCancel={handleCancel} visible={visible} title="Users" footer={null}>
+      {ListOfUsers()}
+    </StyledModal>
   );
 };
-UsersInTeamModal.propTypes = {};
+UsersInTeamModal.propTypes = {
+  handleCancel: PropTypes.func.isRequired,
+  visible: PropTypes.bool.isRequired,
+};
 
 export default UsersInTeamModal;

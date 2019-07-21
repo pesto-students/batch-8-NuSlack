@@ -3,6 +3,7 @@ const channels = 'ChannelsSchema';
 const messages = 'MessagesSchema';
 const users = 'UsersSchema';
 const teams = 'TeamsSchema';
+const invitations = 'InvitationsSchema';
 
 export {
   channels,
@@ -10,4 +11,5 @@ export {
   users,
   defaultImage,
   teams,
+  invitations,
 };
