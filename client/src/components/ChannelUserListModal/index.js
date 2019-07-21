@@ -26,13 +26,20 @@ const UsersInChannelModal = (props) => {
 
     const isAdmin = channelsMap[activeChannel].admins.indexOf(user._id) >= 0;
     const listOfUserObjects = channelsMap[activeChannel].users
-      .filter(userId => userId !== user._id)
       .filter(userId => allUsersMap[userId])
       .map(userId => allUsersMap[userId]);
     return listOfUserObjects.map(userObject => (
-      <div key={userObject.username} style={{ height: '2.5em', display: 'flex', justifyContent: 'space-between' }}>
+      <div
+        key={userObject.username}
+        style={{ height: '2.5em', display: 'flex', justifyContent: 'space-between' }}
+      >
         {userObject.username}
-        {isAdmin ? <Button onClick={() => kickUser(userObject._id)}>Kick User</Button> : ''}
+        {channelsMap[activeChannel].admins.indexOf(userObject._id) >= 0 ? ' (Admin) ' : ''}
+        {isAdmin && userObject._id !== user._id ? (
+          <Button onClick={() => kickUser(userObject._id)}>Kick User</Button>
+        ) : (
+          ''
+        )}
       </div>
     ));
   };

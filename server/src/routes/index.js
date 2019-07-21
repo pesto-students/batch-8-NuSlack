@@ -3,6 +3,7 @@ import users from './users';
 import channels from './channels';
 import messages from './messages';
 import teams from './teams';
+import invitations from './invitations';
 import auth from './auth';
 
 const api = Router();
@@ -27,5 +28,7 @@ api.use('/channels', channels);
 api.use('/messages', messages);
 
 api.use('/teams', teams);
+
+api.use('/invitations', invitations);
 
 export default api;
