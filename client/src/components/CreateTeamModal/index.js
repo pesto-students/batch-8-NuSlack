@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Drawer, Form, Button, Input, Icon,
 } from 'antd';
@@ -18,6 +18,8 @@ const DrawerBody = styled.div`
 const CreateTeamModal = ({ visible, handleCancel, form }) => {
   const { user, addTeam } = useHomeContext();
   const { SERVER_BASE_URL } = serverConfig;
+  const [avatarUrl, setAvatarUrl] = useState('');
+  const [teamName, setTeamName] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
     form.validateFields(async (err, values) => {
@@ -28,10 +30,12 @@ const CreateTeamModal = ({ visible, handleCancel, form }) => {
         });
         addTeam(team.data);
         handleCancel();
+        form.resetFields();
+        setAvatarUrl('');
+        setTeamName('');
       }
     });
   };
-
   const { getFieldDecorator } = form;
   return (
     <Drawer
@@ -44,7 +48,11 @@ const CreateTeamModal = ({ visible, handleCancel, form }) => {
     >
       <DrawerBody>
         <h2>Create Team</h2>
-        <Form onSubmit={handleSubmit} className="add-channel-form">
+        <Form
+          onSubmit={handleSubmit}
+          className="add-channel-form"
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+        >
           <Form.Item>
             {getFieldDecorator('name', {
               rules: [{ required: true, message: 'Please input your Team Name!' }],
@@ -52,6 +60,47 @@ const CreateTeamModal = ({ visible, handleCancel, form }) => {
               <Input
                 prefix={<Icon type="plus-circle" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 placeholder="Team Name"
+                onChange={e => setTeamName(e.target.value)}
+              />,
+            )}
+          </Form.Item>
+          <div>
+            <div
+              style={{
+                backgroundImage: `url(${avatarUrl})`,
+                backgroundSize: 'cover',
+                height: '150px',
+                width: '150px',
+                display: 'flex',
+                border: '1px solid #cccccc',
+              }}
+              alt="Team Avatar"
+            >
+              <span
+                style={{
+                  height: '100%',
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(255,255,255,0.7)',
+                  fontSize: '22px',
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}
+              >
+                {teamName}
+              </span>
+            </div>
+          </div>
+          <Form.Item>
+            {getFieldDecorator('avatarUrl', {
+              rules: [{ required: true, message: 'Please input your Team Name!' }],
+            })(
+              <Input
+                prefix={<Icon type="plus-circle" style={{ color: 'rgba(255,255,255,.5)' }} />}
+                placeholder="Avatar Url"
+                onChange={e => setAvatarUrl(e.target.value)}
               />,
             )}
           </Form.Item>

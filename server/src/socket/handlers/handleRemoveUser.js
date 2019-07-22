@@ -19,6 +19,7 @@ const handleRemoveUser = socket => async ({ channelId, userId }) => {
     sender: Types.ObjectId(process.env.BOT_ID),
   });
   const savedMessage = await message.save();
+  await savedMessage.populate('sender').execPopulate();
   socket.nsp.to(channelId).emit(messageEvent, savedMessage);
 
   socket.nsp.to(channelId).emit(removeUserEvent, {

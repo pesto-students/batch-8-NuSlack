@@ -9,7 +9,11 @@ const AddUserToTeamModal = () => {
   const { name } = teamsMap[activeTeam] || '';
   return (
     <div>
-      <Button type="primary" onClick={() => setVisible(true)}>
+      <Button
+        type="primary"
+        style={{ borderRight: '1px solid', borderRadius: '0px' }}
+        onClick={() => setVisible(true)}
+      >
         Invite
       </Button>
       <Modal
