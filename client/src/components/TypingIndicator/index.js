@@ -6,7 +6,7 @@ function TypingIndicator(props) {
   if (isTyping) {
     return (
       <div>
-        {props.users} is {props.text}
+        {props.users} is typing...
       </div>
     );
   }

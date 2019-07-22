@@ -41,7 +41,7 @@ const ChatComponent = () => {
     fetchChannelMessages,
     fetchUserMessages,
     userMessages,
-  } = useHomeContext();
+  } = useHomeContext(); 
 
   let messages = [];
   if (activeChannel && channelsMap && channelsMap[activeChannel]) {
@@ -127,7 +127,7 @@ const ChatComponent = () => {
             </div>
           </ChatHistory>
           <ChatInputBox />
-          <TypingIndicator isTyping={true} users={["..."]} text={"typing"} />
+          <TypingIndicator isTyping={true} users={activeUser} />
         </ChatBox>
         <ProfileModal
           toggleModal={() => toggleModal()}
