@@ -5,37 +5,13 @@ import {
   removeUserEvent,
 } from '../constants/eventNames';
 
-const sendConnectedEvent = client => user =>
-  client.emit(connectedUserEvent, user);
+const sendConnectedEvent = client => user => client.emit(connectedUserEvent, user);
 
-const sendMessageEvent = client => message =>
-  client.emit(messageEvent, message);
+const sendMessageEvent = client => message => client.emit(messageEvent, message);
 
 const emitAddUserToChannel = client => data => client.emit(addUserEvent, data);
 
-const emitRemoveUserFromChannel = client => data =>
-  client.emit(removeUserEvent, data);
-
-/*
-function debounce(func, wait, immediate) {
-  let timeout;
-  return function executedFunction() {
-    console.log("EXECUTING");
-    let context = this;
-    let args = arguments;
-    let later = function() {
-    console.log("LATER");
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    let callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-  };
-}
-
-*/
+const emitRemoveUserFromChannel = client => data => client.emit(removeUserEvent, data);
 
 // TODO: Remove naked strings
 const sendTypeEvent = (client, message) => {
@@ -43,7 +19,6 @@ const sendTypeEvent = (client, message) => {
   client.emit('typeEvent', message);
 };
 
-//const sendTypingEvent = client => debounce(sendTypeEvent, 2000, false);
 
 const throttle = (func, limit) => {
   let inThrottle;

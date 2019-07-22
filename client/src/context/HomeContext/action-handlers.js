@@ -172,13 +172,7 @@ const generateTeamsMapHandler = dispatch => (teams) => {
   });
 };
 
-// addTypingUser
-// TODO remove naked string
-
-// scoket and ontext are connected
-// for sending, called socket  from context 
-// for receiving call context from socket
-// actino dispatcher
+// FIXME
 const setUserTypingHandler = dispatch => (user) => {
   dispatch({
     type: 'SET_USER_TYPING',

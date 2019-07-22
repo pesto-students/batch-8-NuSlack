@@ -1,15 +1,4 @@
-// Broadcast the 'typing' event 
-// channelID 
-// userID
-
-/*
-const handleTypingEvent = socket => () => {
-  console.log("server/handleTypingEvent");
-  if (socket.store && socket.store.user) {
-    socket.nsp.emit('typeEvent', socket.store.user._doc);
-  }
-};
-*/
+//FIXME
 
 let typeEvent = 'typeEvent';
 

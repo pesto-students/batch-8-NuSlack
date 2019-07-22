@@ -3,7 +3,7 @@
 import React from 'react';
 
 // TODO Add logic for is/are
-// TODO Derive it from the 
+// TODO Derive it from the global state
 function TypingIndicator(props) {
   const isTyping = props.isTyping;
   if (isTyping) {
