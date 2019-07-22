@@ -14,6 +14,20 @@ const TeamCard = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 20px;
+  background-image: url(${props => (props.avatarUrl ? props.avatarUrl : '')});
+  background-size: cover;
+  font-weight: bold;
+  .overlay {
+    display: flex;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #555555;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
 `;
 const TeamsDrawer = () => {
   const { setActiveTeam, teamsMap, teamIds } = useHomeContext();
@@ -32,8 +46,12 @@ const TeamsDrawer = () => {
       >
         <TeamCard onClick={() => setCreateTeamModalVisibility(true)}>Create Team</TeamCard>
         {teamIds.map(teamId => (
-          <TeamCard key={teamId} onClick={() => setActiveTeam(teamId)}>
-            {teamsMap[teamId].name}
+          <TeamCard
+            avatarUrl={teamsMap[teamId].avatarUrl}
+            key={teamId}
+            onClick={() => setActiveTeam(teamId)}
+          >
+            <div className="overlay">{teamsMap[teamId].name}</div>
           </TeamCard>
         ))}
       </Drawer>

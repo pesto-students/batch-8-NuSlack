@@ -16,24 +16,56 @@ const openNotificationWithIcon = (type, accepted) => {
 const InvitationCards = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 2em;
+  @media only screen and (max-width: 600px) {
+    justify-content: center;
+  }
 `;
 const InvitationCard = styled.div`
-  cursor: pointer;
-  height: 250px;
-  min-width: 250px;
-  display: flex;
+  height: 235px;
+  min-width: 235px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-right: 1.5em;
   margin-top: 1.5em;
   font-size: 25px;
-  background-color: #eeeeee;
-  @media only screen and (max-width: 600px) {
-    height: 150px;
-    min-width: 150px;
-    font-size:13px;
+  background-image: url(${props => (props.avatarUrl ? props.avatarUrl : '')});
+  background-size: cover;
+  .overlay {
+    display: flex;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #555555;
+    background-color: rgba(255, 255, 255, 0.7);
+    button {
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
+      box-shadow: none;
+      font-weight: bold;
+      color: #555555;
+      font-size: 0.8em;
+      :hover {
+        color: #111111;
+      }
+    }
   }
+  @media only screen and (max-width: 600px) {
+    height: 140px;
+    min-width: 140px;
+    font-size: 14px;
+    margin: 0.5em;
+  }
+`;
+const CardButtons = styled.div`
+  position: absolute;
+  display: flex;
+  bottom: 0;
 `;
 
 const InvitationsList = () => {
@@ -70,16 +102,28 @@ const InvitationsList = () => {
       <h1>Invitations</h1>
       <InvitationCards>
         {invitations.map(invitation => (
-          <InvitationCard key={invitation._id}>
-            <button type="button" onClick={() => handleClick(invitation._id)}>
-              {invitation.team.name}
-            </button>
-            <Button type="primary" onClick={() => handleClick('accept', invitation._id)}>
-              Accept
-            </Button>
-            <Button type="primary" onClick={() => handleClick('reject', invitation._id)}>
-              Reject
-            </Button>
+          <InvitationCard avatarUrl={invitation.team.avatarUrl} key={invitation._id}>
+            <div className="overlay">
+              <button type="button" onClick={() => handleClick(invitation._id)}>
+                <div style={{ fontSize: '1.2em' }}>{invitation.team.name}</div>
+              </button>
+              <CardButtons
+                role="button"
+                onKeyDown={() => {}}
+                tabIndex={0}
+              >
+                <div style={{ borderRight: '1px solid' }}>
+                  <Button type="primary" onClick={() => handleClick('accept', invitation._id)}>
+                    Accept
+                  </Button>
+                </div>
+                <div>
+                  <Button type="primary" onClick={() => handleClick('reject', invitation._id)}>
+                    Reject
+                  </Button>
+                </div>
+              </CardButtons>
+            </div>
           </InvitationCard>
         ))}
       </InvitationCards>
