@@ -12,6 +12,7 @@ import {
   sendMessageEvent,
   emitAddUserToChannel,
   emitRemoveUserFromChannel,
+  sendTypingEvent,
 } from './emit';
 import { serverConfig } from '../config';
 
@@ -58,6 +59,10 @@ const initSockets = ({
   client.on(addUserEvent, (data) => {
     addUserToChannelListener(data);
   });
+  client.on('typeEvent', (userTyping) => {
+    console.log('client/RECIEVING');
+    //startTyping(userTyping._id);
+  });
 
   const close = () => {
     client.removeAllListeners();
@@ -68,6 +73,7 @@ const initSockets = ({
     sendMessage: sendMessageEvent(client),
     emitAddUserToChannel: emitAddUserToChannel(client),
     emitRemoveUserFromChannel: emitRemoveUserFromChannel(client),
+    sendTypingEvent: sendTypingEvent(client),
     close,
   };
 };

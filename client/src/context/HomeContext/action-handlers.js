@@ -186,6 +186,12 @@ const addUserToChannelListenerHandler = dispatch => (data) => {
     payload: data,
   });
 };
+const setUserTypingHandler = dispatch => (user) => {
+  dispatch({
+    type: 'SET_USER_TYPING',
+    payload: user,
+  });
+};
 
 
 export {
@@ -210,4 +216,5 @@ export {
   generateTeamsMapHandler,
   addUserToChannelListenerHandler,
   removeUserFromChannelListenerHandler,
+  setUserTypingHandler,
 };

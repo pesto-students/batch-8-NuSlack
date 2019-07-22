@@ -18,6 +18,8 @@ const getInitialState = () => {
     error: null,
     teamsMap: {},
     teamIds: [],
+    // typingIndicator: {channelId, recieverId, typingUsers},
+    typingIndicator: {},
   };
 
   return initialState;

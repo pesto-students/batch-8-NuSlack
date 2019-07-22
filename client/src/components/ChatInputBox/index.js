@@ -9,11 +9,15 @@ const InputContainer = styled.div`
 `;
 const ChatInputBox = () => {
   const {
-    sendMessage, activeChannel, activeUser, allUsersMap,
+    sendMessage, activeChannel, activeUser, allUsersMap, sendTypingEvent,
   } = useHomeContext();
   const [input, setInput] = useState('');
   const onInputChange = (e) => {
     setInput(e.target.value);
+    if (activeChannel) {
+      return sendTypingEvent(activeChannel);
+    }
+    return sendTypingEvent(null, activeUser, allUsersMap[activeUser].socketId);
   };
 
   return (
