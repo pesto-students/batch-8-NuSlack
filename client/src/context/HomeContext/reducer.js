@@ -24,7 +24,7 @@ import {
   REMOVE_FROM_CHANNEL_LISTENER,
 } from './actions-types';
 
-const generateChannelsMap = (channels) => {
+const generateChannelsMap = (channels, activeUser) => {
   const channelsMap = channels.reduce((acc, channel) => {
     acc[channel._id] = {
       ...channel,
@@ -34,7 +34,12 @@ const generateChannelsMap = (channels) => {
     return acc;
   }, {});
   const channelIds = Object.keys(channelsMap);
-  const [activeChannel] = channelIds;
+  let activeChannel;
+  if (!activeUser) {
+    [activeChannel] = channelIds;
+  } else {
+    activeChannel = null;
+  }
   return {
     channelsMap,
     channelIds,
@@ -54,7 +59,7 @@ const generateTeamsMap = (teams) => {
   };
 };
 
-const generateUsersMap = (users) => {
+const generateUsersMap = (users, activeChannel) => {
   const allUsersMap = users.reduce((acc, user) => {
     acc[user._id] = {
       ...user,
@@ -62,17 +67,26 @@ const generateUsersMap = (users) => {
     return acc;
   }, {});
   const allUserIds = Object.keys(allUsersMap);
+  let activeUser;
+  if (!activeChannel) {
+    [activeUser] = allUserIds;
+  } else {
+    activeUser = null;
+  }
   return {
     allUsersMap,
     allUserIds,
+    activeUser,
   };
 };
 
 const setFirstUserStatus = (state, onlineUsers) => {
   const { allUsersMap } = state;
   onlineUsers.forEach((onlineUser) => {
-    allUsersMap[onlineUser.userId].online = true;
-    allUsersMap[onlineUser.userId].socketId = onlineUser.socketId;
+    if (allUsersMap[onlineUser.userId]) {
+      allUsersMap[onlineUser.userId].online = true;
+      allUsersMap[onlineUser.userId].socketId = onlineUser.socketId;
+    }
   });
 
   return allUsersMap;
@@ -129,10 +143,7 @@ const reducer = (state, action) => {
           ...state.channelsMap,
           [action.payload.channelId]: {
             ...existingChannel,
-            messages: [
-              ...existingChannel.messages,
-              action.payload.message,
-            ],
+            messages: [...existingChannel.messages, action.payload.message],
             unreadMessages:
               action.payload.channelId !== state.activeChannel
                 ? existingChannel.unreadMessages + 1
@@ -144,12 +155,12 @@ const reducer = (state, action) => {
     case GENERATE_CHANNELS_MAP:
       return {
         ...state,
-        ...generateChannelsMap(action.payload.channels),
+        ...generateChannelsMap(action.payload.channels, state.activeUser),
       };
     case GENERATE_USERS_MAP:
       return {
         ...state,
-        ...generateUsersMap(action.payload.users),
+        ...generateUsersMap(action.payload.users, state.activeChannel),
       };
     case SET_FIRST_USER_STATUS:
       return { ...state, ...setFirstUserStatus(state, action.payload) };
@@ -224,10 +235,7 @@ const reducer = (state, action) => {
           ...state.userMessages,
           [action.payload.receiverId]: {
             ...existingReceiver,
-            messages: [
-              ...existingReceiver.messages,
-              action.payload.message,
-            ],
+            messages: [...existingReceiver.messages, action.payload.message],
           },
         },
       };

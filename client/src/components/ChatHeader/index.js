@@ -16,6 +16,11 @@ const GreenHeader = styled(Header)`
   background-color: #ffba92;
   font-size: 18px;
   color: white;
+  @media only screen and (max-width: 600px) {
+    line-height: 40px;
+    height: 40px;
+    font-size: 15px;
+  }
 `;
 const ChatHeader = ({ activeChannelName }) => {
   const { SERVER_BASE_URL } = serverConfig;

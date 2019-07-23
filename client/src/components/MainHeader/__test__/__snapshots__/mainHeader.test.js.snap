@@ -68,9 +68,7 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
           </Button>
         </Link>
          
-        <index>
-          <TeamsDrawer />
-        </index>
+        <TeamsDrawer />
          
         <SmallButton>
           <Icon

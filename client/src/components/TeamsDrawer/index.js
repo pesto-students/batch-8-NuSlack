@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, Icon } from 'antd';
+import { Drawer, Button } from 'antd';
 import styled from 'styled-components';
 import CreateTeamModal from '../CreateTeamModal';
 import { useHomeContext } from '../../context/HomeContext';
@@ -36,7 +36,7 @@ const TeamsDrawer = () => {
   const toggleCreateTeamModal = () => setCreateTeamModalVisibility(!createTeamModalIsVisible);
   return (
     <div>
-      <Icon type="setting" onClick={() => setVisible(true)} />
+      <Button type="primary" onClick={() => setVisible(true)}>Teams</Button>
       <Drawer
         title="Teams"
         placement="right"
