@@ -29,7 +29,7 @@ const ProfilePage = () => {
       resetData();
       setEditMode(false);
     }
-  }, [data, editMode]);
+  }, [data, editMode, resetData, setUser]);
 
   const EditFormInitialValues = {
     username: { value: user.username },
