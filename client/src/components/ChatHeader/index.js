@@ -13,7 +13,8 @@ import ChannelUserListModal from '../ChannelUserListModal';
 
 const { Header } = Layout;
 const GreenHeader = styled(Header)`
-  background-color: green;
+  background-color: #ffba92;
+  font-size: 18px;
   color: white;
 `;
 const ChatHeader = ({ activeChannelName }) => {

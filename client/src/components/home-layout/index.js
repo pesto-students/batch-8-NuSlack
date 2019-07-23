@@ -9,7 +9,7 @@ const HomeLayout = () => (
     <MainHeader />
     <Layout style={{ height: '100%' }}>
       <Sidebar />
-      <Layout style={{ padding: '15px' }}>
+      <Layout style={{ borderLeft: '1px solid #c1c1c1' }}>
         <ChatComponent />
       </Layout>
     </Layout>

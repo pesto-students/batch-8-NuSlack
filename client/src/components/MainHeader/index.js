@@ -29,7 +29,7 @@ const UserStatus = styled.div`
 
 const HomeHeader = styled(Header)`
   height: 100px;
-  background: #607d8b;
+  background: #2d3561;
   @media only screen and (max-width: 600px) {
     padding: 0 25px;
     font-size: 11px;

@@ -20,7 +20,7 @@ exports[`<HomeLayout /> should match the snapshot 1`] = `
     <Adapter
       style={
         Object {
-          "padding": "15px",
+          "borderLeft": "1px solid #c1c1c1",
         }
       }
     >
