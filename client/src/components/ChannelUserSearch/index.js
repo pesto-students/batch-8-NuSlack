@@ -6,9 +6,7 @@ import { useHomeContext } from '../../context/HomeContext';
 import { serverConfig } from '../../config';
 
 const AutocompleteContainer = styled.div`
-  .certain-category-search.ant-select-auto-complete
-    .ant-input-affix-wrapper
-    .ant-input-suffix {
+  .certain-category-search.ant-select-auto-complete .ant-input-affix-wrapper .ant-input-suffix {
     right: 12px;
   }
 
@@ -53,8 +51,8 @@ const AutocompleteContainer = styled.div`
 
 const { Option, OptGroup } = AutoComplete;
 
-const generateOptions = (dataSource, searchText, handleSearchClick, user) => (
-  dataSource.map(group => (
+const generateOptions = (dataSource, searchText, handleSearchClick, user) => dataSource
+  .map(group => (
     <OptGroup key={group.title}>
       {group.children
         .filter(item => item.title.toLowerCase().indexOf(searchText) >= 0)
@@ -62,17 +60,20 @@ const generateOptions = (dataSource, searchText, handleSearchClick, user) => (
           <Option
             key={opt.title}
             value={opt.title}
-            onClick={() => handleSearchClick(opt._id)}
+            onClick={() => handleSearchClick(opt._id, group.title)}
           >
             {opt.title}
             <span className="certain-search-item-searchText">
-              {opt.users && opt.users.indexOf(user._id) < 0 ? <span style={{ float: 'right' }}>+JOIN</span> : ''}
+              {opt.users && opt.users.indexOf(user._id) < 0 ? (
+                <span style={{ float: 'right' }}>+JOIN</span>
+              ) : (
+                ''
+              )}
             </span>
           </Option>
         ))}
     </OptGroup>
-  ))
-);
+  ));
 const SearchBox = () => {
   const [channelsSearchMap, setChannelsSearchMap] = useState({});
   const [searchText, setSearchText] = useState('');
@@ -86,6 +87,7 @@ const SearchBox = () => {
     user,
     addChannel,
     activeTeam,
+    setActiveUser,
   } = useHomeContext();
   const dataSource = [];
   dataSource.push({
@@ -102,8 +104,10 @@ const SearchBox = () => {
       title: channelsSearchMap[channelId].name || 'UnknownChannelName',
     })),
   });
-  const handleSearchClick = (channelId) => {
-    if (channelIds.indexOf(channelId) >= 0 && channelsMap[channelId]) {
+  const handleSearchClick = (channelId, type) => {
+    if (type === 'Users') {
+      setActiveUser(channelId);
+    } else if (channelIds.indexOf(channelId) >= 0 && channelsMap[channelId]) {
       setActiveChannel(channelId);
     } else {
       axios
@@ -135,7 +139,7 @@ const SearchBox = () => {
   return (
     <AutocompleteContainer
       className="certain-category-search-wrapper"
-      style={{ width: 250, margin: 'auto' }}
+      style={{ width: 250, margin: 'auto', marginTop: '1em' }}
     >
       <AutoComplete
         className="certain-category-search"
@@ -145,7 +149,7 @@ const SearchBox = () => {
         size="large"
         style={{ width: '100%' }}
         dataSource={options}
-        placeholder="input here"
+        placeholder="Search user or channel"
         optionLabelProp="value"
         value={searchText || ''}
         onChange={(e) => {
@@ -165,7 +169,7 @@ const SearchBox = () => {
               />
               <Icon type="search" className="certain-category-icon" />
             </span>
-          )}
+)}
         />
       </AutoComplete>
     </AutocompleteContainer>

@@ -24,8 +24,21 @@ const UnreadCount = styled.span`
   color: green;
   padding: 0.2em 0.4em;
 `;
-const SideBarContainer = ({ children }) => (
-  <Sider
+const StyledSidebar = styled(Sider)`
+  .ant-layout-sider-children {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .ant-menu {
+    overflow-x: hidden;
+  }
+  .ant-layout-sider-trigger {
+    min-width: 48px !important;
+    background-color: rgba(222, 222, 222, 0.7);
+  }
+`;
+const SideBarContainer = ({ children, activeKey }) => (
+  <StyledSidebar
     width={300}
     style={{
       overflow: 'hidden',
@@ -34,19 +47,24 @@ const SideBarContainer = ({ children }) => (
     breakpoint="sm"
     collapsible
     theme="light"
+    collapsedWidth={0.1}
   >
     <Menu
       mode="inline"
-      defaultSelectedKeys={['1']}
-      defaultOpenKeys={['sub1']}
+      selectedKeys={[activeKey]}
+      defaultOpenKeys={['sub1', 'sub2']}
       style={{ height: '100%', borderRight: 0 }}
     >
       {children}
     </Menu>
-  </Sider>
+  </StyledSidebar>
 );
 SideBarContainer.propTypes = {
   children: PropTypes.node.isRequired,
+  activeKey: PropTypes.string,
+};
+SideBarContainer.defaultProps = {
+  activeKey: null,
 };
 const Sidebar = () => {
   const [channelModalIsVisible, setChannelModalIsVisible] = useState(false);
@@ -62,6 +80,8 @@ const Sidebar = () => {
     allUsersMap,
     setActiveUser,
     activeTeam,
+    activeChannel,
+    activeUser,
   } = useHomeContext();
   useEffect(() => {
     if (user._id) {
@@ -83,36 +103,36 @@ const Sidebar = () => {
   };
 
   return (
-    <SideBarContainer>
-      <SubMenu
-        key="sub1"
-        title={(
-          <span>
-            <Icon type="usergroup-add" />
+    <SideBarContainer activeKey={activeUser || activeChannel}>
+      <SearchBox />
+      {channelIds ? (
+        <SubMenu
+          key="sub1"
+          title={(
             <span>
-              Channels <Icon type="plus" onClick={toggleModal} />
+              <Icon type="usergroup-add" />
+              <span>
+                Channels <Icon type="plus" onClick={toggleModal} />
+              </span>
             </span>
-          </span>
-        )}
-      >
-        {channelIds ? channelIds.map(channelId => (
-          <Menu.Item
-            onClick={() => changeActiveChannel(channelId)}
-            key={channelId}
-          >
-            {channelsMap[channelId].name}{' '}
-            <span>
-              {!channelsMap[channelId].unreadMessages ? (
-                <span />
-              ) : (
-                <UnreadCount>
-                  {channelsMap[channelId].unreadMessages}
-                </UnreadCount>
-              )}
-            </span>
-          </Menu.Item>
-        )) : ''}
-      </SubMenu>
+)}
+        >
+          {channelIds.map(channelId => (
+            <Menu.Item onClick={() => changeActiveChannel(channelId)} key={channelId}>
+              {channelsMap[channelId].name}{' '}
+              <span>
+                {!channelsMap[channelId].unreadMessages ? (
+                  <span />
+                ) : (
+                  <UnreadCount>{channelsMap[channelId].unreadMessages}</UnreadCount>
+                )}
+              </span>
+            </Menu.Item>
+          ))}
+        </SubMenu>
+      ) : (
+        ''
+      )}
       <SubMenu
         key="sub2"
         title={(
@@ -120,20 +140,17 @@ const Sidebar = () => {
             <Icon type="user" />
             <span>People</span>
           </span>
-        )}
+)}
       >
-        {allUserIds ? allUserIds.map(userId => (
-          <Menu.Item onClick={() => changeActiveUser(userId)} key={userId}>
-            {allUsersMap[userId].username}{' '}
-            <Status online={allUsersMap[userId].online} />
-          </Menu.Item>
-        )) : ''}
+        {allUserIds
+          ? allUserIds.map(userId => (
+            <Menu.Item onClick={() => changeActiveUser(userId)} key={userId}>
+              {allUsersMap[userId].username} <Status online={allUsersMap[userId].online} />
+            </Menu.Item>
+          ))
+          : ''}
       </SubMenu>
-      <SearchBox />
-      <AddChannelModal
-        visible={channelModalIsVisible}
-        toggleModal={toggleModal}
-      />
+      <AddChannelModal visible={channelModalIsVisible} toggleModal={toggleModal} />
     </SideBarContainer>
   );
 };
