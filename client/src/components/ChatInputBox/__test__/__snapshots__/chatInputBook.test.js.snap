@@ -18,21 +18,6 @@ exports[`<ChatInputBox /> should match the snapshot 1`] = `
       />
     }
     size="large"
-    suffix={
-      <React.Fragment>
-        <index>
-          <Icon
-            type="smile"
-          />
-        </index>
-         
-        <index>
-          <Icon
-            type="paper-clip"
-          />
-        </index>
-      </React.Fragment>
-    }
     type="text"
     value=""
   />

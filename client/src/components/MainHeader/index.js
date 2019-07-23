@@ -4,7 +4,6 @@ import {
 } from 'antd';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import CircleButton from '../CircleButton';
 import SmallButton from '../SmallButton';
 import { useHomeContext } from '../../context/HomeContext';
 import TeamsDrawer from '../TeamsDrawer';
@@ -60,7 +59,9 @@ const MainHeader = () => {
           <Row type="flex" align="middle" justify="start" style={{ height: '100px' }}>
             <Avatar shape="square" size={90} icon="user" />
             <LoggedInUser>
-              <Link to="/profile"><h1 className="user-name">{user && user.username}</h1></Link>
+              <Link to="/profile">
+                <h1 className="user-name">{user && user.username}</h1>
+              </Link>
               <UserStatus> Team: {teamName}</UserStatus>
             </LoggedInUser>
           </Row>
@@ -71,9 +72,7 @@ const MainHeader = () => {
               <Button type="primary">Invitations</Button>
             </Link>
             &nbsp;
-            <CircleButton>
-              <TeamsDrawer />
-            </CircleButton>
+            <TeamsDrawer />
             &nbsp;
             <SmallButton onClick={logoutUser}>
               <Icon type="logout" /> Logout

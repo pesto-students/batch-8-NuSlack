@@ -11,12 +11,12 @@ exports[`<ChatComponent /> should match the snapshot 1`] = `
         "background": "#fff",
         "margin": 0,
         "minHeight": 280,
-        "padding": 24,
+        "padding": "0 0",
       }
     }
   >
     <styled.div>
-      <styled.div>
+      <Styled(styled.div)>
         <div>
           <List
             bordered={false}
@@ -30,7 +30,7 @@ exports[`<ChatComponent /> should match the snapshot 1`] = `
           />
           <div />
         </div>
-      </styled.div>
+      </Styled(styled.div)>
       <ChatInputBox />
     </styled.div>
     <ProfileModal

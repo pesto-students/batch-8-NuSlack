@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Icon, Input } from 'antd';
 import styled from 'styled-components';
-import CircleButton from '../CircleButton';
 import { useHomeContext } from '../../context/HomeContext';
 
 const InputContainer = styled.div`
-  margin-bottom: 0;
+  @media only screen and (max-width: 600px) {
+    margin-bottom: 3px;
+    margin-left: 30px;
+    width: 95%;
+  }
 `;
 const ChatInputBox = () => {
   const {
@@ -32,17 +35,6 @@ const ChatInputBox = () => {
           }
           return sendMessage(input, null, activeUser, allUsersMap[activeUser].socketId);
         }}
-        suffix={(
-          <>
-            <CircleButton>
-              <Icon type="smile" />
-            </CircleButton>
-            &nbsp;
-            <CircleButton>
-              <Icon type="paper-clip" />
-            </CircleButton>
-          </>
-)}
       />
     </InputContainer>
   );

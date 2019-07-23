@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Layout, Icon, Avatar, Skeleton, List,
 } from 'antd';
+import styled from 'styled-components';
 import { ChatBox, ChatHistory } from './style';
 import ChatInputBox from '../ChatInputBox';
 import ProfileModal from '../ProfileModal';
@@ -11,6 +12,17 @@ import ChatHeader from '../ChatHeader';
 import { ONE_MINUTE } from '../../constants/time';
 
 const { Content } = Layout;
+const StyledChatHistory = styled(ChatHistory)`
+  .ant-list-vertical {
+    margin-bottom: 0px !important;
+  }
+  .ant-list-vertical .ant-list-item-meta-title {
+    margin-bottom: 0px !important;
+  }
+  .ant-list-vertical .ant-list-item-meta {
+    margin-bottom: 0px !important;
+  }
+`;
 const IconText = ({ type, text }) => (
   <span>
     <Icon type={type} style={{ marginRight: 8 }} />
@@ -102,13 +114,13 @@ const ChatComponent = () => {
       <Content
         style={{
           background: '#fff',
-          padding: 24,
+          padding: '0 0',
           margin: 0,
           minHeight: 280,
         }}
       >
         <ChatBox>
-          <ChatHistory>
+          <StyledChatHistory>
             <div>
               <List
                 itemLayout="vertical"
@@ -118,42 +130,45 @@ const ChatComponent = () => {
                   <List.Item
                     key={item.sender._id}
                     actions={
-                      !loading && [
-                        <IconText type="like-o" text={item.likes ? String(item.likes) : '0'} />,
+                      !loading
+                      && [
+                        // <IconText type="like-o" text={item.likes ? String(item.likes) : '0'} />,
                       ]
                     }
                   >
                     <Skeleton loading={loading} active avatar>
                       <List.Item.Meta
-                        avatar={<Avatar src={item.sender.avatar} />}
+                        avatar={<Avatar size={50} src={item.sender.avatar} />}
                         title={(
                           <div>
-                            <a href={item.sender.href}>
-                              {item.sender.name || item.sender.username}
-                            </a>{' '}
-                            <span style={{ fontSize: '0.7em', color: '#888888' }}>
-                              {' '}
-                              {item.timestamp
-                                ? new Date(item.timestamp)
-                                  .toLocaleString()
-                                  .split(', ')
-                                  .reverse()
-                                  .join(', ')
-                                : ''}
-                            </span>
+                            <div>
+                              <a href={item.sender.href}>
+                                {item.sender.name || item.sender.username}
+                              </a>{' '}
+                              <span style={{ fontSize: '0.7em', color: '#888888' }}>
+                                {' '}
+                                {item.timestamp
+                                  ? new Date(item.timestamp)
+                                    .toLocaleString()
+                                    .split(', ')
+                                    .reverse()
+                                    .join(', ')
+                                  : ''}
+                              </span>
+                            </div>
+                            <div dangerouslySetInnerHTML={{ __html: item.message }} />
                           </div>
 )}
                         onClick={() => toggleModal(item.sender)}
                         style={{ cursor: 'pointer' }}
                       />
-                      <div dangerouslySetInnerHTML={{ __html: item.message }} />
                     </Skeleton>
                   </List.Item>
                 )}
               />
               <div ref={lastItemRef} />
             </div>
-          </ChatHistory>
+          </StyledChatHistory>
           <ChatInputBox />
         </ChatBox>
         <ProfileModal
