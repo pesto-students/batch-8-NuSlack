@@ -1,0 +1,4 @@
+const ONE_MINUTE = 60000;
+const TWO_SECONDS = 2000;
+
+export { ONE_MINUTE, TWO_SECONDS };

@@ -8,6 +8,7 @@ import ChatInputBox from '../ChatInputBox';
 import ProfileModal from '../ProfileModal';
 import { useHomeContext } from '../../context/HomeContext';
 import ChatHeader from '../ChatHeader';
+import { ONE_MINUTE } from '../../constants/time';
 
 const { Content } = Layout;
 const IconText = ({ type, text }) => (
@@ -48,6 +49,20 @@ const ChatComponent = () => {
   } else if (activeUser && userMessages[activeUser]) {
     messages = userMessages[activeUser].messages || [];
   }
+  const mergedMessages = messages.reduce((acc, message, index) => {
+    if (!acc.length) {
+      acc.push({ ...message });
+    } else if (
+      message.sender._id === acc[acc.length - 1].sender._id
+        && new Date(message.timestamp) - new Date(messages[index - 1].timestamp) < ONE_MINUTE
+    ) {
+      acc[acc.length - 1].message += `<br/>${message.message}`;
+      return acc;
+    } else {
+      acc.push({ ...message });
+    }
+    return acc;
+  }, []) || [];
   const toggleModal = (user) => {
     if (user) {
       setActiveModalProfile(user);
@@ -98,7 +113,7 @@ const ChatComponent = () => {
               <List
                 itemLayout="vertical"
                 size="large"
-                dataSource={messages}
+                dataSource={mergedMessages}
                 renderItem={item => (
                   <List.Item
                     key={item.sender._id}
@@ -111,13 +126,27 @@ const ChatComponent = () => {
                     <Skeleton loading={loading} active avatar>
                       <List.Item.Meta
                         avatar={<Avatar src={item.sender.avatar} />}
-                        title={
-                          <a href={item.sender.href}>{item.sender.name || item.sender.username}</a>
-                        }
+                        title={(
+                          <div>
+                            <a href={item.sender.href}>
+                              {item.sender.name || item.sender.username}
+                            </a>{' '}
+                            <span style={{ fontSize: '0.7em', color: '#888888' }}>
+                              {' '}
+                              {item.timestamp
+                                ? new Date(item.timestamp)
+                                  .toLocaleString()
+                                  .split(', ')
+                                  .reverse()
+                                  .join(', ')
+                                : ''}
+                            </span>
+                          </div>
+)}
                         onClick={() => toggleModal(item.sender)}
                         style={{ cursor: 'pointer' }}
                       />
-                      {item.message}
+                      <div dangerouslySetInnerHTML={{ __html: item.message }} />
                     </Skeleton>
                   </List.Item>
                 )}
