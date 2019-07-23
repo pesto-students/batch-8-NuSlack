@@ -19,6 +19,7 @@ const handleAddUser = socket => async ({ channelId, users }) => {
     channelId,
     message: messageString,
     sender: mongoose.Types.ObjectId(process.env.BOT_ID),
+    timestamp: new Date(),
   });
   const savedMessage = await message.save();
   await savedMessage.populate('sender').execPopulate();
