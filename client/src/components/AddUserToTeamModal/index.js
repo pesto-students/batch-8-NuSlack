@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
+import PropTypes from 'prop-types';
 import { useHomeContext } from '../../context/HomeContext';
 import AddUserToTeamForm from '../AddToTeamForm';
 
-const AddUserToTeamModal = () => {
+const AddUserToTeamModal = ({ onClick, disabled, buttonStyle }) => {
   const [visible, setVisible] = useState(false);
   const { activeTeam, teamsMap } = useHomeContext();
   const { name } = teamsMap[activeTeam] || '';
   return (
     <div>
       <Button
-        type="primary"
-        style={{ borderRight: '1px solid', borderRadius: '0px' }}
-        onClick={() => setVisible(true)}
+        style={buttonStyle}
+        disabled={disabled}
+        onClick={() => {
+          onClick();
+          setVisible(true);
+        }}
       >
         Invite
       </Button>
@@ -28,7 +32,15 @@ const AddUserToTeamModal = () => {
   );
 };
 
-AddUserToTeamModal.propTypes = {};
-AddUserToTeamModal.defaultProps = {};
+AddUserToTeamModal.propTypes = {
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  buttonStyle: PropTypes.shape({}),
+};
+AddUserToTeamModal.defaultProps = {
+  onClick: () => {},
+  disabled: false,
+  buttonStyle: {},
+};
 
 export default AddUserToTeamModal;

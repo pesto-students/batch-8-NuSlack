@@ -1,65 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button } from 'antd';
+import { Card, Icon, Button } from 'antd';
 import { useHomeContext } from '../../context/HomeContext';
 import CreateTeamModal from '../CreateTeamModal';
 import AddUserToTeamModal from '../AddUserToTeamModal';
 import TeamUserListModal from '../TeamUserListModal';
 
+const { Meta } = Card;
 const TeamCards = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 2em;
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-  }
-`;
-const TeamCard = styled.div`
-  height: 235px;
-  min-width: 235px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-right: 1.5em;
-  margin-top: 1.5em;
-  font-size: 25px;
-  background-image: url(${props => (props.avatarUrl ? props.avatarUrl : '')});
-  background-size: cover;
-  .overlay {
-    display: flex;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #555555;
-    background-color: rgba(255, 255, 255, 0.7);
-    button {
-      cursor: pointer;
-      background-color: rgba(0, 0, 0, 0);
-      border: none;
-      box-shadow: none;
-      font-weight: bold;
-      color: #555555;
-      font-size: 0.8em;
-      :hover {
-        color: #111111;
-      }
+  .card {
+    :hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
     }
   }
   @media only screen and (max-width: 600px) {
-    height: 140px;
-    min-width: 140px;
-    font-size: 14px;
-    margin: 0.5em;
+    justify-content: center;
   }
 `;
-const CardButtons = styled.div`
-  position: absolute;
-  display: flex;
-  bottom: 0;
+const StyledCard = styled(Card)`
+  margin: 1em !important;
+  width: 290px;
+  .teamImage {
+    height: 290px;
+    object-fit: cover;
+  }
+
+  .ant-card-hoverable {
+    &:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.29);
+    }
+  }
+  @media only screen and (max-width: 600px) {
+  }
+  :hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
+  }
 `;
 
 const TeamsList = () => {
@@ -89,41 +68,73 @@ const TeamsList = () => {
 
   return (
     <div>
-      <h1 style={{ fontSize: '1.7em' }}>Teams</h1>
       <TeamCards>
-        <TeamCard onClick={toggleCreateModalVisibility}>
-          <div className="overlay">Create New</div>
-        </TeamCard>
+        <div
+          className="card"
+          role="presentation"
+          style={{
+            width: '290px',
+            height: '432px',
+            display: 'flex',
+            flexDirection: 'column',
+            backgroundColor: '#eeeeee',
+            cursor: 'pointer',
+            margin: '1em',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onClick={toggleCreateModalVisibility}
+        >
+          <Icon type="plus" style={{ fontSize: '75px' }} />
+          <span style={{ fontSize: '25px' }}>Create Team</span>
+        </div>
         {teamIds.map(teamId => (
-          <TeamCard avatarUrl={teamsMap[teamId].avatarUrl} key={teamId}>
-            <div className="overlay">
-              <button type="button" onClick={() => handleClick(teamId)}>
-                <div style={{ fontSize: '1.2em' }}>{teamsMap[teamId].name}</div>
-              </button>
-              <CardButtons
-                className="teamLink"
-                role="button"
-                onKeyDown={() => {}}
-                tabIndex={0}
-                onClick={() => setActiveTeam(teamId)}
+          <StyledCard
+            key={teamId}
+            cover={(
+              <img
+                onClick={() => handleClick(teamId)}
+                onKeyPress={() => {}}
+                role="presentation"
+                alt="TeamImage"
+                className="teamImage"
+                src={teamsMap[teamId].avatarUrl}
+              />
+)}
+            hoverable
+            actions={[
+              <AddUserToTeamModal
+                buttonStyle={{ backgroundColor: 'rgba(0,0,0,0)', border: '0px', boxShadow: 'none' }}
+                disabled={!(teamsMap[teamId].admins.indexOf(user._id) >= 0)}
+                onClick={() => {
+                  setActiveTeam(teamId);
+                }}
+                teamId={teamId}
+              />,
+              <Button
+                style={{ backgroundColor: 'rgba(0,0,0,0)', border: '0px', boxShadow: 'none' }}
+                role="presentation"
+                onClick={() => {
+                  setActiveTeam(teamId);
+                  toggleUserListModalVisibility();
+                }}
               >
-                {teamsMap[teamId].admins.indexOf(user._id) >= 0 ? (
-                  <AddUserToTeamModal teamId={teamId} />
-                ) : (
-                  ''
-                )}
-                <div>
-                  <Button
-                    type="primary"
-                    onClick={toggleUserListModalVisibility}
-                  >
-                    Users
-                  </Button>
-                </div>
-              </CardButtons>
-            </div>
-          </TeamCard>
+                Users
+              </Button>,
+            ]}
+          >
+            <Meta
+              onClick={() => handleClick(teamId)}
+              title={(
+                <h2 style={{ textAlign: 'center', fontSize: '1.8em', marginBottom: 0 }}>
+                  {teamsMap[teamId].name}
+                </h2>
+)}
+            />
+          </StyledCard>
         ))}
+
+        <div />
       </TeamCards>
       <TeamUserListModal
         visible={userListModalVisibility}
