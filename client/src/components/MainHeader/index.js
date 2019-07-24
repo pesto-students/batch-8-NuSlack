@@ -16,25 +16,51 @@ const LoggedInUser = styled.div`
   line-height: 2em;
   h1.user-name {
     color: white;
-    font-size: 1.8em;
+    font-size: 1.6em;
     margin: 0;
+    display: inline-block;
+    vertical-align: center;
   }
 `;
 
-const UserStatus = styled.div`
-  font-size: 1.4em;
-  line-height: 1.5em;
-`;
-
 const HomeHeader = styled(Header)`
-  height: 100px;
+  height: 64px;
   background: #2d3561;
+
+  .main-header-row {
+    height: 64px;
+  }
+
+  img.main-header-logo {
+    height: 40px;
+    margin-bottom: 10px;
+  }
+
+  .header-text {
+    color: white;
+    font-size: 1.8em;
+    vertical-align: bottom;
+    display: inline-block;
+  }
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    line-height: 40px;
+    font-size: 20px;
+  }
+
+  .main-header-logo-wrapper {
+    display: block;
+  }
+
   @media only screen and (max-width: 600px) {
     padding: 0 25px;
     font-size: 11px;
     .ant-avatar {
-      height: 60px !important;
-      width: 60px !important;
+      height: 64px !important;
+      width: 64px !important;
     }
   }
 `;
@@ -56,20 +82,28 @@ const MainHeader = () => {
     <HomeHeader className="home-header">
       <Row>
         <Col span={12}>
-          <Row type="flex" align="middle" justify="start" style={{ height: '100px' }}>
-            <Link to="/profile">
-              <Avatar shape="square" size={90} icon="user" />
-            </Link>
-            <LoggedInUser>
-              <Link to="/profile">
-                <h1 className="user-name">{user && user.username}</h1>
+          <Row type="flex" align="middle" justify="start" className="main-header-row">
+            <div className="main-header-logo-wrapper">
+              <Link to="/">
+                <img
+                  className="main-header-logo"
+                  src="./images/transparent-logo.png"
+                  alt="nu-slack"
+                />
               </Link>
-              <UserStatus> Team: {teamName}</UserStatus>
-            </LoggedInUser>
+              <span className="header-text">&nbsp; - &nbsp;</span>
+              <span className="header-text">Team ({teamName || '--'})</span>
+            </div>
           </Row>
         </Col>
         <Col span={12}>
-          <Row type="flex" align="middle" justify="end" style={{ height: '100px' }}>
+          <Row type="flex" align="middle" justify="end" className="main-header-row">
+            <LoggedInUser>
+              <Link to="/profile">
+                <Avatar shape="circle" className="user-avatar" icon="user" src={user && user.avatar} />
+                <h1 className="user-name">{user && user.username}</h1>
+              </Link>
+            </LoggedInUser>
             <Link to="/teams">
               <Button type="primary">Invitations</Button>
             </Link>
