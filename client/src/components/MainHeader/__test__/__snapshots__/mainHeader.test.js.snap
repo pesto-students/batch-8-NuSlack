@@ -12,32 +12,36 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
     >
       <Row
         align="middle"
+        className="main-header-row"
         gutter={0}
         justify="start"
-        style={
-          Object {
-            "height": "100px",
-          }
-        }
         type="flex"
       >
-        <Avatar
-          icon="user"
-          shape="square"
-          size={90}
-        />
-        <styled.div>
+        <div
+          className="main-header-logo-wrapper"
+        >
           <Link
-            to="/profile"
+            to="/"
           >
-            <h1
-              className="user-name"
+            <img
+              alt="nu-slack"
+              className="main-header-logo"
+              src="./images/transparent-logo.png"
             />
           </Link>
-          <styled.div>
-             Team: 
-          </styled.div>
-        </styled.div>
+          <span
+            className="header-text"
+          >
+              -  
+          </span>
+          <span
+            className="header-text"
+          >
+            Team (
+            --
+            )
+          </span>
+        </div>
       </Row>
     </Col>
     <Col
@@ -45,15 +49,26 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
     >
       <Row
         align="middle"
+        className="main-header-row"
         gutter={0}
         justify="end"
-        style={
-          Object {
-            "height": "100px",
-          }
-        }
         type="flex"
       >
+        <styled.div>
+          <Link
+            to="/profile"
+          >
+            <Avatar
+              className="user-avatar"
+              icon="user"
+              shape="circle"
+              size="default"
+            />
+            <h1
+              className="user-name"
+            />
+          </Link>
+        </styled.div>
         <Link
           to="/teams"
         >

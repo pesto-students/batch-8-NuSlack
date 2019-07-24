@@ -85,7 +85,10 @@ const useHome = () => {
   const sendMessage = useRef((message, channelId, receiverId, receiverSocketId) => {
     if (socketMethods) {
       socketMethods.current.sendMessage({
-        message, channelId, receiverId, receiverSocketId,
+        message,
+        channelId,
+        receiverId,
+        receiverSocketId,
       });
     }
   });
@@ -110,17 +113,18 @@ const useHome = () => {
 
   useEffect(() => {
     if (user && user.username && allUserIds.length) {
-      if (!socketMethods.current) {
-        socketMethods.current = initSocket({
-          user,
-          newMessage: newMessage.current,
-          setFirstUserStatus: setFirstUserStatus.current,
-          setUserOffline: setUserOffline.current,
-          setUserOnline: setUserOnline.current,
-          addUserToChannelListener: addUserToChannelListener.current,
-          removeUserFromChannelListener: removeUserFromChannelListener.current,
-        });
+      if (socketMethods.current) {
+        socketMethods.current.close();
       }
+      socketMethods.current = initSocket({
+        user,
+        newMessage: newMessage.current,
+        setFirstUserStatus: setFirstUserStatus.current,
+        setUserOffline: setUserOffline.current,
+        setUserOnline: setUserOnline.current,
+        addUserToChannelListener: addUserToChannelListener.current,
+        removeUserFromChannelListener: removeUserFromChannelListener.current,
+      });
     }
   }, [user, allUserIds]);
 
