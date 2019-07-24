@@ -48,7 +48,7 @@ const TeamsDrawer = () => {
       >
         <TeamCard onClick={() => setCreateTeamModalVisibility(true)}>Create Team</TeamCard>
         {teamIds.map(teamId => (
-          <Tooltip placement="left" title={teamsMap[teamId].name}>
+          <Tooltip key={teamId} placement="left" title={teamsMap[teamId].name}>
             <TeamCard
               avatarUrl={teamsMap[teamId].avatarUrl}
               key={teamId}
