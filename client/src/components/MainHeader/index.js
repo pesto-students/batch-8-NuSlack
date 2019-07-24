@@ -57,7 +57,9 @@ const MainHeader = () => {
       <Row>
         <Col span={12}>
           <Row type="flex" align="middle" justify="start" style={{ height: '100px' }}>
-            <Avatar shape="square" size={90} icon="user" />
+            <Link to="/profile">
+              <Avatar shape="square" size={90} icon="user" />
+            </Link>
             <LoggedInUser>
               <Link to="/profile">
                 <h1 className="user-name">{user && user.username}</h1>
