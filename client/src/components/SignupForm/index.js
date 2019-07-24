@@ -79,6 +79,20 @@ const SignupForm = (props) => {
             ],
           })(<Input placeholder="Email" />)}
         </Form.Item>
+        <Form.Item
+          label={(
+            <span>
+              Nickname&nbsp;
+              <Tooltip title="What do you want others to call you?">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+            </span>
+          )}
+        >
+          {getFieldDecorator('nickname', {
+            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+          })(<Input />)}
+        </Form.Item>
         <Form.Item label="Password" hasFeedback>
           {getFieldDecorator('password', {
             rules: [
@@ -105,20 +119,7 @@ const SignupForm = (props) => {
             ],
           })(<Input.Password placeholder="Password" onBlur={handleConfirmBlur} />)}
         </Form.Item>
-        <Form.Item
-          label={(
-            <span>
-              Nickname&nbsp;
-              <Tooltip title="What do you want others to call you?">
-                <Icon type="question-circle-o" />
-              </Tooltip>
-            </span>
-          )}
-        >
-          {getFieldDecorator('nickname', {
-            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
-          })(<Input />)}
-        </Form.Item>
+
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             Register
@@ -128,7 +129,6 @@ const SignupForm = (props) => {
     </StyledWrapper>
   );
 };
-
 SignupForm.propTypes = {
   form: PropTypes.shape().isRequired,
   handleFormSubmit: PropTypes.func.isRequired,
