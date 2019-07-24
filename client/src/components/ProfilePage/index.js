@@ -65,34 +65,31 @@ const ProfilePage = () => {
                       />
 )}
                   >
-                    <Meta title="Jaspreet Singh" style={{ textAlign: 'center' }} />
+                    <Meta title={user.username} style={{ textAlign: 'center' }} />
                   </Card>
                 </Col>
                 <Col md={18}>
                   <div style={{ padding: '15px' }}>
-                    <h1>
+                    <h4>
                       <Icon type="user" /> Name{' '}
-                    </h1>
+                    </h4>
                     <hr />
-                    <p>{user.username}</p>
-
-                    <h1>
+                    <p style={{ 'font-size': '20px' }}>{user.username}</p>
+                    <h4>
                       <Icon type="tag" /> Tagline
-                    </h1>
+                    </h4>
                     <hr />
-                    <p>{user.tagLine}</p>
-
-                    <h1>
+                    <p style={{ 'font-size': '20px' }}>{user.tagLine}</p>
+                    <h4>
                       <Icon type="mail" /> Email
-                    </h1>
+                    </h4>
                     <hr />
-                    <p>{user.email}</p>
-
-                    <h1>
+                    <p style={{ 'font-size': '20px' }}>{user.email}</p>
+                    <h4>
                       <Icon type="usergroup-add" /> Teams
-                    </h1>
+                    </h4>
                     <hr />
-                    <p>{teamIds.map(teamId => teamsMap[teamId].name).join(', ')}</p>
+                    <p style={{ 'font-size': '20px' }}>{teamIds.map(teamId => teamsMap[teamId].name).join(', ')}</p>
                     <Button
                       type="primary"
                       icon="edit"
