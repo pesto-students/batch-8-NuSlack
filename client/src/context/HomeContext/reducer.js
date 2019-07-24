@@ -259,8 +259,8 @@ const reducer = (state, action) => {
       };
     case ADD_TO_CHANNEL_LISTENER: {
       const { channelsMap, channelIds } = state;
-      const { users, channelId, channel } = action.payload;
-      if (users.indexOf(state.user._id) >= 0) {
+      const { channelId, channel } = action.payload;
+      if (channelIds.indexOf(channelId) < 0) {
         channelIds.push(channelId);
       }
 

@@ -126,7 +126,7 @@ const useHome = () => {
         removeUserFromChannelListener: removeUserFromChannelListener.current,
       });
     }
-  }, [user, allUserIds]);
+  }, [user, allUserIds, channelIds]);
 
   return {
     user,

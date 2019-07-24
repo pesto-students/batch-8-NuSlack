@@ -16,7 +16,10 @@ const AddUserToChannelForm = (props) => {
     event.preventDefault();
     props.form.validateFields(async (err, values) => {
       if (!err) {
-        addUserToChannel({ channelId: activeChannel, users: values.users });
+        addUserToChannel({
+          channelId: activeChannel,
+          users: values.users.map(userId => allUsersMap[userId]),
+        });
         props.closeModal();
       }
     });
@@ -31,29 +34,19 @@ const AddUserToChannelForm = (props) => {
         {getFieldDecorator('users', {
           rules: [{ required: true, message: 'Please add users!' }],
         })(
-          <Select
-            mode="multiple"
-            style={{ width: '100%' }}
-            placeholder="Please select"
-          >
+          <Select mode="multiple" style={{ width: '100%' }} placeholder="Please select">
             {allUserIds
-              .filter(
-                userId => channelsMap[activeChannel].users.indexOf(userId) < 0,
-              )
+              .filter(userId => channelsMap[activeChannel].users.indexOf(userId) < 0)
               .map(userId => (
                 <Option key={userId} value={userId}>
                   {allUsersMap[userId].username}
                 </Option>
-              ))
-            }
+              ))}
           </Select>,
         )}
       </Form.Item>
       <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button
-          type="primary"
-          htmlType="submit"
-        >
+        <Button type="primary" htmlType="submit">
           Add
         </Button>
       </Form.Item>
@@ -68,8 +61,6 @@ AddUserToChannelForm.propTypes = {
     getFieldDecorator: PropTypes.func,
   }).isRequired,
 };
-const WrappedAddUserToChannelForm = Form.create({ name: 'add_channel' })(
-  AddUserToChannelForm,
-);
+const WrappedAddUserToChannelForm = Form.create({ name: 'add_channel' })(AddUserToChannelForm);
 
 export default WrappedAddUserToChannelForm;

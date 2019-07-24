@@ -15,12 +15,12 @@ import {
   handleRemoveUser,
 } from './handlers';
 
-const handleConnection = (socket) => {
+const handleConnection = socketIO => (socket) => {
   socket.on(connectedUserEvent, handleConnectedUser(socket));
   socket.on(messageEvent, handleMessage(socket));
   socket.on(userDisconnectEvent, handleUserDisconnect(socket));
   socket.on(removeUserEvent, handleRemoveUser(socket));
-  socket.on(addUsersEvent, handleAddUser(socket));
+  socket.on(addUsersEvent, handleAddUser(socket, socketIO));
 };
 
-io.on('connection', handleConnection);
+io.on('connection', handleConnection(io));
