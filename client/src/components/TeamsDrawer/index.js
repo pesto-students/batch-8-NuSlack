@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, Button } from 'antd';
+import { Drawer, Button, Tooltip } from 'antd';
 import styled from 'styled-components';
 import CreateTeamModal from '../CreateTeamModal';
 import { useHomeContext } from '../../context/HomeContext';
@@ -36,7 +36,9 @@ const TeamsDrawer = () => {
   const toggleCreateTeamModal = () => setCreateTeamModalVisibility(!createTeamModalIsVisible);
   return (
     <div>
-      <Button type="primary" onClick={() => setVisible(true)}>Teams</Button>
+      <Button type="primary" onClick={() => setVisible(true)}>
+        Teams
+      </Button>
       <Drawer
         title="Teams"
         placement="right"
@@ -46,13 +48,13 @@ const TeamsDrawer = () => {
       >
         <TeamCard onClick={() => setCreateTeamModalVisibility(true)}>Create Team</TeamCard>
         {teamIds.map(teamId => (
-          <TeamCard
-            avatarUrl={teamsMap[teamId].avatarUrl}
-            key={teamId}
-            onClick={() => setActiveTeam(teamId)}
-          >
-            <div className="overlay">{teamsMap[teamId].name}</div>
-          </TeamCard>
+          <Tooltip placement="left" title={teamsMap[teamId].name}>
+            <TeamCard
+              avatarUrl={teamsMap[teamId].avatarUrl}
+              key={teamId}
+              onClick={() => setActiveTeam(teamId)}
+            />
+          </Tooltip>
         ))}
       </Drawer>
       <CreateTeamModal visible={createTeamModalIsVisible} handleCancel={toggleCreateTeamModal} />

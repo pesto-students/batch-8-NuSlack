@@ -19,7 +19,6 @@ const CreateTeamModal = ({ visible, handleCancel, form }) => {
   const { user, addTeam } = useHomeContext();
   const { SERVER_BASE_URL } = serverConfig;
   const [avatarUrl, setAvatarUrl] = useState('');
-  const [teamName, setTeamName] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
     form.validateFields(async (err, values) => {
@@ -32,7 +31,6 @@ const CreateTeamModal = ({ visible, handleCancel, form }) => {
         handleCancel();
         form.resetFields();
         setAvatarUrl('');
-        setTeamName('');
       }
     });
   };
@@ -60,7 +58,6 @@ const CreateTeamModal = ({ visible, handleCancel, form }) => {
               <Input
                 prefix={<Icon type="plus-circle" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 placeholder="Team Name"
-                onChange={e => setTeamName(e.target.value)}
               />,
             )}
           </Form.Item>
@@ -75,23 +72,7 @@ const CreateTeamModal = ({ visible, handleCancel, form }) => {
                 border: '1px solid #cccccc',
               }}
               alt="Team Avatar"
-            >
-              <span
-                style={{
-                  height: '100%',
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: 'rgba(255,255,255,0.7)',
-                  fontSize: '22px',
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                }}
-              >
-                {teamName}
-              </span>
-            </div>
+            />
           </div>
           <Form.Item>
             {getFieldDecorator('avatarUrl', {
@@ -104,20 +85,6 @@ const CreateTeamModal = ({ visible, handleCancel, form }) => {
               />,
             )}
           </Form.Item>
-          <div style={{ textAlign: 'center' }}>
-            <h2>Primary Color</h2>
-            <Form.Item>
-              {getFieldDecorator('primaryColor', {
-                rules: [{ required: true, message: 'Please enter Primary color!' }],
-              })(<input type="color" placeholder="PrimaryColor" />)}
-            </Form.Item>
-            <h2>Secondary Color</h2>
-            <Form.Item>
-              {getFieldDecorator('secondaryColor', {
-                rules: [{ required: true, message: 'Please enter Secondary color!' }],
-              })(<input type="color" placeholder="PrimaryColor" />)}
-            </Form.Item>
-          </div>
           <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
             <Button type="primary" htmlType="submit">
               Create
@@ -135,9 +102,9 @@ CreateTeamModal.propTypes = {
   form: PropTypes.shape({
     getFieldDecorator: PropTypes.func,
     validateFields: PropTypes.func,
+    resetFields: PropTypes.func,
   }).isRequired,
 };
-
 const WrappedCreateTeamModal = Form.create({ name: 'create_team' })(CreateTeamModal);
 
 export default WrappedCreateTeamModal;
