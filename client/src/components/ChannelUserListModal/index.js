@@ -33,7 +33,14 @@ const UsersInChannelModal = (props) => {
         key={userObject.username}
         style={{ height: '2.5em', display: 'flex', justifyContent: 'space-between' }}
       >
-        {userObject.username}
+        <div>
+          <img
+            src={userObject.avatar}
+            style={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+            alt="avatar"
+          />
+          {userObject.username}
+        </div>
         {channelsMap[activeChannel].admins.indexOf(userObject._id) >= 0 ? ' (Admin) ' : ''}
         {isAdmin && userObject._id !== user._id ? (
           <Button onClick={() => kickUser(userObject._id)}>Kick User</Button>
