@@ -58,11 +58,15 @@ const ChatHeader = ({ activeChannelName }) => {
     <div>
       <GreenHeader className="channel-detail">
         {activeChannelName}
-        <Dropdown overlay={menu}>
-          <span style={{ float: 'right', cursor: 'pointer' }}>
-            Settings <Icon type="down" />
-          </span>
-        </Dropdown>
+        {activeChannel ? (
+          <Dropdown overlay={menu}>
+            <span style={{ float: 'right', cursor: 'pointer' }}>
+              Settings <Icon type="down" />
+            </span>
+          </Dropdown>
+        ) : (
+          ''
+        )}
       </GreenHeader>
 
       <AddUsersToChannelModal toggleModal={toggleAddUserModal} visible={addUserModalIsVisible} />

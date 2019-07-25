@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Modal, Button, notification } from 'antd';
+import {
+  Modal, Button, notification, Spin,
+} from 'antd';
 import { useHomeContext } from '../../context/HomeContext';
 import { serverConfig } from '../../config';
 
@@ -39,10 +41,10 @@ const UsersInTeamModal = ({ visible, handleCancel }) => {
   }, [activeTeam, SERVER_BASE_URL]);
   const ListOfUsers = () => {
     if (!teamsMap[activeTeam]) {
-      return 'Loading..';
+      return <Spin spinning />;
     }
     if (!Object.keys(allTeamUsers).length) {
-      return 'No users';
+      return <Spin spinning />;
     }
 
     const isAdmin = teamsMap[activeTeam].admins.indexOf(user._id) >= 0;
@@ -52,7 +54,14 @@ const UsersInTeamModal = ({ visible, handleCancel }) => {
         key={userObject.username}
         style={{ height: '2.5em', display: 'flex', justifyContent: 'space-between' }}
       >
-        {userObject.username}
+        <div>
+          <img
+            src={userObject.avatar}
+            style={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+            alt="avatar"
+          />
+          {userObject.username}
+        </div>
         {teamsMap[activeTeam].admins.indexOf(userObject._id) >= 0 ? ' (Admin) ' : ''}
         {isAdmin && userObject._id !== user._id ? (
           <Button onClick={() => kickUser(userObject._id)}>Kick User</Button>

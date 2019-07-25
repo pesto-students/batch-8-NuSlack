@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Tabs, Icon, Badge } from 'antd';
+import { Redirect } from 'react-router-dom';
+import {
+  Tabs, Icon, Badge, notification,
+} from 'antd';
+import axios from 'axios';
+import { serverConfig } from '../../config';
 import InvitationsList from '../InvitationsList';
 import TeamsList from '../TeamsList';
 import MainHeader from '../MainHeader';
+import { useHomeContext } from '../../context/HomeContext';
 
 const { TabPane } = Tabs;
 const TeamsPageContainer = styled.div`
@@ -17,13 +23,52 @@ const TeamsPageContainer = styled.div`
     }
   }
 `;
+const successFullAcceptMessage = 'Team joined successfully.';
+const successFullRejectMessage = 'Invitation Rejected.';
+
+const openNotificationWithIcon = (type, accepted) => {
+  notification[type]({
+    message: accepted ? successFullAcceptMessage : successFullRejectMessage,
+  });
+};
 const TeamsPage = () => {
-  const [numberOfInvitations, setNumberOfInvitations] = useState(0);
+  const { SERVER_BASE_URL } = serverConfig;
+  const [invitations, setInvitations] = useState([]);
+  const { user, fetchTeams } = useHomeContext();
+  const handleClick = (type, invitationId) => {
+    axios.post(`${SERVER_BASE_URL}/invitations/${invitationId}/${type}`).then(() => {
+      fetchTeams(user._id);
+      axios
+        .get(`${SERVER_BASE_URL}/invitations`, {
+          params: { invitedUser: user._id, status: 'sent' },
+        })
+        .then((resp) => {
+          setInvitations(resp.data);
+          openNotificationWithIcon('success', type === 'accept');
+        });
+    });
+  };
+  useEffect(() => {
+    if (user._id) {
+      axios
+        .get(`${SERVER_BASE_URL}/invitations`, {
+          params: { invitedUser: user._id, status: 'sent' },
+        })
+        .then((resp) => {
+          setInvitations(resp.data);
+        });
+    }
+  }, [user, SERVER_BASE_URL]);
+
+  if (!user || !user.username) {
+    return <Redirect to="/" push />;
+  }
+
   return (
     <div>
       <MainHeader />
       <TeamsPageContainer>
-        <Tabs defaultActiveKey="2">
+        <Tabs defaultActiveKey="1">
           <TabPane
             tab={(
               <span className="tab-title">
@@ -39,12 +84,12 @@ const TeamsPage = () => {
             tab={(
               <span className="tab-title">
                 <Icon type="download" />
-                Invitations {numberOfInvitations ? <Badge count={numberOfInvitations} /> : ''}
+                Invitations {invitations.length ? <Badge count={invitations.length} /> : ''}
               </span>
 )}
             key="2"
           >
-            <InvitationsList setNumberOfInvitations={setNumberOfInvitations} />
+            <InvitationsList handleClick={handleClick} />
           </TabPane>
         </Tabs>
       </TeamsPageContainer>
