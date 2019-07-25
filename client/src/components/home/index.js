@@ -5,7 +5,9 @@ import { useHomeContext } from '../../context/HomeContext';
 import HomeLayout from '../home-layout';
 
 function Home() {
-  const { user, teamIds, fetchTeams } = useHomeContext();
+  const {
+    user, teamIds, fetchTeams, noTeams,
+  } = useHomeContext();
   useEffect(() => {
     if (user && user.username) {
       fetchTeams(user._id);
@@ -15,7 +17,9 @@ function Home() {
   if (!user || !user.username) {
     return <Redirect to="/" push />;
   }
-
+  if (noTeams) {
+    return <Redirect to="/teams" push />;
+  }
   if (!teamIds.length) {
     return (
       <Layout>
