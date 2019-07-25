@@ -56,6 +56,7 @@ const generateTeamsMap = (teams) => {
   return {
     teamsMap,
     teamIds,
+    noTeams: teamIds.length === 0,
   };
 };
 

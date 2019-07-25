@@ -55,6 +55,7 @@ const useHome = () => {
     activeTeam,
     teamsMap,
     teamIds,
+    noTeams,
   } = state;
   const generateChannelsMap = useRef(generateChannelsMapHandler(dispatch));
   const fetchChannels = useRef(fetchChannelsApi(generateChannelsMap.current));
@@ -161,6 +162,7 @@ const useHome = () => {
     fetchTeams: fetchTeams.current,
     teamsMap,
     teamIds,
+    noTeams,
   };
 };
 
