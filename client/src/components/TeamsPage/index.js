@@ -72,7 +72,7 @@ const TeamsPage = () => {
           <TabPane
             tab={(
               <span className="tab-title">
-                <Icon type="database" />
+                <Icon type="message" />
                 Teams
               </span>
 )}
@@ -83,7 +83,7 @@ const TeamsPage = () => {
           <TabPane
             tab={(
               <span className="tab-title">
-                <Icon type="download" />
+                <Icon type="contacts" />
                 Invitations {invitations.length ? <Badge count={invitations.length} /> : ''}
               </span>
 )}
