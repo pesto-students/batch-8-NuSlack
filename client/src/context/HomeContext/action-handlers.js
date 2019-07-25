@@ -59,6 +59,7 @@ const setActiveUserHandler = dispatch => (userId) => {
   });
 };
 const setActiveTeamHandler = dispatch => (teamId) => {
+  localStorage.setItem('activeTeam', teamId);
   dispatch({
     type: SET_ACTIVE_TEAM,
     payload: teamId,
@@ -77,6 +78,7 @@ const setChannelsMapHandler = dispatch => (messages, channelId) => {
 
 const logoutAndResetHandler = dispatch => () => {
   localStorage.removeItem(localStorageKeys.USER_DETAILS);
+  localStorage.removeItem('activeTeam');
   dispatch({
     type: LOGOUT_USER,
   });

@@ -66,6 +66,8 @@ const TeamsList = () => {
     setUserListModalVisibility(!userListModalVisibility);
   };
 
+  localStorage.removeItem('activeTeam');
+
   return (
     <div>
       <TeamCards>
