@@ -58,12 +58,6 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
           <Link
             to="/profile"
           >
-            <Avatar
-              className="user-avatar"
-              icon="user"
-              shape="circle"
-              size="default"
-            />
             <h1
               className="user-name"
             />

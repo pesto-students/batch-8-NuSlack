@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Icon, Row, Col, Avatar, Layout, Button,
+  Icon, Row, Col, Layout, Button,
 } from 'antd';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -100,7 +100,6 @@ const MainHeader = () => {
           <Row type="flex" align="middle" justify="end" className="main-header-row">
             <LoggedInUser>
               <Link to="/profile">
-                <Avatar shape="circle" className="user-avatar" icon="user" src={user && user.avatar} />
                 <h1 className="user-name">{user && user.username}</h1>
               </Link>
             </LoggedInUser>
