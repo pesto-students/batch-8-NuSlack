@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import Teams from '../Schemas/teams';
 import Users from '../Schemas/users';
 import * as constants from '../constants/failedResponse';
+import { saveChannel } from './channels';
 
 const getTeams = async (req, res) => {
   const teams = await Teams.find({ ...req.query });
@@ -26,6 +27,19 @@ const saveTeam = async (req, res) => {
     { _id: req.body.admins[0] },
     { $push: { teams: savedTeam.id } },
     { new: true },
+  );
+  await saveChannel(
+    {
+      body: {
+        name: 'General',
+        isGroup: true,
+        isPrivate: false,
+        autoJoin: true,
+        admins: [req.body.admins[0]],
+        teamId: savedTeam.id,
+      },
+    },
+    { send: () => {} },
   );
   return res.send(savedTeam);
 };

@@ -54,10 +54,21 @@ const ChatHeader = ({ activeChannelName }) => {
       <Menu.Item onClick={handleLeaveChannel}>Leave Channel</Menu.Item>
     </Menu>
   );
+  const ChannelTypeIcon = () => {
+    if (!activeChannel) {
+      return <Icon type="user" />;
+    }
+    if (channelsMap[activeChannel].isPrivate) {
+      return <Icon type="lock" />;
+    }
+    return <Icon type="line" />;
+  };
   return (
     <div>
       <GreenHeader className="channel-detail">
-        {activeChannelName}
+        <div style={{ display: 'inline' }}>
+          <ChannelTypeIcon /> {activeChannelName}
+        </div>
         {activeChannel ? (
           <Dropdown overlay={menu}>
             <span style={{ float: 'right', cursor: 'pointer' }}>
