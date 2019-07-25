@@ -46,7 +46,7 @@ const LoginPage = () => {
   return (
     <LoginContainer>
       <img src="/images/logo.png" alt="logo image" className="signup-logo" />
-      <h1>Login to meet you friends!</h1>
+      <h1>Login to meet your friends!</h1>
       <Spin spinning={loading}>
         <div style={{ display: 'block', textAlign: 'center' }}>
           <GoogleLogin

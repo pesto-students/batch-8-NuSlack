@@ -8,7 +8,7 @@ exports[`<LoginPage /> should match the snapshot 1`] = `
     src="/images/logo.png"
   />
   <h1>
-    Login to meet you friends!
+    Login to meet your friends!
   </h1>
   <Spin
     size="default"
