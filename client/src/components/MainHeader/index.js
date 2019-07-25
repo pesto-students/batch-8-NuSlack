@@ -3,7 +3,8 @@ import {
   Icon, Row, Col, Avatar, Layout, Button, Drawer,
 } from 'antd';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 import SmallButton from '../SmallButton';
 import { useHomeContext } from '../../context/HomeContext';
 import TeamsDrawer from '../TeamsDrawer';
@@ -88,14 +89,11 @@ const HomeHeader = styled(Header)`
   }
 `;
 
-const MainHeader = () => {
+const MainHeader = (props) => {
   const {
-    user, logoutUser, activeTeam, fetchTeams, teamsMap,
+    user, logoutUser, activeTeam, teamsMap,
   } = useHomeContext();
   const [teamName, setTeamName] = useState('');
-  useEffect(() => {
-    fetchTeams(user._id);
-  }, [user, fetchTeams]);
   useEffect(() => {
     if (teamsMap && teamsMap[activeTeam]) {
       setTeamName(teamsMap[activeTeam].name || '');
@@ -103,6 +101,10 @@ const MainHeader = () => {
   }, [activeTeam, teamsMap]);
 
   const [isMobileMenuVisible, setMobileMenuVisible] = useState(false);
+
+  const { pathname } = props.location;
+
+  const isHome = pathname === '/home';
   return (
     <HomeHeader className="home-header">
       <Row className="main-header-row-full">
@@ -138,7 +140,7 @@ const MainHeader = () => {
               <Button type="primary">Invitations</Button>
             </Link>
             &nbsp;
-            <TeamsDrawer />
+            {isHome ? <TeamsDrawer /> : null}
             &nbsp;
             <SmallButton onClick={logoutUser}>
               <Icon type="logout" /> Logout
@@ -220,7 +222,7 @@ const MainHeader = () => {
             <Button type="primary">Invitations</Button>
           </Link>
           &nbsp;
-          <TeamsDrawer />
+          {isHome ? <TeamsDrawer /> : null}
           &nbsp;
           <SmallButton onClick={logoutUser}>
             <Icon type="logout" /> Logout
@@ -231,4 +233,8 @@ const MainHeader = () => {
   );
 };
 
-export default MainHeader;
+MainHeader.propTypes = {
+  location: PropTypes.func.isRequired,
+};
+
+export default withRouter(MainHeader);

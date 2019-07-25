@@ -8,7 +8,7 @@ exports[`<HomeLayout /> should match the snapshot 1`] = `
     }
   }
 >
-  <MainHeader />
+  <withRouter(MainHeader) />
   <Adapter
     style={
       Object {

@@ -2,6 +2,7 @@ import { localStorageKeys } from '../../config';
 
 const getInitialState = () => {
   const user = localStorage.getItem(localStorageKeys.USER_DETAILS);
+  const activeTeam = localStorage.getItem('activeTeam') || null;
 
   const initialState = {
     user: user ? JSON.parse(user) : {},
@@ -14,7 +15,7 @@ const getInitialState = () => {
     activeChannel: null,
     activeUser: null,
     userMessages: {},
-    activeTeam: null,
+    activeTeam,
     error: null,
     teamsMap: {},
     teamIds: [],
