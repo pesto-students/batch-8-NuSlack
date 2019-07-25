@@ -47,12 +47,16 @@ const LoginForm = (props) => {
             initialValue: false,
           })(<Checkbox>Remember me</Checkbox>)}
           <a className="login-form-forgot" href="./forgot-password">
-            Forgot password
+            Forgot password?
           </a>
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
-          Or <Link to="/signup">register now!</Link>
+          <Link to="/signup">
+            <Button type="primary" style={{ 'background-color': '#4CAF50' }}>
+              Not a member yet? Register and join us!
+            </Button>
+          </Link>
         </Form.Item>
       </Form>
     </StyledWrapper>

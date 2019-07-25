@@ -46,17 +46,20 @@ const LoginPage = () => {
   return (
     <LoginContainer>
       <img src="/images/logo.png" alt="logo image" />
-      <h1>Login to NuSlack</h1>
-
+      <h1>Login to meet you friends!</h1>
       <Spin spinning={loading}>
-        <LoginForm handleFormSubmit={handleFormSubmit} />
-        <div>OR</div>
         <GoogleLogin
           clientId={authClients.GOOGLE_CLIENT_ID}
           buttonText="Login with Google"
           onSuccess={handleGoogleLogin}
           onFailure={openErrorAlert}
+          width={200}
+          theme="dark"
         />
+        <br />
+        <br />
+        <h3> Login the old fashioned way :)</h3>
+        <LoginForm handleFormSubmit={handleFormSubmit} />
       </Spin>
     </LoginContainer>
   );

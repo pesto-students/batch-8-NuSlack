@@ -7,19 +7,13 @@ exports[`<LoginPage /> should match the snapshot 1`] = `
     src="/images/logo.png"
   />
   <h1>
-    Login to NuSlack
+    Login to meet you friends!
   </h1>
   <Spin
     size="default"
     spinning={false}
     wrapperClassName=""
   >
-    <Form(LoginForm)
-      handleFormSubmit={[Function]}
-    />
-    <div>
-      OR
-    </div>
     <e
       accessType="online"
       buttonText="Login with Google"
@@ -40,9 +34,18 @@ exports[`<LoginPage /> should match the snapshot 1`] = `
       prompt=""
       scope="profile email"
       tag="button"
-      theme="light"
+      theme="dark"
       type="button"
       uxMode="popup"
+      width={200}
+    />
+    <br />
+    <br />
+    <h3>
+       Login the old fashioned way :)
+    </h3>
+    <Form(LoginForm)
+      handleFormSubmit={[Function]}
     />
   </Spin>
 </styled.div>
