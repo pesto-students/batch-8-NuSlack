@@ -70,7 +70,7 @@ const ChatHeader = ({ activeChannelName }) => {
           <ChannelTypeIcon /> {activeChannelName}
         </div>
         {activeChannel ? (
-          <Dropdown overlay={menu}>
+          <Dropdown overlay={menu} trigger={['click']}>
             <span style={{ float: 'right', cursor: 'pointer' }}>
               Settings <Icon type="down" />
             </span>
