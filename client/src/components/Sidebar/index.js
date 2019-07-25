@@ -119,6 +119,7 @@ const Sidebar = () => {
         >
           {channelIds.map(channelId => (
             <Menu.Item onClick={() => changeActiveChannel(channelId)} key={channelId}>
+              {channelsMap[channelId].isPrivate ? <Icon type="lock" /> : <Icon type="line" />}
               {channelsMap[channelId].name}{' '}
               <span>
                 {!channelsMap[channelId].unreadMessages ? (
