@@ -4,9 +4,11 @@ import styled from 'styled-components';
 import { useHomeContext } from '../../context/HomeContext';
 
 const InputContainer = styled.div`
+  margin: 0 40px;
   @media only screen and (max-width: 600px) {
     margin-bottom: 3px;
     margin-left: 30px;
+    margin-right: 0px;
     width: 95%;
   }
 `;

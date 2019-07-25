@@ -59,7 +59,7 @@ const ProfileEditForm = (props) => {
         label={(
           <span>
             TagLine&nbsp;
-            <Tooltip title="Say something about you.">
+            <Tooltip title="Say something about yourself.">
               <Icon type="question-circle-o" />
             </Tooltip>
           </span>
