@@ -89,7 +89,7 @@ const SignupForm = (props) => {
             </span>
           )}
         >
-          {getFieldDecorator('nickname', {
+          {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
           })(<Input />)}
         </Form.Item>

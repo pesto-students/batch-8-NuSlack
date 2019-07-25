@@ -52,8 +52,9 @@ const initPassport = () => {
       {
         usernameField: 'email',
         passwordField: 'password',
+        passReqToCallback: true,
       },
-      async (email, password, done) => {
+      async (req, email, password, done) => {
         try {
           const user = await User.findOne({ email });
           if (user) {
@@ -70,7 +71,7 @@ const initPassport = () => {
 
           const newUser = new User({
             email,
-            username: email,
+            username: req.body.username || email,
             password,
           });
 
