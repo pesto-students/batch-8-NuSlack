@@ -5,21 +5,18 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
   className="home-header"
 >
   <Row
+    className="main-header-row-full"
     gutter={0}
   >
     <Col
-      span={12}
+      span={8}
     >
       <Row
-        align="middle"
-        className="main-header-row"
         gutter={0}
         justify="start"
         type="flex"
       >
-        <div
-          className="main-header-logo-wrapper"
-        >
+        <Col>
           <Link
             to="/"
           >
@@ -38,18 +35,17 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
             className="header-text"
           >
             Team (
-            --
+            Not Selected
             )
           </span>
-        </div>
+        </Col>
       </Row>
     </Col>
     <Col
-      span={12}
+      span={16}
     >
       <Row
         align="middle"
-        className="main-header-row"
         gutter={0}
         justify="end"
         type="flex"
@@ -94,5 +90,161 @@ exports[`<MainHeader /> should match the snapshot 1`] = `
       </Row>
     </Col>
   </Row>
+  <Row
+    className="main-header-row-mobile"
+    gutter={0}
+  >
+    <Col
+      span={20}
+    >
+      <Row
+        gutter={0}
+        justify="start"
+        type="flex"
+      >
+        <Col>
+          <Link
+            to="/"
+          >
+            <img
+              alt="nu-slack"
+              className="main-header-logo"
+              src="./images/transparent-logo-small.png"
+            />
+          </Link>
+        </Col>
+      </Row>
+    </Col>
+    <Col
+      span={4}
+    >
+      <Row
+        align="middle"
+        gutter={0}
+        justify="end"
+        type="flex"
+      >
+        <styled.div>
+          <span
+            className="mobile-profile"
+          >
+            <Avatar
+              className="user-avatar"
+              icon="user"
+              onClick={[Function]}
+              shape="circle"
+              size="default"
+            />
+          </span>
+        </styled.div>
+      </Row>
+    </Col>
+  </Row>
+  <withConfigConsumer(Drawer)
+    closable={true}
+    height="content"
+    onClose={[Function]}
+    placement="top"
+    title={
+      <div
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }
+      >
+        <div>
+          <Link
+            to="/"
+          >
+            <img
+              alt="nu-slack"
+              className="main-header-logo"
+              src="./images/transparent-logo.png"
+              style={
+                Object {
+                  "width": "60%",
+                }
+              }
+            />
+          </Link>
+        </div>
+        <span
+          style={
+            Object {
+              "display": "inline-block",
+              "fontSize": "1.4em",
+              "margin": "20px",
+            }
+          }
+        >
+          (
+          Select Team
+          )
+        </span>
+        <hr />
+        <div
+          style={
+            Object {
+              "alignContent": "center",
+              "display": "flex",
+              "justifyContent": "center",
+              "width": "content",
+            }
+          }
+        >
+          <Link
+            to="/profile"
+          >
+            <h1
+              className="user-name"
+              style={
+                Object {
+                  "color": "#ff8080",
+                  "fontSize": "1.4em",
+                  "margin": 0,
+                }
+              }
+            />
+          </Link>
+        </div>
+      </div>
+    }
+    visible={false}
+  >
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "height": "content",
+          "justifyContent": "center",
+          "padding": "20px",
+        }
+      }
+    >
+      <Link
+        to="/teams"
+      >
+        <Button
+          block={false}
+          ghost={false}
+          htmlType="button"
+          loading={false}
+          type="primary"
+        >
+          Invitations
+        </Button>
+      </Link>
+       
+      <TeamsDrawer />
+       
+      <SmallButton>
+        <Icon
+          type="logout"
+        />
+         Logout
+      </SmallButton>
+    </div>
+  </withConfigConsumer(Drawer)>
 </Styled(Adapter)>
 `;

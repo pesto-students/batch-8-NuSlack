@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Icon, Row, Col, Avatar, Layout, Button,
+  Icon, Row, Col, Avatar, Layout, Button, Drawer,
 } from 'antd';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -11,36 +11,69 @@ import TeamsDrawer from '../TeamsDrawer';
 const { Header } = Layout;
 
 const LoggedInUser = styled.div`
-  padding: 10px;
   color: white;
-  line-height: 2em;
   h1.user-name {
     color: white;
     font-size: 1.6em;
-    margin: 0;
+    display: inline;
+  }
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+
+  a {
+    height: 58px;
     display: inline-block;
-    vertical-align: center;
+    padding: 0 10px;
+    &:hover {
+      background: #646b92;
+      border-radius: 10px;
+      box-shadow: inset 0 0 5px black;
+      transition: 0.3s all;
+    }
+  }
+
+  span.mobile-profile {
+    height: 58px;
+    display: inline-block;
+    padding-top: 5px;
+    &:hover {
+      background: #646b92;
+      border-radius: 10px;
+      box-shadow: inset 0 0 5px black;
+      transition: 0.3s all;
+    }
   }
 `;
 
 const HomeHeader = styled(Header)`
   height: 64px;
   background: #2d3561;
+  display: block;
 
-  .main-header-row {
+  .main-header-row-full {
     height: 64px;
+    @media (max-width: 1200px) {
+      display: none;
+    }
+  }
+
+  .main-header-row-mobile {
+    height: 64px;
+    @media (min-width: 1200px) {
+      display: none;
+    }
   }
 
   img.main-header-logo {
     height: 40px;
-    margin-bottom: 10px;
   }
 
   .header-text {
     color: white;
+    position: relative;
+    top: 8px;
     font-size: 1.8em;
-    vertical-align: bottom;
-    display: inline-block;
   }
 
   .user-avatar {
@@ -49,19 +82,9 @@ const HomeHeader = styled(Header)`
     display: inline-block;
     line-height: 40px;
     font-size: 20px;
-  }
-
-  .main-header-logo-wrapper {
-    display: block;
-  }
-
-  @media only screen and (max-width: 600px) {
-    padding: 0 25px;
-    font-size: 11px;
-    .ant-avatar {
-      height: 64px !important;
-      width: 64px !important;
-    }
+    position: relative;
+    top: -4px;
+    margin-right: 5px;
   }
 `;
 
@@ -78,12 +101,14 @@ const MainHeader = () => {
       setTeamName(teamsMap[activeTeam].name || '');
     }
   }, [activeTeam, teamsMap]);
+
+  const [isMobileMenuVisible, setMobileMenuVisible] = useState(false);
   return (
     <HomeHeader className="home-header">
-      <Row>
-        <Col span={12}>
-          <Row type="flex" align="middle" justify="start" className="main-header-row">
-            <div className="main-header-logo-wrapper">
+      <Row className="main-header-row-full">
+        <Col span={8}>
+          <Row type="flex" justify="start">
+            <Col>
               <Link to="/">
                 <img
                   className="main-header-logo"
@@ -92,15 +117,20 @@ const MainHeader = () => {
                 />
               </Link>
               <span className="header-text">&nbsp; - &nbsp;</span>
-              <span className="header-text">Team ({teamName || '--'})</span>
-            </div>
+              <span className="header-text">Team ({teamName || 'Not Selected'})</span>
+            </Col>
           </Row>
         </Col>
-        <Col span={12}>
-          <Row type="flex" align="middle" justify="end" className="main-header-row">
+        <Col span={16}>
+          <Row type="flex" align="middle" justify="end">
             <LoggedInUser>
               <Link to="/profile">
-                <Avatar shape="circle" className="user-avatar" icon="user" src={user && user.avatar} />
+                <Avatar
+                  shape="circle"
+                  className="user-avatar"
+                  icon="user"
+                  src={user && user.avatar}
+                />
                 <h1 className="user-name">{user && user.username}</h1>
               </Link>
             </LoggedInUser>
@@ -116,6 +146,87 @@ const MainHeader = () => {
           </Row>
         </Col>
       </Row>
+      <Row className="main-header-row-mobile">
+        <Col span={20}>
+          <Row type="flex" justify="start">
+            <Col>
+              <Link to="/">
+                <img
+                  className="main-header-logo"
+                  src="./images/transparent-logo-small.png"
+                  alt="nu-slack"
+                />
+              </Link>
+            </Col>
+          </Row>
+        </Col>
+        <Col span={4}>
+          <Row type="flex" align="middle" justify="end">
+            <LoggedInUser>
+              <span className="mobile-profile">
+                <Avatar
+                  shape="circle"
+                  className="user-avatar"
+                  icon="user"
+                  src={user && user.avatar}
+                  onClick={() => setMobileMenuVisible(true)}
+                />
+              </span>
+            </LoggedInUser>
+          </Row>
+        </Col>
+      </Row>
+      <Drawer
+        title={(
+          <div style={{ textAlign: 'center' }}>
+            <div>
+              <Link to="/">
+                <img
+                  className="main-header-logo"
+                  src="./images/transparent-logo.png"
+                  alt="nu-slack"
+                  style={{ width: '60%' }}
+                />
+              </Link>
+            </div>
+            <span style={{ fontSize: '1.4em', margin: '20px', display: 'inline-block' }}>({teamName || 'Select Team'})</span>
+            <hr />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignContent: 'center',
+                width: 'content',
+              }}
+            >
+              <Link to="/profile">
+                <h1 style={{ fontSize: '1.4em', margin: 0, color: '#ff8080' }} className="user-name">{user && user.username}</h1>
+              </Link>
+            </div>
+          </div>
+)}
+        placement="top"
+        closable
+        onClose={() => setMobileMenuVisible(false)}
+        visible={isMobileMenuVisible}
+        height="content"
+      >
+        <div
+          style={{
+            display: 'flex', padding: '20px', justifyContent: 'center', height: 'content',
+          }}
+        >
+          <Link to="/teams">
+            <Button type="primary">Invitations</Button>
+          </Link>
+          &nbsp;
+          <TeamsDrawer />
+          &nbsp;
+          <SmallButton onClick={logoutUser}>
+            <Icon type="logout" /> Logout
+          </SmallButton>
+        </div>
+      </Drawer>
     </HomeHeader>
   );
 };
