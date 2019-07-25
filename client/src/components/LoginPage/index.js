@@ -45,18 +45,19 @@ const LoginPage = () => {
 
   return (
     <LoginContainer>
-      <img src="/images/logo.png" alt="logo image" />
+      <img src="/images/logo.png" alt="logo image" className="signup-logo" />
       <h1>Login to meet you friends!</h1>
       <Spin spinning={loading}>
-        <GoogleLogin
-          clientId={authClients.GOOGLE_CLIENT_ID}
-          buttonText="Login with Google"
-          onSuccess={handleGoogleLogin}
-          onFailure={openErrorAlert}
-          width={200}
-          theme="dark"
-        />
-        <br />
+        <div style={{ display: 'block', textAlign: 'center' }}>
+          <GoogleLogin
+            clientId={authClients.GOOGLE_CLIENT_ID}
+            buttonText="Login with Google"
+            onSuccess={handleGoogleLogin}
+            onFailure={openErrorAlert}
+            width={200}
+            theme="dark"
+          />
+        </div>
         <br />
         <h3> Login the old fashioned way :)</h3>
         <LoginForm handleFormSubmit={handleFormSubmit} />

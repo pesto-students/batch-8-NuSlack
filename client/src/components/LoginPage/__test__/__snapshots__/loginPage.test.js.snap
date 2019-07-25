@@ -4,6 +4,7 @@ exports[`<LoginPage /> should match the snapshot 1`] = `
 <styled.div>
   <img
     alt="logo image"
+    className="signup-logo"
     src="/images/logo.png"
   />
   <h1>
@@ -14,32 +15,40 @@ exports[`<LoginPage /> should match the snapshot 1`] = `
     spinning={false}
     wrapperClassName=""
   >
-    <e
-      accessType="online"
-      buttonText="Login with Google"
-      clientId="google-client-id"
-      cookiePolicy="single_host_origin"
-      disabledStyle={
+    <div
+      style={
         Object {
-          "opacity": 0.6,
+          "display": "block",
+          "textAlign": "center",
         }
       }
-      fetchBasicProfile={true}
-      icon={true}
-      isSignedIn={false}
-      jsSrc="https://apis.google.com/js/api.js"
-      onFailure={[Function]}
-      onRequest={[Function]}
-      onSuccess={[Function]}
-      prompt=""
-      scope="profile email"
-      tag="button"
-      theme="dark"
-      type="button"
-      uxMode="popup"
-      width={200}
-    />
-    <br />
+    >
+      <e
+        accessType="online"
+        buttonText="Login with Google"
+        clientId="google-client-id"
+        cookiePolicy="single_host_origin"
+        disabledStyle={
+          Object {
+            "opacity": 0.6,
+          }
+        }
+        fetchBasicProfile={true}
+        icon={true}
+        isSignedIn={false}
+        jsSrc="https://apis.google.com/js/api.js"
+        onFailure={[Function]}
+        onRequest={[Function]}
+        onSuccess={[Function]}
+        prompt=""
+        scope="profile email"
+        tag="button"
+        theme="dark"
+        type="button"
+        uxMode="popup"
+        width={200}
+      />
+    </div>
     <br />
     <h3>
        Login the old fashioned way :)

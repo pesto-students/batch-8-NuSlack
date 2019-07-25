@@ -77,7 +77,11 @@ const ChatComponent = () => {
   }, []) || [];
   const toggleModal = (user) => {
     if (user) {
-      setActiveModalProfile(user);
+      if (allUsersMap[user._id]) {
+        setActiveModalProfile({ ...allUsersMap[user._id], found: true });
+      } else {
+        setActiveModalProfile(user);
+      }
     } else {
       setActiveModalProfile(defaultUser);
     }

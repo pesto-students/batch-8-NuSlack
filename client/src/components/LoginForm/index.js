@@ -52,11 +52,13 @@ const LoginForm = (props) => {
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
-          <Link to="/signup">
-            <Button type="primary" style={{ backgroundColor: '#4CAF50' }}>
-              Not a member yet? Register and join us!
-            </Button>
-          </Link>
+          <div style={{ textAlign: 'center' }}>
+            <Link to="/signup">
+              <div>
+                Not a member yet? Register and join us!
+              </div>
+            </Link>
+          </div>
         </Form.Item>
       </Form>
     </StyledWrapper>

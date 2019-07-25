@@ -9,6 +9,7 @@ const ProfileContainer = styled.div`
 
   .container-row {
       min-width: 900px;
+      max-width: 900px;
       @media (max-width: 900px) {
         min-width: 100%;
       }

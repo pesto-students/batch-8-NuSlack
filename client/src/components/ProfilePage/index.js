@@ -34,6 +34,7 @@ const ProfilePage = () => {
   const EditFormInitialValues = {
     username: { value: user.username },
     tagLine: { value: user.tagLine },
+    avatar: { value: user.avatar },
   };
 
   if (!user || !user._id) {
@@ -58,12 +59,7 @@ const ProfilePage = () => {
                   <Card
                     hoverable
                     style={{ width: '100%', maxWidth: '300px', margin: 'auto' }}
-                    cover={(
-                      <img
-                        alt="example"
-                        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                      />
-)}
+                    cover={<img alt="example" src={user.avatar} />}
                   >
                     <Meta title={user.username} style={{ textAlign: 'center' }} />
                   </Card>
@@ -89,7 +85,9 @@ const ProfilePage = () => {
                       <Icon type="usergroup-add" /> Teams
                     </h4>
                     <hr />
-                    <p style={{ 'font-size': '20px' }}>{teamIds.map(teamId => teamsMap[teamId].name).join(', ')}</p>
+                    <p style={{ 'font-size': '20px' }}>
+                      {teamIds.map(teamId => teamsMap[teamId].name).join(', ')}
+                    </p>
                     <Button
                       type="primary"
                       icon="edit"
