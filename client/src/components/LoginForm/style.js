@@ -9,6 +9,7 @@ const StyledWrapper = styled.div`
   }
   .login-form-button {
     width: 100%;
+    background-color: #008CBA;
   }
 `;
 
