@@ -25,5 +25,6 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
       "validateFieldsAndScroll": [Function],
     }
   }
+  handleFormSubmit={[Function]}
 />
 `;

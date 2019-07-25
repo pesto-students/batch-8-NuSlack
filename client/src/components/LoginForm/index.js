@@ -53,7 +53,7 @@ const LoginForm = (props) => {
             Log in
           </Button>
           <Link to="/signup">
-            <Button type="primary" style={{ 'background-color': '#4CAF50' }}>
+            <Button type="primary" style={{ backgroundColor: '#4CAF50' }}>
               Not a member yet? Register and join us!
             </Button>
           </Link>

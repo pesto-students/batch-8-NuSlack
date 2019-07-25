@@ -6,7 +6,7 @@ import LoginForm from '../index';
 
 describe('<LoginForm />', () => {
   it('should match the snapshot', () => {
-    const tree = shallow(<LoginForm />);
+    const tree = shallow(<LoginForm handleFormSubmit={() => {}} />);
     expect(toJson(tree)).toMatchSnapshot();
   });
 });
