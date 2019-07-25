@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import Invitations from '../Schemas/invitations';
 import Users from '../Schemas/users';
+import Channels from '../Schemas/channels';
 import * as constants from '../constants/failedResponse';
 
 const { ObjectId } = mongoose.Types;
@@ -40,7 +41,7 @@ const acceptInvitation = async (req, res) => {
     },
     { new: true },
   );
-  await Users.findOneAndUpdate(
+  const user = await Users.findOneAndUpdate(
     {
       _id: ObjectId(invitation.invitedUser),
     },
@@ -50,6 +51,13 @@ const acceptInvitation = async (req, res) => {
     {
       new: true,
     },
+  );
+  await Channels.updateMany(
+    {
+      teamId: mongoose.Types.ObjectId(invitation.team),
+      autoJoin: true,
+    },
+    { $push: { users: mongoose.Types.ObjectId(user.id) } },
   );
   if (!invitation) {
     return res.status(404).send(constants.invitationNotFound);

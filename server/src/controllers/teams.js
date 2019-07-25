@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import Teams from '../Schemas/teams';
 import Users from '../Schemas/users';
+import Channels from '../Schemas/channels';
 import * as constants from '../constants/failedResponse';
 import { saveChannel } from './channels';
 
@@ -74,6 +75,12 @@ const removeUserFromTeam = async (req, res) => {
     { _id: req.params.userId },
     { $pull: { teams: req.params.teamId } },
     { new: true },
+  );
+  await Channels.updateMany(
+    {
+      teamId: mongoose.Types.ObjectId(req.params.teamId),
+    },
+    { $pull: { users: mongoose.Types.ObjectId(user.id) } },
   );
   if (!user) {
     return res.status(404).send(constants.userNotFound);
