@@ -15,7 +15,7 @@ const SignupPage = () => {
 
   return (
     <SignupContainer>
-      <img src="/images/logo.png" alt="logo image" />
+      <img src="/images/logo.png" alt="logo image" className="signup-logo" />
       <h1>Signup</h1>
       {loading ? <div>loading...</div> : null}
       {data && data.data && data.data.user && data.data.user._id ? (

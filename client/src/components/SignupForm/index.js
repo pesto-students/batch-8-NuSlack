@@ -49,18 +49,6 @@ const SignupForm = (props) => {
       xs: { span: 24 },
     },
   };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 8,
-      },
-    },
-  };
 
   return (
     <StyledWrapper>
@@ -87,7 +75,7 @@ const SignupForm = (props) => {
                 <Icon type="question-circle-o" />
               </Tooltip>
             </span>
-          )}
+)}
         >
           {getFieldDecorator('nickname', {
             rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
@@ -120,8 +108,8 @@ const SignupForm = (props) => {
           })(<Input.Password placeholder="Password" onBlur={handleConfirmBlur} />)}
         </Form.Item>
 
-        <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
+        <Form.Item>
+          <Button type="primary" style={{ display: 'block', margin: 'auto' }} htmlType="submit">
             Register
           </Button>
         </Form.Item>

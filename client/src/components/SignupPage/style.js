@@ -6,6 +6,11 @@ const SignupContainer = styled.div`
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  .signup-logo {
+    @media only screen and (max-width: 600px) {
+      height: 175px;
+    }
+  }
 `;
 
 const anotherStyle = {};
