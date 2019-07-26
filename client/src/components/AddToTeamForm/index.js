@@ -7,7 +7,7 @@ import {
 import { useHomeContext } from '../../context/HomeContext';
 import { serverConfig } from '../../config';
 
-const successFullMessage = 'Users added successfully';
+const successFullMessage = 'Invitation sent.';
 
 const openNotificationWithIcon = (type) => {
   notification[type]({

@@ -63,7 +63,6 @@ const TeamsPage = () => {
   if (!user || !user.username) {
     return <Redirect to="/" push />;
   }
-
   return (
     <div>
       <MainHeader />
@@ -89,7 +88,7 @@ const TeamsPage = () => {
 )}
             key="2"
           >
-            <InvitationsList handleClick={handleClick} />
+            <InvitationsList handleClick={handleClick} invitations={invitations} />
           </TabPane>
         </Tabs>
       </TeamsPageContainer>
