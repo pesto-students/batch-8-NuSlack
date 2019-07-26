@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import styled from 'styled-components';
-import { Button, notification, Card } from 'antd';
+import { Button, Card } from 'antd';
 import PropTypes from 'prop-types';
-import { useHomeContext } from '../../context/HomeContext';
-import { serverConfig } from '../../config';
 
 const { Meta } = Card;
-const successFullAcceptMessage = 'Team joined successfully.';
-const successFullRejectMessage = 'Invitation Rejected.';
 
-const openNotificationWithIcon = (type, accepted) => {
-  notification[type]({
-    message: accepted ? successFullAcceptMessage : successFullRejectMessage,
-  });
-};
 const InvitationCards = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -47,78 +37,44 @@ const StyledCard = styled(Card)`
     background-color: rgba(0, 0, 0, 0);
   }
 `;
-const InvitationsList = ({ setNumberOfInvitations }) => {
-  const { SERVER_BASE_URL } = serverConfig;
-  const [invitations, setInvitations] = useState([]);
-  const { user, fetchTeams } = useHomeContext();
-  const handleClick = (type, invitationId) => {
-    axios.post(`${SERVER_BASE_URL}/invitations/${invitationId}/${type}`).then(() => {
-      fetchTeams(user._id);
-      axios
-        .get(`${SERVER_BASE_URL}/invitations`, {
-          params: { invitedUser: user._id, status: 'sent' },
-        })
-        .then((resp) => {
-          setInvitations(resp.data);
-          setNumberOfInvitations(resp.data.length);
-          openNotificationWithIcon('success', type === 'accept');
-        });
-    });
-  };
-  useEffect(() => {
-    if (user._id) {
-      axios
-        .get(`${SERVER_BASE_URL}/invitations`, {
-          params: { invitedUser: user._id, status: 'sent' },
-        })
-        .then((resp) => {
-          setInvitations(resp.data);
-          setNumberOfInvitations(resp.data.length);
-        });
-    }
-  }, [user, SERVER_BASE_URL, setNumberOfInvitations]);
-
-  return (
-    <div>
-      <InvitationCards>
-        {invitations.map(invitation => (
-          <StyledCard
-            key={invitation._id}
-            cover={(
-              <img
-                onClick={() => handleClick(invitation._id)}
-                onKeyPress={() => {}}
-                role="presentation"
-                alt="TeamImage"
-                className="teamImage"
-                src={invitation.team.avatarUrl}
-              />
-)}
-            hoverable
-            actions={[
-              <Button onClick={() => handleClick('accept', invitation._id)}>Accept</Button>,
-              <Button onClick={() => handleClick('reject', invitation._id)}>Reject</Button>,
-            ]}
-          >
-            <Meta
+const InvitationsList = ({ handleClick, invitations }) => (
+  <div>
+    <InvitationCards>
+      {invitations.map(invitation => (
+        <StyledCard
+          key={invitation._id}
+          cover={(
+            <img
               onClick={() => handleClick(invitation._id)}
-              title={(
-                <h2 style={{ textAlign: 'center', fontSize: '1.8em', marginBottom: 0 }}>
-                  {invitation.team.name}
-                </h2>
-)}
+              onKeyPress={() => {}}
+              role="presentation"
+              alt="TeamImage"
+              className="teamImage"
+              src={invitation.team.avatarUrl}
             />
-          </StyledCard>
-        ))}
-        {!invitations.length ? <h2>You have no invitations</h2> : ''}
-      </InvitationCards>
-    </div>
-  );
-};
+)}
+          hoverable
+          actions={[
+            <Button onClick={() => handleClick('accept', invitation._id)}>Accept</Button>,
+            <Button onClick={() => handleClick('reject', invitation._id)}>Reject</Button>,
+          ]}
+        >
+          <Meta
+            onClick={() => handleClick(invitation._id)}
+            title={(
+              <h2 style={{ textAlign: 'center', fontSize: '1.8em', marginBottom: 0 }}>
+                {invitation.team.name}
+              </h2>
+)}
+          />
+        </StyledCard>
+      ))}
+      {!invitations.length ? <h2>You have no invitations</h2> : ''}
+    </InvitationCards>
+  </div>
+);
 InvitationsList.propTypes = {
-  setNumberOfInvitations: PropTypes.func,
-};
-InvitationsList.defaultProps = {
-  setNumberOfInvitations: () => {},
+  invitations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 export default InvitationsList;
