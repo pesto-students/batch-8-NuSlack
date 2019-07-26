@@ -118,8 +118,7 @@ const MainHeader = (props) => {
                   alt="nu-slack"
                 />
               </Link>
-              <span className="header-text">&nbsp; - &nbsp;</span>
-              <span className="header-text">Team ({teamName || 'Not Selected'})</span>
+              <span className="header-text">{(teamName && `#${teamName}`) || ''}</span>
             </Col>
           </Row>
         </Col>
@@ -191,7 +190,7 @@ const MainHeader = (props) => {
                 />
               </Link>
             </div>
-            <span style={{ fontSize: '1.4em', margin: '20px', display: 'inline-block' }}>({teamName || 'Select Team'})</span>
+            <span style={{ fontSize: '1.4em', margin: '20px', display: 'inline-block' }}>{(teamName && `#${teamName}`) || ''}</span>
             <hr />
             <div
               style={{
